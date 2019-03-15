@@ -1,9 +1,7 @@
 package org.w01f.dds.service.biz;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.w01f.dds.service.dao.ITestDao;
 
 @Service

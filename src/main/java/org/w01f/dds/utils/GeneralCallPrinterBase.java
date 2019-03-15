@@ -29,6 +29,14 @@ public abstract class GeneralCallPrinterBase implements InvocationHandler, Facto
         return proxy;
     }
 
+    public Object getObject2() {
+        try {
+            return proxy;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public Class<?> getObjectType() {
         return inf;

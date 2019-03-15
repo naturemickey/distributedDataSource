@@ -30,6 +30,7 @@ public class TestDao implements ITestDao {
 
     @Override
     public String testSelet(String id) {
+        List<Map<String, Object>> list1 = this.jdbcTemplate.queryForList("select name from ttt where id = \"" +id + '"');
         List<Map<String, Object>> list = this.jdbcTemplate.queryForList("select name from ttt where id = ?", id);
         if (list.size() >0) {
             return (String)list.get(0).get("name");
