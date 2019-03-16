@@ -1,5 +1,9 @@
 package org.w01f.dds.layer2.index;
 
+/**
+ * Every table must has an column named "id" as primary key.
+ * If the table has an foreign key, it mast be named "parent_id".
+ */
 public class Table {
 
     private String name;
