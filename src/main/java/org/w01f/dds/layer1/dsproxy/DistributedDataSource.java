@@ -19,12 +19,12 @@ public class DistributedDataSource implements DataSource {
 
     @Override
     public Connection getConnection() throws SQLException {
-        return (Connection) new DistributedConnection(ds.getConnection()).getObject2();
+        return new DistributedConnection(ds.getConnection());
     }
 
     @Override
     public Connection getConnection(String username, String password) throws SQLException {
-        return (Connection) new DistributedConnection(ds.getConnection(username, password)).getObject2();
+        return new DistributedConnection(ds.getConnection(username, password));
     }
 
     @Override

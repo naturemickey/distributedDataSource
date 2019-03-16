@@ -7,13 +7,13 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public abstract class GeneralCallPrinterBase implements InvocationHandler, FactoryBean<Object> {
+public abstract class GeneralCallPrinterBase<T> implements InvocationHandler, FactoryBean<Object> {
     protected abstract Object getObj();
-    private Class<?> inf;
+    private Class<T> inf;
 
     private Object proxy;
 
-    public GeneralCallPrinterBase(Class<?> inf) {
+    public GeneralCallPrinterBase(Class<T> inf) {
         this.inf = inf;
         proxy = Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{inf}, this);
     }
@@ -29,9 +29,9 @@ public abstract class GeneralCallPrinterBase implements InvocationHandler, Facto
         return proxy;
     }
 
-    public Object getObject2() {
+    public T getObject2() {
         try {
-            return proxy;
+            return (T) proxy;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
