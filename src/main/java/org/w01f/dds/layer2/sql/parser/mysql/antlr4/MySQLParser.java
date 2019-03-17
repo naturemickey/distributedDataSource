@@ -183,6 +183,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitStat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitStat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StatContext stat() throws RecognitionException {
@@ -263,6 +268,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTranscationStat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTranscationStat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TranscationStatContext transcationStat() throws RecognitionException {
@@ -315,6 +325,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitCommit(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitCommit(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CommitContext commit() throws RecognitionException {
@@ -351,6 +366,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitRollback(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitRollback(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -409,6 +429,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitInsertStat(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitInsertStat(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -508,6 +533,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitColumnNames(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitColumnNames(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ColumnNamesContext columnNames() throws RecognitionException {
@@ -573,6 +603,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitValueList(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitValueList(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ValueListContext valueList() throws RecognitionException {
@@ -635,6 +670,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitSelectStat(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitSelectStat(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -709,6 +749,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitSelectInner(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitSelectInner(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SelectInnerContext selectInner() throws RecognitionException {
@@ -772,6 +817,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitSelectPrefix(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitSelectPrefix(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -897,6 +947,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitSelectSuffix(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitSelectSuffix(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1069,6 +1124,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitSelectUnionSuffix(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitSelectUnionSuffix(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SelectUnionSuffixContext selectUnionSuffix() throws RecognitionException {
@@ -1157,6 +1217,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitSelectExprs(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitSelectExprs(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SelectExprsContext selectExprs() throws RecognitionException {
@@ -1236,6 +1301,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTables(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTables(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TablesContext tables() throws RecognitionException {
@@ -1295,6 +1365,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableRel(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableRel(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TableRelContext tableRel() throws RecognitionException {
@@ -1352,6 +1427,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableFactor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableFactor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1417,6 +1497,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableSubQuery(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableSubQuery(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TableSubQueryContext tableSubQuery() throws RecognitionException {
@@ -1475,6 +1560,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableRecu(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableRecu(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TableRecuContext tableRecu() throws RecognitionException {
@@ -1520,6 +1610,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableJoin(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableJoin(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1576,6 +1671,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableJoinSuffix(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableJoinSuffix(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1666,6 +1766,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableJoinMod(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableJoinMod(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1763,6 +1868,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitJoinCondition(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitJoinCondition(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final JoinConditionContext joinCondition() throws RecognitionException {
@@ -1831,6 +1941,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitGbobExprs(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitGbobExprs(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1906,6 +2021,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitUpdateStat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitUpdateStat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final UpdateStatContext updateStat() throws RecognitionException {
@@ -1970,6 +2090,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitUpdateSingleTable(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitUpdateSingleTable(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2059,6 +2184,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitUpdateMultipleTable(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitUpdateMultipleTable(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final UpdateMultipleTableContext updateMultipleTable() throws RecognitionException {
@@ -2124,6 +2254,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitSetExprs(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitSetExprs(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SetExprsContext setExprs() throws RecognitionException {
@@ -2187,6 +2322,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitSetExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitSetExpr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2277,6 +2417,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitDeleteStat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitDeleteStat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final DeleteStatContext deleteStat() throws RecognitionException {
@@ -2358,6 +2503,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableNameAndAlias(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableNameAndAlias(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TableNameAndAliasContext tableNameAndAlias() throws RecognitionException {
@@ -2425,6 +2575,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitTableNameAndAliases(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitTableNameAndAliases(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TableNameAndAliasesContext tableNameAndAliases() throws RecognitionException {
@@ -2485,6 +2640,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitWhereCondition(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitWhereCondition(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2548,6 +2708,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitWhereCondSub(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitWhereCondSub(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2620,6 +2785,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitWhereCondOp(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitWhereCondOp(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2702,6 +2872,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2809,6 +2984,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExprRelational(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExprRelational(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExprRelationalContext exprRelational() throws RecognitionException {
@@ -2871,6 +3051,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExprBetweenAnd(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExprBetweenAnd(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2937,6 +3122,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExprIsOrIsNotNull(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExprIsOrIsNotNull(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3009,6 +3199,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExprInSelect(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExprInSelect(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExprInSelectContext exprInSelect() throws RecognitionException {
@@ -3075,6 +3270,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExprInValues(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExprInValues(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExprInValuesContext exprInValues() throws RecognitionException {
@@ -3138,6 +3338,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExprExists(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExprExists(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExprExistsContext exprExists() throws RecognitionException {
@@ -3194,6 +3399,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExprNot(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExprNot(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3252,6 +3462,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitExprLike(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitExprLike(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3312,6 +3527,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3395,6 +3615,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementOpFactory(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementOpFactory(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3500,6 +3725,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementText(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementText(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ElementTextContext elementText() throws RecognitionException {
@@ -3550,6 +3780,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementTextParam(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementTextParam(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ElementTextParamContext elementTextParam() throws RecognitionException {
@@ -3599,6 +3834,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementDate(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementDate(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3656,6 +3896,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementSubQuery(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementSubQuery(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3722,6 +3967,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementWapperBkt(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementWapperBkt(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ElementWapperBktContext elementWapperBkt() throws RecognitionException {
@@ -3766,6 +4016,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementListFactor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementListFactor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3816,6 +4071,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3875,6 +4135,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementOpEle(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementOpEle(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3936,6 +4201,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementOpEleSuffix(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementOpEleSuffix(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4006,6 +4276,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementCase(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementCase(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4088,6 +4363,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitCaseWhenPart(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitCaseWhenPart(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CaseWhenPartContext caseWhenPart() throws RecognitionException {
@@ -4160,6 +4440,11 @@ public class MySQLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementWithPrefix(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementWithPrefix(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ElementWithPrefixContext elementWithPrefix() throws RecognitionException {
@@ -4203,6 +4488,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitElementRow(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitElementRow(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4252,6 +4542,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitFunCall(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitFunCall(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4313,6 +4608,11 @@ public class MySQLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MySQLListener ) ((MySQLListener)listener).exitParamList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MySQLVisitor ) return ((MySQLVisitor<? extends T>)visitor).visitParamList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
