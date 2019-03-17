@@ -23,26 +23,33 @@ public class IDConfig {
                 int from = Integer.parseInt(sss[0]);
                 int to = Integer.parseInt(sss[1]);
                 for (int i = from; i <= to; ++i) {
-                    dsNoList.add(i);
+                    dsNoList.add(checkRange(i));
                 }
             } else {
-                dsNoList.add(Integer.parseInt(s));
+                dsNoList.add(checkRange(Integer.parseInt(s)));
             }
         }
 
-        index = new AtomicInteger((int) (System.currentTimeMillis() % dsNoList.size()));
+        index = new AtomicInteger((int) (System.nanoTime() % dsNoList.size()));
 
         IDConfig.config = this;
+    }
+
+    private int checkRange(int n) {
+        if (n < 0 || n > 65535)
+            throw new RuntimeException();
+        return n;
     }
 
     public byte[] getOne() {
         int idx = index.incrementAndGet();
         if (idx < 0) {
-            index.set(0); // TODO : maybe set concurrently.
+            idx = (int) (System.nanoTime() % dsNoList.size());
+            index.set(idx); // TODO : maybe set concurrently.
         }
         Integer res = dsNoList.get(idx % dsNoList.size());
         byte[] bytes = new byte[2];
-        bytes[0] = (byte) ((res >> 8) & 0xff);
+        bytes[0] = (byte) ((res & 0xff00) >> 8);
         bytes[1] = (byte) (res & 0xff);
         return bytes;
     }
@@ -52,7 +59,7 @@ public class IDConfig {
     }
 
     public static void main(String[] args) {
-        new IDConfig("0-10,11,12,20-30");
+        new IDConfig("65535");
         for (int i = 0; i < 100; ++i) {
             byte[] bytes = IDConfig.getInstance().getOne();
             System.out.println(bytes[0] + ", " + bytes[1]);

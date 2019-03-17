@@ -1,5 +1,8 @@
 grammar MySQL;
 
+// I don't know why do not need this @header in idea IDE, but it is needed in eclipse IDE:
+// If I use this @header in idea IDE, the antlr4 will generate java files that have two package line,
+// I think it is a bug of antlr plugin.
 // @header{package org.w01f.dds.layer2.sql.mysql.antlr4;}
 
 // ****** Parser ******

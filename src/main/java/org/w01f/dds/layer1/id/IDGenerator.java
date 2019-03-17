@@ -36,10 +36,16 @@ public class IDGenerator {
         data[start + 7] = (byte) (value >>> 0);
     }
 
+    public static int getDbNo(String id) {
+        byte[] bytes = IDCoder.decode(id);
+        return ((bytes[0] & 0xff) << 8) | (bytes[1] & 0xff);
+    }
+
     public static void main(String[] args) {
-        new IDConfig("0-10");
+        new IDConfig("65530-65535");
         for (int i = 0;i < 10; ++i) {
-            System.out.println(IDGenerator.takeID());
+            String id = IDGenerator.takeID();
+            System.out.println(id + "\t" + getDbNo(id));
         }
     }
 }
