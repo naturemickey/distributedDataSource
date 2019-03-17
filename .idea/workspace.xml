@@ -450,7 +450,7 @@
     <property name="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4::/gen-listener" value="true" />
     <property name="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4::/gen-visitor" value="false" />
     <property name="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4::/output-dir" value="src/main/java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552828365014" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552828382552" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
