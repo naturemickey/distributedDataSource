@@ -1,6 +1,7 @@
-package org.w01f.dds.layer2.index;
+package org.w01f.dds.layer2.index.conffig;
 
 public class Index {
+
     private String[] columns;
 
     public String[] getColumns() {

@@ -7,7 +7,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.w01f.dds.layer2.sql.parser.mysql.antlr4.MySQLLexer;
 import org.w01f.dds.layer2.sql.parser.mysql.antlr4.MySQLParser;
-import org.w01f.dds.layer2.sql.mysql.tree.*;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.*;
 
 import java.io.ByteArrayInputStream;

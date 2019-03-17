@@ -2,7 +2,6 @@ package org.w01f.dds.layer2.sql.parser.mysql;
 
 import org.w01f.dds.layer2.sql.parser.mysql.antlr4.MySQLBaseVisitor;
 import org.w01f.dds.layer2.sql.parser.mysql.antlr4.MySQLParser;
-import org.w01f.dds.layer2.sql.mysql.tree.*;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.*;
 
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package org.w01f.dds.layer2.index;
+package org.w01f.dds.layer2.index.conffig;
 
 /**
  * Every table must has an column named "id" as primary key.

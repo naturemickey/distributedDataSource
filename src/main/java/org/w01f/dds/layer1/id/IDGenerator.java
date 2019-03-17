@@ -1,20 +1,18 @@
 package org.w01f.dds.layer1.id;
 
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class IDGenerator {
-
-    private static final IDGenerator instance = new IDGenerator();
 
     private IDGenerator() {
     }
 
-    private static IDGenerator getInstance() {
-        return instance;
-    }
-
-    public static String takeID() {
-        byte[] dbNo = IDConfig.getInstance().getOne();
+    private static String takeID(byte[] dbNo) {
+        if (dbNo == null)
+            dbNo = IDConfig.getInstance().getOne();
         UUID uuid = UUID.randomUUID();
         byte[] data = new byte[26];
         data[0] = dbNo[0];
@@ -36,6 +34,46 @@ public class IDGenerator {
         data[start + 7] = (byte) (value >>> 0);
     }
 
+    public void setId(Object object) {
+        try {
+            IdFields fields = getIdFields(object.getClass());
+            byte[] dbNo = null;
+            if (fields.pid != null) {
+                dbNo = IDCoder.decode((String) fields.pid.get(object));
+            }
+            fields.id.set(object, takeID(dbNo));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static Map<Class<?>, IdFields> fieldsMap = new ConcurrentHashMap<>();
+
+    private static class IdFields {
+        Field id;
+        Field pid;
+    }
+
+    private static IdFields getIdFields(Class<?> clazz) {
+        return fieldsMap.computeIfAbsent(clazz, c -> {
+            try {
+                IdFields fields = new IdFields();
+                for (Field field : c.getDeclaredFields()) {
+                    if (field.getName().equals("id")) {
+                        fields.id = field;
+                        field.setAccessible(true);
+                    } else if (field.getName().equals("parent_id")) {
+                        fields.pid = field;
+                        field.setAccessible(true);
+                    }
+                }
+                return fields;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
     public static int getDbNo(String id) {
         byte[] bytes = IDCoder.decode(id);
         return ((bytes[0] & 0xff) << 8) | (bytes[1] & 0xff);
@@ -43,9 +81,16 @@ public class IDGenerator {
 
     public static void main(String[] args) {
         new IDConfig("65530-65535");
-        for (int i = 0;i < 10; ++i) {
-            String id = IDGenerator.takeID();
+        for (int i = 0; i < 10; ++i) {
+            String id = IDGenerator.takeID(null);
             System.out.println(id + "\t" + getDbNo(id));
+        }
+
+
+        String id = IDGenerator.takeID(null);
+        for (int i = 0; i < 10; ++i) {
+            String id2 = IDGenerator.takeID(IDCoder.decode(id));
+            System.out.println(id2 + "\t" + getDbNo(id2));
         }
     }
 }
