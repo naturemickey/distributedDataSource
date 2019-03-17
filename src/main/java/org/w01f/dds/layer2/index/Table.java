@@ -7,7 +7,7 @@ package org.w01f.dds.layer2.index;
 public class Table {
 
     private String name;
-    private Unique[] uniques;
+    private Index[] uniques;
     private Index[] indices;
 
     public String getName() {
@@ -18,11 +18,11 @@ public class Table {
         this.name = name;
     }
 
-    public Unique[] getUniques() {
+    public Index[] getUniques() {
         return uniques;
     }
 
-    public void setUniques(Unique[] uniques) {
+    public void setUniques(Index[] uniques) {
         this.uniques = uniques;
     }
 
