@@ -160,6 +160,18 @@ public class MySQLBaseListener implements MySQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIntPlaceHolder(MySQLParser.IntPlaceHolderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIntPlaceHolder(MySQLParser.IntPlaceHolderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSelectExprs(MySQLParser.SelectExprsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -563,6 +575,18 @@ public class MySQLBaseListener implements MySQLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitElementText(MySQLParser.ElementTextContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterElementPlaceholder(MySQLParser.ElementPlaceholderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElementPlaceholder(MySQLParser.ElementPlaceholderContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -3,12 +3,12 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 public class SelectSuffixNode extends SQLSyntaxTreeNode {
 
 	private GbobExprsNode orderByExprs;
-	private String offset;
-	private String rowCount;
+	private IntPlaceHolderNode offset;
+	private IntPlaceHolderNode rowCount;
 	private String lock;
 	private boolean hasOffsetWord;
 
-	public SelectSuffixNode(GbobExprsNode orderByExprs, String offset, String rowCount, String lock,
+	public SelectSuffixNode(GbobExprsNode orderByExprs, IntPlaceHolderNode offset, IntPlaceHolderNode rowCount, String lock,
 			boolean hasOffsetWord) {
 		this.orderByExprs = orderByExprs;
 		this.offset = offset;
@@ -37,22 +37,6 @@ public class SelectSuffixNode extends SQLSyntaxTreeNode {
 		}
 
 		return sb.toString();
-	}
-
-	public String getOffset() {
-		return offset;
-	}
-
-	public String getRowCount() {
-		return rowCount;
-	}
-
-	public void setOffset(String offset) {
-		this.offset = offset;
-	}
-
-	public void setRowCount(String rowCount) {
-		this.rowCount = rowCount;
 	}
 
 }

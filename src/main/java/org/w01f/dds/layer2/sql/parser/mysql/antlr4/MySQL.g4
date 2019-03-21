@@ -45,15 +45,16 @@ selectPrefix
 	;
 selectSuffix
 	: (ORDER BY orderByExprs=gbobExprs)?
-	  (LIMIT (((offset=(INT | PLACEHOLDER) ',')? rowCount=(INT | PLACEHOLDER)) | (rowCount=(INT | PLACEHOLDER) OFFSET offset=(INT | PLACEHOLDER))))?
+	  (LIMIT (((offset=intPlaceHolder ',')? rowCount=intPlaceHolder) | (rowCount=intPlaceHolder OFFSET offset=intPlaceHolder)))?
 	   ((FOR lock=UPDATE) | (lock=LOCK IN SHARE MODE))?
 	;
 selectUnionSuffix
 	: UNION method=(ALL | DISTINCT)? ('(' selectStat ')' | selectStat) selectSuffix
 	;
 
-selectExprs : element (AS? alias=ID)? (',' selectExprs)? ;
-tables      : tableRel (',' tableRel)* ;
+intPlaceHolder : INT | elementPlaceholder ;
+selectExprs    : element (AS? alias=ID)? (',' selectExprs)? ;
+tables         : tableRel (',' tableRel)* ;
 
 tableRel
 	: tableFactor
@@ -129,6 +130,7 @@ element
 	;
 elementOpFactory
 	: elementText
+	| elementPlaceholder
 	| elementTextParam
 	| elementDate
 	| funCall
@@ -139,7 +141,8 @@ elementOpFactory
 	| elementRow
 	;
 
-elementText        : ('*' | PLACEHOLDER | COLUMN_REL | ID | NULL | UNKNOWN) ;
+elementText        : ('*' | COLUMN_REL | ID | NULL | UNKNOWN) ;
+elementPlaceholder : PLACEHOLDER ;
 elementTextParam   : DECIMAL | STRING | INT | DECIMAL | TRUE | FALSE ;
 elementDate        : dt=(DATE | TIME | TIMESTAMP) STRING ;
 elementSubQuery    : sqWith=(ANY | SOME | ALL)? '(' selectStat ')' ;

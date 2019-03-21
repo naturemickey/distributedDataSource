@@ -128,6 +128,16 @@ public interface MySQLListener extends ParseTreeListener {
 	 */
 	void exitSelectUnionSuffix(MySQLParser.SelectUnionSuffixContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MySQLParser#intPlaceHolder}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntPlaceHolder(MySQLParser.IntPlaceHolderContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySQLParser#intPlaceHolder}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntPlaceHolder(MySQLParser.IntPlaceHolderContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MySQLParser#selectExprs}.
 	 * @param ctx the parse tree
 	 */
@@ -467,6 +477,16 @@ public interface MySQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitElementText(MySQLParser.ElementTextContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySQLParser#elementPlaceholder}.
+	 * @param ctx the parse tree
+	 */
+	void enterElementPlaceholder(MySQLParser.ElementPlaceholderContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySQLParser#elementPlaceholder}.
+	 * @param ctx the parse tree
+	 */
+	void exitElementPlaceholder(MySQLParser.ElementPlaceholderContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MySQLParser#elementTextParam}.
 	 * @param ctx the parse tree

@@ -29,9 +29,11 @@ public class IndexStructureUtils {
         }
     }
 
+    private static String indexDelimiter = ",";
+
     private static void makeCache(Table table, Index index, boolean isUnique) {
         String tableName = table.getName();
-        String indexName = tableName + "." + Arrays.asList(index.getColumns()).stream().collect(Collectors.joining("/"));
+        String indexName = tableName + "." + Arrays.asList(index.getColumns()).stream().collect(Collectors.joining(indexDelimiter));
         Map<String, Boolean> idxMap = indexMap.get(tableName);
         if (idxMap == null) {
             idxMap = new HashMap<>();
@@ -42,4 +44,8 @@ public class IndexStructureUtils {
         }
         idxMap.put(indexName, isUnique);
     }
+
+//    private static String selectIndex(String tableName, String[] columns) {
+//
+//    }
 }

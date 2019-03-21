@@ -83,6 +83,12 @@ public interface MySQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelectUnionSuffix(MySQLParser.SelectUnionSuffixContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySQLParser#intPlaceHolder}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIntPlaceHolder(MySQLParser.IntPlaceHolderContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySQLParser#selectExprs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -286,6 +292,12 @@ public interface MySQLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitElementText(MySQLParser.ElementTextContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySQLParser#elementPlaceholder}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElementPlaceholder(MySQLParser.ElementPlaceholderContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySQLParser#elementTextParam}.
 	 * @param ctx the parse tree
