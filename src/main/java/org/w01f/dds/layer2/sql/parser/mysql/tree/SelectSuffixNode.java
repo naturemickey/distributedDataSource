@@ -1,12 +1,17 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class SelectSuffixNode extends SQLSyntaxTreeNode {
+public class SelectSuffixNode extends SQLSyntaxTreeNode  implements Cloneable {
 
 	private GbobExprsNode orderByExprs;
 	private IntPlaceHolderNode offset;
 	private IntPlaceHolderNode rowCount;
 	private String lock;
 	private boolean hasOffsetWord;
+
+	@Override
+	public SelectSuffixNode clone() {
+		return new SelectSuffixNode(orderByExprs.clone(), offset.clone(), rowCount.clone(), lock, hasOffsetWord);
+	}
 
 	public SelectSuffixNode(GbobExprsNode orderByExprs, IntPlaceHolderNode offset, IntPlaceHolderNode rowCount, String lock,
 			boolean hasOffsetWord) {

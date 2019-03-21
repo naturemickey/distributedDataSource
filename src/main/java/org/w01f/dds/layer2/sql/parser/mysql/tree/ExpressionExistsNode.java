@@ -1,9 +1,14 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ExpressionExistsNode extends ExpressionNode {
+public class ExpressionExistsNode extends ExpressionNode implements Cloneable  {
 
 	private boolean not;
 	private SelectNode select;
+
+	@Override
+	public ExpressionExistsNode clone() {
+		return new ExpressionExistsNode(not, select.clone());
+	}
 
 	public ExpressionExistsNode(boolean not, SelectNode select) {
 		this.not = not;

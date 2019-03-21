@@ -1,11 +1,18 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class InsertNode extends SQLSyntaxTreeNode {
+public class InsertNode extends SQLSyntaxTreeNode  implements Cloneable {
 
 	private String tableName;
 	private ColumnNamesNode columnNames;
 	private ValueListNode valueNames;
 	private SelectNode select;
+
+	@Override
+	public InsertNode clone() {
+		if (valueNames != null)
+			return new InsertNode(tableName, columnNames.clone(), valueNames.clone());
+		return new InsertNode(tableName, columnNames.clone(), select.clone());
+	}
 
 	public InsertNode(String tableName, ColumnNamesNode columnNames, ValueListNode valueNames) {
 		this.tableName = tableName;

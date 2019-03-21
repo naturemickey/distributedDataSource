@@ -1,10 +1,15 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ExpressionIsOrIsNotNode extends ExpressionNode {
+public class ExpressionIsOrIsNotNode extends ExpressionNode  implements Cloneable {
 
 	private ElementNode element;
 	private boolean not;
 	private String what;
+
+	@Override
+	public ExpressionIsOrIsNotNode clone() {
+		return new ExpressionIsOrIsNotNode(element.clone(), not, what);
+	}
 
 	public ExpressionIsOrIsNotNode(ElementNode element, boolean not, String what) {
 		this.element = element;

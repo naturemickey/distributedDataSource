@@ -1,11 +1,16 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class UpdateSignleTableNode extends UpdateNode {
+public class UpdateSignleTableNode extends UpdateNode implements Cloneable  {
 
 	private TableNameAndAliasNode tableNameAndAlias;
 	private SetExprsNode setExprs;
 	private WhereConditionNode whereCondition;
 	private IntPlaceHolderNode rowCount;
+
+	@Override
+	public UpdateSignleTableNode clone() {
+		return new UpdateSignleTableNode(tableNameAndAlias.clone(), setExprs.clone(), whereCondition.clone(), rowCount.clone());
+	}
 
 	public UpdateSignleTableNode(TableNameAndAliasNode tableNameAndAlias, SetExprsNode setExprs, WhereConditionNode whereCondition, IntPlaceHolderNode rowCount) {
 		this.tableNameAndAlias = tableNameAndAlias;

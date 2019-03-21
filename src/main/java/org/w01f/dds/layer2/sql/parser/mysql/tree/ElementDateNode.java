@@ -1,8 +1,13 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ElementDateNode extends ElementOpFactoryNode {
+public class ElementDateNode extends ElementOpFactoryNode  implements Cloneable {
 	private String dt;
 	private String str;
+
+	@Override
+	public ElementDateNode clone() {
+		return new ElementDateNode(dt, str);
+	}
 
 	public ElementDateNode(String dt, String str) {
 		this.dt = dt.toLowerCase();

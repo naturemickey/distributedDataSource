@@ -1,7 +1,5 @@
 package org.w01f.dds.layer1.dsproxy;
 
-import org.w01f.dds.utils.GeneralCallPrinterBase;
-
 import java.sql.*;
 
 public class DistributedStatement implements Statement {

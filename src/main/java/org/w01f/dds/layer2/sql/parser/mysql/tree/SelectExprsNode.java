@@ -1,9 +1,14 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class SelectExprsNode extends SQLSyntaxTreeNode {
+public class SelectExprsNode extends SQLSyntaxTreeNode  implements Cloneable {
 	private ElementNode element;
 	private String alias;
 	private SelectExprsNode suffix;
+
+	@Override
+	public SelectExprsNode clone() {
+		return new SelectExprsNode(element.clone(), alias, suffix.clone());
+	}
 
 	public SelectExprsNode(ElementNode element, String alias, SelectExprsNode suffix) {
 		this.element = element;

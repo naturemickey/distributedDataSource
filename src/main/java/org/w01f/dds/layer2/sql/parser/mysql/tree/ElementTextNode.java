@@ -1,8 +1,13 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ElementTextNode extends ElementOpFactoryNode {
+public class ElementTextNode extends ElementOpFactoryNode implements Cloneable  {
 
 	private String txt;
+
+	@Override
+	public ElementTextNode clone() {
+		return new ElementTextNode(txt);
+	}
 
 	public ElementTextNode(String txt) {
 		this.txt = txt;

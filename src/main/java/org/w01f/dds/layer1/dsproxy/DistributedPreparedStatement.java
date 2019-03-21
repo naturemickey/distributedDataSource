@@ -32,11 +32,6 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     }
 
     @Override
-    public void addBatch() throws SQLException {
-        statement.addBatch();
-    }
-
-    @Override
     public void setNull(int parameterIndex, int sqlType) throws SQLException {
         statement.setNull(parameterIndex, sqlType);
     }
@@ -283,6 +278,11 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     }
 
     // These methods are not supported:
+
+    @Override
+    public void addBatch() throws SQLException {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public ResultSetMetaData getMetaData() throws SQLException {

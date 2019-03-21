@@ -1,9 +1,14 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ElementOpEleNode extends ElementNode {
+public class ElementOpEleNode extends ElementNode implements Cloneable  {
 
 	private ElementOpFactoryNode factory;
 	private ElementOpEleSuffixNode suffix;
+
+	@Override
+	public ElementOpEleNode clone() {
+		return new ElementOpEleNode(factory.clone(), suffix.clone());
+	}
 
 	public ElementOpEleNode(ElementOpFactoryNode factory, ElementOpEleSuffixNode suffix) {
 		this.factory = factory;

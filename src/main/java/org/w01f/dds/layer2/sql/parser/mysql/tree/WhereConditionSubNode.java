@@ -1,10 +1,15 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class WhereConditionSubNode extends WhereConditionNode {
+public class WhereConditionSubNode extends WhereConditionNode implements Cloneable {
 
 	private WhereConditionNode wc1;
 	private String expressionOperator;
 	private WhereConditionNode wc2;
+
+	@Override
+	public WhereConditionSubNode clone() {
+		return new WhereConditionSubNode(wc1.clone(), expressionOperator, wc2.clone());
+	}
 
 	public WhereConditionSubNode(WhereConditionNode whereCondition) {
 		this.wc1 = whereCondition;

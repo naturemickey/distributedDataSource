@@ -1,5 +1,7 @@
 package org.w01f.dds.layer2.sql;
 
+import org.w01f.dds.layer2.sql.parser.mysql.ParserUtils;
+
 import java.io.IOException;
 
 public class TestUpdate {

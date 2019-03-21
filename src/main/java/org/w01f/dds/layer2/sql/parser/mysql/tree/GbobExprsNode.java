@@ -1,9 +1,14 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class GbobExprsNode extends SQLSyntaxTreeNode {
+public class GbobExprsNode extends SQLSyntaxTreeNode implements Cloneable  {
 	private ElementNode element;
 	private String sc;
 	private GbobExprsNode suffix;
+
+	@Override
+	public GbobExprsNode clone() {
+		return new GbobExprsNode(element.clone(), sc, suffix.clone());
+	}
 
 	public GbobExprsNode(ElementNode element, String sc, GbobExprsNode suffix) {
 		this.element = element;

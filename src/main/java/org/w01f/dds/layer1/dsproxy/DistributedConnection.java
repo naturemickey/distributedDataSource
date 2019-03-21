@@ -27,7 +27,11 @@ public class DistributedConnection implements Connection {
 
     @Override
     public Statement createStatement() throws SQLException {
-        return new DistributedStatement(connection.createStatement());
+        // we almost always use the prepareStatement method instead this method.
+        // maybe we will support this method in further.
+
+        // return new DistributedStatement(connection.createStatement());
+        throw new UnsupportedOperationException();
     }
 
     @Override

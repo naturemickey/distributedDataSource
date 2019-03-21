@@ -3,10 +3,15 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableNameAndAliasNode extends TableRelNode {
+public class TableNameAndAliasNode extends TableRelNode  implements Cloneable {
 
 	private String name;
 	private String alias;
+
+	@Override
+	public TableNameAndAliasNode clone() {
+		return new TableNameAndAliasNode(name, alias);
+	}
 
 	public TableNameAndAliasNode(String name, String alias) {
 		this.name = name;

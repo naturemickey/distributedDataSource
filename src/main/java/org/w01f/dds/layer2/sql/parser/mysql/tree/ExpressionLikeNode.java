@@ -1,9 +1,14 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ExpressionLikeNode extends ExpressionNode {
+public class ExpressionLikeNode extends ExpressionNode implements Cloneable  {
 	private boolean not;
 	private ElementNode left;
 	private ElementNode right;
+
+	@Override
+	public ExpressionLikeNode clone() {
+		return new ExpressionLikeNode(not, left.clone(), right.clone());
+	}
 
 	public ExpressionLikeNode(boolean not, ElementNode left, ElementNode right) {
 		this.not = not;

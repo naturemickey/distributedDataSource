@@ -1,6 +1,6 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class SelectPrefixNode extends SQLSyntaxTreeNode {
+public class SelectPrefixNode extends SQLSyntaxTreeNode implements Cloneable {
 
 	private boolean distinct;
 	private SelectExprsNode selectExprs;
@@ -8,6 +8,11 @@ public class SelectPrefixNode extends SQLSyntaxTreeNode {
 	private WhereConditionNode where;
 	private GbobExprsNode groupByExprs;
 	private WhereConditionNode having;
+
+	@Override
+	public SelectPrefixNode clone() {
+		return new SelectPrefixNode(distinct, selectExprs.clone(), tables.clone(), where.clone(), groupByExprs.clone(), having.clone());
+	}
 
 	public SelectPrefixNode(boolean distinct, SelectExprsNode selectExprs, TablesNode tables, WhereConditionNode where, GbobExprsNode groupByExprs,
 			WhereConditionNode having) {

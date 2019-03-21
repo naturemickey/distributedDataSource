@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SQLSyntaxTreeNode {
+public class SQLSyntaxTreeNode  implements Cloneable  {
 
 	public Map<Field, SQLSyntaxTreeNode> childrenNode() {
 		Map<Field, SQLSyntaxTreeNode> res = new HashMap<>();

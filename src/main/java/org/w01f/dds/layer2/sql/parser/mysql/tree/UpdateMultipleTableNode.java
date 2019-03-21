@@ -1,10 +1,15 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class UpdateMultipleTableNode extends UpdateNode {
+public class UpdateMultipleTableNode extends UpdateNode  implements Cloneable {
 
 	private TableNameAndAliasesNode tableNameAndAliases;
 	private SetExprsNode setExprs;
 	private WhereConditionNode whereCondition;
+
+	@Override
+	public UpdateMultipleTableNode clone() {
+		return new UpdateMultipleTableNode(tableNameAndAliases.clone(), setExprs.clone(), whereCondition.clone());
+	}
 
 	public UpdateMultipleTableNode(TableNameAndAliasesNode tableNameAndAliases, SetExprsNode setExprs, WhereConditionNode whereCondition) {
 		this.tableNameAndAliases = tableNameAndAliases;

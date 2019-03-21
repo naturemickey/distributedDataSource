@@ -1,9 +1,14 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ElementCaseNode extends ElementOpFactoryNode {
+public class ElementCaseNode extends ElementOpFactoryNode implements Cloneable  {
 	private ElementNode value;
 	private CaseWhenPartNode caseWhenPart;
 	private ElementNode elseEl;
+
+	@Override
+	public ElementCaseNode clone() {
+		return new ElementCaseNode(value.clone(), caseWhenPart.clone(), elseEl.clone());
+	}
 
 	public ElementCaseNode(ElementNode value, CaseWhenPartNode caseWhenPart, ElementNode elseEl) {
 		this.value = value;

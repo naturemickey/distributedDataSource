@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TableJoinSuffixNode extends SQLSyntaxTreeNode {
+public class TableJoinSuffixNode extends SQLSyntaxTreeNode implements Cloneable  {
 	private String tableJoinMod;
 	private TableNameAndAliasesNode tables;
 	private TableRecuNode tableRecu;
 	private JoinConditionNode condition;
 	private TableJoinSuffixNode suffix;
+
+	@Override
+	public TableJoinSuffixNode clone() {
+		return new TableJoinSuffixNode(tableJoinMod, tables.clone(), tableRecu.clone(), condition.clone(), suffix.clone());
+	}
 
 	public TableJoinSuffixNode(String tableJoinMod, TableNameAndAliasesNode tables, TableRecuNode tableRecu, JoinConditionNode condition,
 			TableJoinSuffixNode suffix) {

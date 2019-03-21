@@ -1,9 +1,14 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ElementOpEleSuffixNode extends ElementNode {
+public class ElementOpEleSuffixNode extends ElementNode  implements Cloneable {
 
 	private String op;
 	private ElementOpEleNode element;
+
+	@Override
+	public ElementOpEleSuffixNode clone() {
+		return new ElementOpEleSuffixNode(op, element.clone());
+	}
 
 	public ElementOpEleSuffixNode(String op, ElementOpEleNode element) {
 		this.op = op;

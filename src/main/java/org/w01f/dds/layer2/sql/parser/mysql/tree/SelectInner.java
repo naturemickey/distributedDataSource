@@ -1,9 +1,13 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class SelectInner extends SQLSyntaxTreeNode {
+public class SelectInner extends SQLSyntaxTreeNode implements Cloneable {
 
 	private SelectPrefixNode prefix;
 	private SelectSuffixNode suffix;
+
+	@Override public SelectInner clone() {
+		return new SelectInner(prefix.clone(), suffix.clone());
+	}
 
 	public SelectInner(SelectPrefixNode prefix, SelectSuffixNode suffix) {
 		this.prefix = prefix;
