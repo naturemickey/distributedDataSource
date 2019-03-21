@@ -44,7 +44,7 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
     public SQLSyntaxTreeNode visitDeleteStat(MySQLParser.DeleteStatContext ctx) {
         TableNameAndAliasNode tableNameAndAlias = (TableNameAndAliasNode) this.visitTableNameAndAlias(ctx.tableNameAndAlias());
         WhereConditionNode whereCondition = ctx.whereCondition() != null ? (WhereConditionNode) this.visitWhereCondition(ctx.whereCondition()) : null;
-        String rowCount = ctx.rowCount != null ? ctx.rowCount.getText() : null;
+        IntPlaceHolderNode rowCount = ctx.rowCount != null ? this.visitIntPlaceHolder(ctx.rowCount) : null;
 
         return new DeleteNode(tableNameAndAlias, whereCondition, rowCount);
     }
@@ -234,7 +234,7 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
         TableNameAndAliasNode tableNameAndAlias = (TableNameAndAliasNode) this.visitTableNameAndAlias(ctx.tableNameAndAlias());
         SetExprsNode setExprs = (SetExprsNode) this.visitSetExprs(ctx.setExprs());
         WhereConditionNode whereCondition = ctx.whereCondition() != null ? (WhereConditionNode) this.visitWhereCondition(ctx.whereCondition()) : null;
-        String rowCount = ctx.rowCount != null ? ctx.rowCount.getText() : null;
+        IntPlaceHolderNode rowCount = ctx.rowCount != null ? this.visitIntPlaceHolder(ctx.rowCount) : null;
         return new UpdateSignleTableNode(tableNameAndAlias, setExprs, whereCondition, rowCount);
     }
 

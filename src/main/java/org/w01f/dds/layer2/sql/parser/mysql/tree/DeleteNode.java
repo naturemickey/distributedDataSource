@@ -4,9 +4,9 @@ public class DeleteNode extends SQLSyntaxTreeNode {
 
 	private TableNameAndAliasNode tableNameAndAlias;
 	private WhereConditionNode whereCondition;
-	private String rowCount;
+	private IntPlaceHolderNode rowCount;
 
-	public DeleteNode(TableNameAndAliasNode tableNameAndAlias, WhereConditionNode whereCondition, String rowCount) {
+	public DeleteNode(TableNameAndAliasNode tableNameAndAlias, WhereConditionNode whereCondition, IntPlaceHolderNode rowCount) {
 		this.tableNameAndAlias = tableNameAndAlias;
 		this.whereCondition = whereCondition;
 		this.rowCount = rowCount;
@@ -39,14 +39,6 @@ public class DeleteNode extends SQLSyntaxTreeNode {
 
 	public void setWhereCondition(WhereConditionNode whereCondition) {
 		this.whereCondition = whereCondition;
-	}
-
-	public String getRowCount() {
-		return rowCount;
-	}
-
-	public void setRowCount(String rowCount) {
-		this.rowCount = rowCount;
 	}
 
 }

@@ -82,14 +82,14 @@ updateStat
 	| updateMultipleTable
 	;
 
-updateSingleTable   : UPDATE tableNameAndAlias   SET setExprs (WHERE whereCondition)? (LIMIT rowCount=(INT|PLACEHOLDER))? ;
+updateSingleTable   : UPDATE tableNameAndAlias   SET setExprs (WHERE whereCondition)? (LIMIT rowCount=intPlaceHolder)? ;
 updateMultipleTable	: UPDATE tableNameAndAliases SET setExprs (WHERE whereCondition)? ;
 
 setExprs      : setExpr (',' setExpr)* ;
 setExpr       : left=element '=' (right=element | rightDefault=DEFAULT) ;
 
 deleteStat
-	: DELETE FROM tableNameAndAlias (WHERE whereCondition)? (LIMIT rowCount=(INT|PLACEHOLDER))?
+	: DELETE FROM tableNameAndAlias (WHERE whereCondition)? (LIMIT rowCount=intPlaceHolder)?
 	;
 
 tableNameAndAlias   : name=ID (AS? alias=ID)? ;

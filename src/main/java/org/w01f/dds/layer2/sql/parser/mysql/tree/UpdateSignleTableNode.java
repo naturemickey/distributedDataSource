@@ -5,9 +5,9 @@ public class UpdateSignleTableNode extends UpdateNode {
 	private TableNameAndAliasNode tableNameAndAlias;
 	private SetExprsNode setExprs;
 	private WhereConditionNode whereCondition;
-	private String rowCount;
+	private IntPlaceHolderNode rowCount;
 
-	public UpdateSignleTableNode(TableNameAndAliasNode tableNameAndAlias, SetExprsNode setExprs, WhereConditionNode whereCondition, String rowCount) {
+	public UpdateSignleTableNode(TableNameAndAliasNode tableNameAndAlias, SetExprsNode setExprs, WhereConditionNode whereCondition, IntPlaceHolderNode rowCount) {
 		this.tableNameAndAlias = tableNameAndAlias;
 		this.setExprs = setExprs;
 		this.whereCondition = whereCondition;
@@ -50,14 +50,6 @@ public class UpdateSignleTableNode extends UpdateNode {
 
 	public void setWhereCondition(WhereConditionNode whereCondition) {
 		this.whereCondition = whereCondition;
-	}
-
-	public String getRowCount() {
-		return rowCount;
-	}
-
-	public void setRowCount(String rowCount) {
-		this.rowCount = rowCount;
 	}
 
 }
