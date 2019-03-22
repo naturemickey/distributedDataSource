@@ -11,10 +11,6 @@ public class WhereConditionSubNode extends WhereConditionNode implements Cloneab
 		return new WhereConditionSubNode(wc1.clone(), expressionOperator, wc2.clone());
 	}
 
-	public WhereConditionSubNode(WhereConditionNode whereCondition) {
-		this.wc1 = whereCondition;
-	}
-
 	public WhereConditionSubNode(WhereConditionNode wc1, String expressionOperator, WhereConditionNode wc2) {
 		this.wc1 = wc1;
 		this.expressionOperator = expressionOperator;

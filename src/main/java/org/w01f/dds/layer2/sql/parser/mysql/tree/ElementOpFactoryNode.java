@@ -4,6 +4,6 @@ public class ElementOpFactoryNode extends ElementNode implements Cloneable  {
 
     @Override
     public ElementOpFactoryNode clone() {
-        return new ElementOpFactoryNode();
+        return (ElementOpFactoryNode) super.clone();
     }
 }

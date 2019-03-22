@@ -31,7 +31,7 @@ public class ParserUtils {
                     throw new RuntimeException(e);
                 }
             });
-            return origin;
+            return origin.clone();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

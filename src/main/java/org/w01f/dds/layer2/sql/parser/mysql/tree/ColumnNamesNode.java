@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ColumnNamesNode extends SQLSyntaxTreeNode  implements Cloneable {
+public final class ColumnNamesNode extends SQLSyntaxTreeNode  implements Cloneable {
 
 	private List<String> names = new ArrayList<>();
 

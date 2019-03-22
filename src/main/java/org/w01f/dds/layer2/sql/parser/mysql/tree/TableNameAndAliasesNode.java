@@ -11,7 +11,7 @@ public class TableNameAndAliasesNode extends SQLSyntaxTreeNode implements Clonea
     @Override
     public TableNameAndAliasesNode clone() {
         List<TableNameAndAliasNode> tableNameAndAlias = null;
-        if (tableNameAndAlias != null) {
+        if (this.tableNameAndAlias != null) {
             tableNameAndAlias = new ArrayList<>(this.tableNameAndAlias.size());
             for (TableNameAndAliasNode nameAndAlias : this.tableNameAndAlias) {
                 tableNameAndAlias.add(nameAndAlias.clone());

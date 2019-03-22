@@ -4,6 +4,6 @@ public class ExpressionNode extends SQLSyntaxTreeNode implements Cloneable  {
 
     @Override
     public  ExpressionNode clone() {
-        return new ExpressionNode();
+        return (ExpressionNode) super.clone();
     }
 }
