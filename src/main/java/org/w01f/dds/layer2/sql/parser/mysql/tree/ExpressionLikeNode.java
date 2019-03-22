@@ -7,7 +7,9 @@ public class ExpressionLikeNode extends ExpressionNode implements Cloneable  {
 
 	@Override
 	public ExpressionLikeNode clone() {
-		return new ExpressionLikeNode(not, left.clone(), right.clone());
+		ElementNode leftNode = left == null ? null : left.clone();
+		ElementNode rightNode = right == null ? null : right.clone();
+		return new ExpressionLikeNode(not, leftNode, rightNode);
 	}
 
 	public ExpressionLikeNode(boolean not, ElementNode left, ElementNode right) {

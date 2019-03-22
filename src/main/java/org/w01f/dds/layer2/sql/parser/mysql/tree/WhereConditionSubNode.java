@@ -8,7 +8,9 @@ public class WhereConditionSubNode extends WhereConditionNode implements Cloneab
 
 	@Override
 	public WhereConditionSubNode clone() {
-		return new WhereConditionSubNode(wc1.clone(), expressionOperator, wc2.clone());
+		WhereConditionNode whereConditionNode1 = wc1 == null ? null :wc1.clone();
+		WhereConditionNode whereConditionNode2 = wc2 == null ?null :wc2.clone();
+		return new WhereConditionSubNode(whereConditionNode1, expressionOperator, whereConditionNode2);
 	}
 
 	public WhereConditionSubNode(WhereConditionNode wc1, String expressionOperator, WhereConditionNode wc2) {

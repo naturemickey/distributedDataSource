@@ -8,7 +8,10 @@ public class ParamListNode extends SQLSyntaxTreeNode implements Cloneable{
 
 	@Override
 	public ParamListNode clone() {
-		return new ParamListNode(element.clone(), exprRelational.clone(), suffix.clone());
+		ElementNode elementNode = element == null ? null :element.clone();
+		ExpressionRelationalNode expressionRelationalNode = exprRelational == null ? null :exprRelational.clone();
+		ParamListNode paramListNode = suffix == null ? null : suffix.clone();
+		return new ParamListNode(elementNode, expressionRelationalNode, paramListNode);
 	}
 
 	public ParamListNode(ElementNode element, ExpressionRelationalNode exprRelational, ParamListNode suffix) {

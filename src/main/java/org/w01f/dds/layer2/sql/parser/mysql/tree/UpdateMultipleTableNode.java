@@ -8,7 +8,10 @@ public class UpdateMultipleTableNode extends UpdateNode  implements Cloneable {
 
 	@Override
 	public UpdateMultipleTableNode clone() {
-		return new UpdateMultipleTableNode(tableNameAndAliases.clone(), setExprs.clone(), whereCondition.clone());
+		TableNameAndAliasesNode tableNameAndAliasesNode = tableNameAndAliases == null ? null :tableNameAndAliases.clone();
+		SetExprsNode setExprsNode = setExprs == null ? null : setExprs.clone();
+		WhereConditionNode whereConditionNode = whereCondition == null ? null : whereCondition.clone();
+		return new UpdateMultipleTableNode(tableNameAndAliasesNode, setExprsNode, whereConditionNode);
 	}
 
 	public UpdateMultipleTableNode(TableNameAndAliasesNode tableNameAndAliases, SetExprsNode setExprs, WhereConditionNode whereCondition) {

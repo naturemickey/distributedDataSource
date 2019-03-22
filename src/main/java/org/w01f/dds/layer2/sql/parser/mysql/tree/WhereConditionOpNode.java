@@ -8,7 +8,9 @@ public class WhereConditionOpNode extends WhereConditionNode implements Cloneabl
 
 	@Override
 	public WhereConditionOpNode clone() {
-		return new WhereConditionOpNode(expression.clone(), expressionOperator, whereCondition.clone());
+		ExpressionNode expressionNode = expression == null ? null : expression.clone();
+		WhereConditionNode whereConditionNode = whereCondition == null ? null : whereCondition.clone();
+		return new WhereConditionOpNode(expressionNode, expressionOperator, whereConditionNode);
 	}
 
 	public WhereConditionOpNode(ExpressionNode expression, String expressionOperator, WhereConditionNode whereCondition) {

@@ -7,7 +7,10 @@ public class ElementCaseNode extends ElementOpFactoryNode implements Cloneable  
 
 	@Override
 	public ElementCaseNode clone() {
-		return new ElementCaseNode(value.clone(), caseWhenPart.clone(), elseEl.clone());
+		ElementNode valueEN = value == null ? null : value.clone();
+		CaseWhenPartNode caseWhenPartNode = caseWhenPart == null ? null : caseWhenPart.clone();
+		ElementNode elseEN = elseEl == null ? null : elseEl.clone();
+		return new ElementCaseNode(valueEN, caseWhenPartNode, elseEN);
 	}
 
 	public ElementCaseNode(ElementNode value, CaseWhenPartNode caseWhenPart, ElementNode elseEl) {

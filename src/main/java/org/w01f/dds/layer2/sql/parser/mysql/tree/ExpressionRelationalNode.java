@@ -7,7 +7,9 @@ public class ExpressionRelationalNode extends ExpressionNode implements Cloneabl
 
 	@Override
 	public ExpressionRelationalNode clone() {
-		return new ExpressionRelationalNode(left.clone(), right.clone(), relationalOp);
+		ElementNode leftNode = left == null ? null : left.clone();
+		ElementNode rightNode = right == null ? null : right.clone();
+		return new ExpressionRelationalNode(leftNode, rightNode, relationalOp);
 	}
 
 	public ExpressionRelationalNode(ElementNode left, ElementNode right, String relationalOp) {

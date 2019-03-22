@@ -8,7 +8,7 @@ public class TableRecuNode extends TableRelNode implements Cloneable  {
 
 	@Override
 	public TableRecuNode clone() {
-		return new TableRecuNode(tableRel.clone());
+		return new TableRecuNode(tableRel == null ? null : tableRel.clone());
 	}
 
 	public TableRecuNode(TableRelNode tableRel) {

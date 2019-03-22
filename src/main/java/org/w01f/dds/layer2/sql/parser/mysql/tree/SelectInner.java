@@ -6,7 +6,9 @@ public class SelectInner extends SQLSyntaxTreeNode implements Cloneable {
 	private SelectSuffixNode suffix;
 
 	@Override public SelectInner clone() {
-		return new SelectInner(prefix.clone(), suffix.clone());
+		SelectPrefixNode selectPrefixNode = prefix == null ? null : prefix.clone();
+		SelectSuffixNode selectSuffixNode = suffix == null ? null : suffix.clone();
+		return new SelectInner(selectPrefixNode, selectSuffixNode);
 	}
 
 	public SelectInner(SelectPrefixNode prefix, SelectSuffixNode suffix) {

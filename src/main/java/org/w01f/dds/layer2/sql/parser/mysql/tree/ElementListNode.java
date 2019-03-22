@@ -12,7 +12,7 @@ public class ElementListNode extends SQLSyntaxTreeNode implements Cloneable  {
 	public ElementListNode clone() {
 		List<ElementNode> elements = null;
 		if (this.elements != null) {
-			elements = new ArrayList<>(elements.size());
+			elements = new ArrayList<>(this.elements.size());
 			for (ElementNode element : this.elements) {
 				elements.add(element.clone());
 			}

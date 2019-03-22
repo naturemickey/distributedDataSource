@@ -13,7 +13,11 @@ public class TableJoinSuffixNode extends SQLSyntaxTreeNode implements Cloneable 
 
 	@Override
 	public TableJoinSuffixNode clone() {
-		return new TableJoinSuffixNode(tableJoinMod, tables.clone(), tableRecu.clone(), condition.clone(), suffix.clone());
+		TableNameAndAliasesNode tableNameAndAliasesNode = tables == null ? null :tables.clone();
+		TableRecuNode tableRecuNode = tableRecu == null ?null : tableRecu.clone();
+		JoinConditionNode joinConditionNode = condition == null ? null :condition.clone();
+		TableJoinSuffixNode tableJoinSuffixNode = suffix == null ? null : suffix.clone();
+		return new TableJoinSuffixNode(tableJoinMod, tableNameAndAliasesNode, tableRecuNode, joinConditionNode, tableJoinSuffixNode);
 	}
 
 	public TableJoinSuffixNode(String tableJoinMod, TableNameAndAliasesNode tables, TableRecuNode tableRecu, JoinConditionNode condition,

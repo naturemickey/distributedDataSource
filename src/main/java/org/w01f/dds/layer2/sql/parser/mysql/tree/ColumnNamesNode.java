@@ -22,7 +22,4 @@ public final class ColumnNamesNode extends SQLSyntaxTreeNode  implements Cloneab
 		return names.stream().collect(Collectors.joining(", "));
 	}
 
-	public void addColumn(String name) {
-		this.names.add(name);
-	}
 }

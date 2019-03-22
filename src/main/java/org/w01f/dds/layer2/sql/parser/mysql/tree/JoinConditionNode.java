@@ -7,7 +7,9 @@ public class JoinConditionNode extends SQLSyntaxTreeNode  implements Cloneable  
 
 	@Override
 	public JoinConditionNode clone() {
-		return new JoinConditionNode(on.clone(), columnNames.clone());
+		WhereConditionNode whereConditionNode = on == null ? null : on.clone();
+		ColumnNamesNode columnNamesNode = columnNames == null ? null : columnNames.clone();
+		return new JoinConditionNode(whereConditionNode, columnNamesNode);
 	}
 
 	public JoinConditionNode(WhereConditionNode on, ColumnNamesNode columnNames) {

@@ -8,7 +8,10 @@ public class DeleteNode extends SQLSyntaxTreeNode  implements Cloneable {
 
 	@Override
 	public  DeleteNode clone() {
-		return new DeleteNode(tableNameAndAlias.clone(), whereCondition.clone(), rowCount.clone());
+		TableNameAndAliasNode tableNameAndAliasNode = tableNameAndAlias == null ?null : tableNameAndAlias.clone();
+		WhereConditionNode whereConditionNode = whereCondition == null ? null :whereCondition.clone();
+		IntPlaceHolderNode intPlaceHolderNode = rowCount == null ? null : rowCount.clone();
+		return new DeleteNode(tableNameAndAliasNode, whereConditionNode, intPlaceHolderNode);
 	}
 
 	public DeleteNode(TableNameAndAliasNode tableNameAndAlias, WhereConditionNode whereCondition, IntPlaceHolderNode rowCount) {

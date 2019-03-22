@@ -8,7 +8,10 @@ public class ExpressionBetweenAndNode extends ExpressionNode implements Cloneabl
 
 	@Override
 	public ExpressionBetweenAndNode clone() {
-		return new ExpressionBetweenAndNode(element.clone(), not, left.clone(), right.clone());
+		ElementNode elementNode = element == null ? null :element.clone();
+		ElementNode leftNode = left == null ? null : left.clone();
+		ElementNode rightNode = right == null ? null : right.clone();
+		return new ExpressionBetweenAndNode(elementNode, not, leftNode, rightNode);
 	}
 
 	public ExpressionBetweenAndNode(ElementNode element, boolean not, ElementNode left, ElementNode right) {

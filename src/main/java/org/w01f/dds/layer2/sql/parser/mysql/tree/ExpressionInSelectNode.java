@@ -8,7 +8,9 @@ public class ExpressionInSelectNode extends ExpressionNode implements Cloneable 
 
 	@Override
 	public ExpressionInSelectNode clone() {
-		return new ExpressionInSelectNode(element.clone(), not, select.clone());
+		ElementNode elementNode = element == null ? null : element.clone();
+		SelectNode selectNode = select == null ? null : select.clone();
+		return new ExpressionInSelectNode(elementNode, not, selectNode);
 	}
 	public ExpressionInSelectNode(ElementNode element, boolean not, SelectNode select) {
 		this.element = element;

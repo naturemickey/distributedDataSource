@@ -7,7 +7,9 @@ public class SelectUnionSuffix extends SQLSyntaxTreeNode implements Cloneable  {
 
 	@Override
 	public SelectUnionSuffix clone() {
-		return new SelectUnionSuffix(method, select.clone(), suffix.clone());
+		SelectNode selectNode = select == null ?null :select.clone();
+		SelectSuffixNode selectSuffixNode = suffix == null ? null :suffix.clone();
+		return new SelectUnionSuffix(method, selectNode, selectSuffixNode);
 	}
 
 	public SelectUnionSuffix(String method, SelectNode select, SelectSuffixNode suffix) {

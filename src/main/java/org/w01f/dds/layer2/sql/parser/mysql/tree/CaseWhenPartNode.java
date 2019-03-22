@@ -8,7 +8,11 @@ public class CaseWhenPartNode extends SQLSyntaxTreeNode implements Cloneable {
 
     @Override
     public CaseWhenPartNode clone() {
-        return new CaseWhenPartNode(whenEl.clone(), whenRe.clone(), then.clone(), suffix.clone());
+        ElementNode whenElementNode = whenEl == null ? null :whenEl.clone();
+        ExpressionRelationalNode whenRelationalNode = whenRe == null ? null: whenRe.clone();
+        ElementNode thenElementNode = then == null ? null : then.clone();
+        CaseWhenPartNode suffixCW = suffix == null ? null : suffix.clone();
+        return new CaseWhenPartNode(whenElementNode, whenRelationalNode, thenElementNode, suffixCW);
     }
 
     public CaseWhenPartNode(ElementNode whenEl, ExpressionRelationalNode whenRe, ElementNode then, CaseWhenPartNode suffix) {

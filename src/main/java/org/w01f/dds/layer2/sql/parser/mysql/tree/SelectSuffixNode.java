@@ -10,7 +10,10 @@ public class SelectSuffixNode extends SQLSyntaxTreeNode  implements Cloneable {
 
 	@Override
 	public SelectSuffixNode clone() {
-		return new SelectSuffixNode(orderByExprs.clone(), offset.clone(), rowCount.clone(), lock, hasOffsetWord);
+		GbobExprsNode gbobExprsNode = orderByExprs == null ? null :orderByExprs.clone();
+		IntPlaceHolderNode offsetNode = offset == null ? null : offset.clone();
+		IntPlaceHolderNode rowCountNode = rowCount == null ? null : rowCount.clone();
+		return new SelectSuffixNode(gbobExprsNode, offsetNode, rowCountNode, lock, hasOffsetWord);
 	}
 
 	public SelectSuffixNode(GbobExprsNode orderByExprs, IntPlaceHolderNode offset, IntPlaceHolderNode rowCount, String lock,

@@ -1,6 +1,6 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class IntPlaceHolderNode extends SQLSyntaxTreeNode implements Cloneable  {
+public class IntPlaceHolderNode extends SQLSyntaxTreeNode implements Cloneable {
 
     private String intText;
     private ElementPlaceholderNode placeholderNode;
@@ -8,7 +8,7 @@ public class IntPlaceHolderNode extends SQLSyntaxTreeNode implements Cloneable  
     @Override
     public IntPlaceHolderNode clone() {
         if (intText != null) return new IntPlaceHolderNode(intText);
-        return new IntPlaceHolderNode(placeholderNode.clone());
+        return new IntPlaceHolderNode(placeholderNode == null ? null : placeholderNode.clone());
     }
 
     public IntPlaceHolderNode(ElementPlaceholderNode placeholderNode) {

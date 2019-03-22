@@ -6,7 +6,7 @@ public class ElementSubQueryNode extends ElementOpFactoryNode  implements Clonea
 
 	@Override
 	public ElementSubQueryNode clone() {
-		return new ElementSubQueryNode(with, select.clone());
+		return new ElementSubQueryNode(with, select == null ? null : select.clone());
 	}
 
 	public ElementSubQueryNode(String with, SelectNode select) {

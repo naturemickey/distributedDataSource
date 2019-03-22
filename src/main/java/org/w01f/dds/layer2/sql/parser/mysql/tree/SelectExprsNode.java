@@ -7,7 +7,9 @@ public class SelectExprsNode extends SQLSyntaxTreeNode  implements Cloneable {
 
 	@Override
 	public SelectExprsNode clone() {
-		return new SelectExprsNode(element.clone(), alias, suffix.clone());
+		ElementNode elementNode = element == null ? null :element.clone();
+		SelectExprsNode exprsNode = suffix == null ? null : suffix.clone();
+		return new SelectExprsNode(elementNode, alias, exprsNode);
 	}
 
 	public SelectExprsNode(ElementNode element, String alias, SelectExprsNode suffix) {

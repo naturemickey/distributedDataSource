@@ -6,7 +6,9 @@ public class SelectNode extends SQLSyntaxTreeNode implements Cloneable {
 
 	@Override
 	public SelectNode clone() {
-		return new SelectNode(selectInner.clone(), suffix.clone());
+		SelectInner selectInner2 = selectInner == null ? null : selectInner.clone();
+		SelectUnionSuffix selectUnionSuffix = suffix == null ? null : suffix.clone();
+		return new SelectNode(selectInner2, selectUnionSuffix);
 	}
 
 	public SelectNode(SelectInner selectInner, SelectUnionSuffix suffix) {

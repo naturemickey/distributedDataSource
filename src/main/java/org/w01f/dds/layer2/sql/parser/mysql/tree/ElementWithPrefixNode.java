@@ -7,7 +7,7 @@ public class ElementWithPrefixNode extends ElementOpFactoryNode  implements Clon
 
 	@Override
 	public ElementWithPrefixNode clone() {
-		return new ElementWithPrefixNode(prefix, elementOpFactory.clone());
+		return new ElementWithPrefixNode(prefix, elementOpFactory == null ? null : elementOpFactory.clone());
 	}
 
 	public ElementWithPrefixNode(String prefix, ElementOpFactoryNode elementOpFactory) {

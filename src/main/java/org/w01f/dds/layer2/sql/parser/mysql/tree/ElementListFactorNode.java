@@ -5,7 +5,7 @@ public class ElementListFactorNode extends ElementNode  implements Cloneable {
 
 	@Override
 	public ElementListFactorNode clone() {
-		return new ElementListFactorNode(elementList.clone());
+		return new ElementListFactorNode(elementList == null ? null : elementList.clone());
 	}
 
 	public ElementListFactorNode(ElementListNode elementList) {

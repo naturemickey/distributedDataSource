@@ -7,7 +7,9 @@ public class GbobExprsNode extends SQLSyntaxTreeNode implements Cloneable  {
 
 	@Override
 	public GbobExprsNode clone() {
-		return new GbobExprsNode(element.clone(), sc, suffix.clone());
+		ElementNode elementNode = element == null ? null : element.clone();
+		GbobExprsNode gbobExprsNode = suffix == null ? null : suffix.clone();
+		return new GbobExprsNode(elementNode, sc, gbobExprsNode);
 	}
 
 	public GbobExprsNode(ElementNode element, String sc, GbobExprsNode suffix) {

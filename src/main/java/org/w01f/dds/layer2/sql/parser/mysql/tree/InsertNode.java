@@ -9,9 +9,10 @@ public class InsertNode extends SQLSyntaxTreeNode  implements Cloneable {
 
 	@Override
 	public InsertNode clone() {
+		ColumnNamesNode columnNamesNode = columnNames == null ? null : columnNames.clone();
 		if (valueNames != null)
-			return new InsertNode(tableName, columnNames.clone(), valueNames.clone());
-		return new InsertNode(tableName, columnNames.clone(), select.clone());
+			return new InsertNode(tableName, columnNamesNode, valueNames.clone());
+		return new InsertNode(tableName, columnNamesNode, select.clone());
 	}
 
 	public InsertNode(String tableName, ColumnNamesNode columnNames, ValueListNode valueNames) {

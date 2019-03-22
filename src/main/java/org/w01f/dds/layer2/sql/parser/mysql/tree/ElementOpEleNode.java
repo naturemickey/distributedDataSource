@@ -7,7 +7,9 @@ public class ElementOpEleNode extends ElementNode implements Cloneable  {
 
 	@Override
 	public ElementOpEleNode clone() {
-		return new ElementOpEleNode(factory.clone(), suffix.clone());
+		ElementOpFactoryNode elementOpFactoryNode = factory == null ? null : factory.clone();
+		ElementOpEleSuffixNode elementOpEleSuffixNode = suffix == null ? null : suffix.clone();
+		return new ElementOpEleNode(elementOpFactoryNode, elementOpEleSuffixNode);
 	}
 
 	public ElementOpEleNode(ElementOpFactoryNode factory, ElementOpEleSuffixNode suffix) {

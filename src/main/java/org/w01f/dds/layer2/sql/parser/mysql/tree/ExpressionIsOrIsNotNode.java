@@ -8,7 +8,7 @@ public class ExpressionIsOrIsNotNode extends ExpressionNode  implements Cloneabl
 
 	@Override
 	public ExpressionIsOrIsNotNode clone() {
-		return new ExpressionIsOrIsNotNode(element.clone(), not, what);
+		return new ExpressionIsOrIsNotNode(element == null ? null : element.clone(), not, what);
 	}
 
 	public ExpressionIsOrIsNotNode(ElementNode element, boolean not, String what) {
