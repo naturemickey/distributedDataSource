@@ -1,33 +1,57 @@
 package org.w01f.dds.layer1.dsproxy;
 
+import org.w01f.dds.layer1.dsproxy.param.Params;
+import org.w01f.dds.layer2.sql.parser.mysql.ParserUtils;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.ElementPlaceholderNode;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.SQLSyntaxTreeNode;
+
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
 import java.util.Calendar;
+import java.util.List;
+import java.util.function.BiConsumer;
 
 public class DistributedPreparedStatement extends DistributedStatement implements PreparedStatement {
 
     private PreparedStatement statement;
+    private SQLSyntaxTreeNode sqlSyntaxTree;
 
-    public DistributedPreparedStatement(PreparedStatement statement) {
+    public DistributedPreparedStatement(PreparedStatement statement, String sql) {
         super(statement);
         this.statement = statement;
+        this.sqlSyntaxTree = ParserUtils.parse(sql);
+    }
+
+    private void prepareSetter() {
+        List<ElementPlaceholderNode> placeholderNodes = this.sqlSyntaxTree.getPlaceholderNodes();
+        for (int i = 1; i <= placeholderNodes.size(); ++i) {
+            BiConsumer<PreparedStatement, Integer> setter = this.params.getSetter(i);
+            if (setter == null) {
+                throw new RuntimeException("parameter index set error. you didn't set no " +i);
+            }
+            ElementPlaceholderNode placeholderNode = placeholderNodes.get(i - 1);
+            placeholderNode.setSetter(setter);
+        }
     }
 
     @Override
     public ResultSet executeQuery() throws SQLException {
+        prepareSetter();
         return statement.executeQuery();
     }
 
     @Override
     public int executeUpdate() throws SQLException {
+        prepareSetter();
         return statement.executeUpdate();
     }
 
     @Override
     public boolean execute() throws SQLException {
+        prepareSetter();
         return statement.execute();
     }
 

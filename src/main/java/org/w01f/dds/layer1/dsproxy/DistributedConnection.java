@@ -29,14 +29,13 @@ public class DistributedConnection implements Connection {
     public Statement createStatement() throws SQLException {
         // we almost always use the prepareStatement method instead this method.
         // maybe we will support this method in further.
-
-        // return new DistributedStatement(connection.createStatement());
-        throw new UnsupportedOperationException();
+        return new DistributedStatement(connection.createStatement()).getProxy();
+        // throw new UnsupportedOperationException();
     }
 
     @Override
     public PreparedStatement prepareStatement(String sql) throws SQLException {
-        return new DistributedPreparedStatement(connection.prepareStatement(sql));
+        return new DistributedPreparedStatement(connection.prepareStatement(sql)).getProxy();
         // return connection.prepareStatement(sql);
     }
 

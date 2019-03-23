@@ -1,13 +1,46 @@
 package org.w01f.dds.layer1.dsproxy;
 
+import org.w01f.dds.layer1.dsproxy.param.Params;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.sql.*;
 
-public class DistributedStatement implements Statement {
+public class DistributedStatement implements InvocationHandler, Statement {
 
     protected Statement statement;
+    protected Params params = new Params();
+    private Object proxy;
+
+    public PreparedStatement getProxy() {
+        return ((PreparedStatement) proxy);
+    }
 
     public DistributedStatement(Statement statement) {
         this.statement = statement;
+        proxy = Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{PreparedStatement.class}, this);
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        // System.out.println(method);
+        if (method.getName().startsWith("set")) {
+            params.addParam((Integer) args[0], (p, i) -> {
+                Object[] params = new Object[args.length];
+                params[0] = i;
+                for (int x = 1; x < args.length; ++x) {
+                    params[x] = args[x];
+                }
+                try {
+                    method.invoke(p, params);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+        return method.invoke(statement, args);
     }
 
     @Override

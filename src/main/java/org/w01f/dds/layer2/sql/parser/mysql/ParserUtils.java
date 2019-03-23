@@ -19,7 +19,8 @@ public class ParserUtils {
     public static SQLSyntaxTreeNode parse(String sql) {
         try {
             SQLSyntaxTreeNode origin = sqlCache.get(sql, () -> {
-                CodePointCharStream codePointCharStream = CodePointCharStream.fromBuffer(CodePointBuffer.withBytes(ByteBuffer.wrap(sql.getBytes())));
+                CodePointBuffer codePointBuffer = CodePointBuffer.withBytes(ByteBuffer.wrap(sql.getBytes()));
+                CodePointCharStream codePointCharStream = CodePointCharStream.fromBuffer(codePointBuffer);
                 MySQLLexer lexer = new MySQLLexer(codePointCharStream);
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
                 MySQLParser parser = new MySQLParser(tokens);
