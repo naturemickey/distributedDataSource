@@ -21,6 +21,8 @@ public class UpdateSignleTableNode extends UpdateNode implements Cloneable {
         this.setExprs = setExprs;
         this.whereCondition = whereCondition;
         this.rowCount = rowCount;
+
+        setParent(tableNameAndAlias, setExprs, whereCondition, rowCount);
     }
 
     @Override

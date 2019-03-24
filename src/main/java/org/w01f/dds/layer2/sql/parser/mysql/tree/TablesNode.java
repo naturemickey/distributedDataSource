@@ -22,6 +22,8 @@ public class TablesNode extends SQLSyntaxTreeNode implements Cloneable  {
 
 	public TablesNode(List<TableRelNode> tableRels) {
 		this.tableRels = tableRels;
+
+		setParent(tableRels);
 	}
 
 	@Override

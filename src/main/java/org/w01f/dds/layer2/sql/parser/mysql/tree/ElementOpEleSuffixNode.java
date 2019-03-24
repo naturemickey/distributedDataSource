@@ -13,6 +13,8 @@ public class ElementOpEleSuffixNode extends ElementNode implements Cloneable {
     public ElementOpEleSuffixNode(String op, ElementOpEleNode element) {
         this.op = op;
         this.element = element;
+
+        super.setParent(element);
     }
 
     @Override

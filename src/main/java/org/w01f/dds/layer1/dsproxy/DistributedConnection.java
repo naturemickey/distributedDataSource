@@ -35,7 +35,7 @@ public class DistributedConnection implements Connection {
 
     @Override
     public PreparedStatement prepareStatement(String sql) throws SQLException {
-        return new DistributedPreparedStatement(connection.prepareStatement(sql)).getProxy();
+        return new DistributedPreparedStatement(connection.prepareStatement(sql), sql).getProxy();
         // return connection.prepareStatement(sql);
     }
 

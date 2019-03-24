@@ -17,6 +17,8 @@ public class GbobExprsNode extends SQLSyntaxTreeNode implements Cloneable  {
 		if (sc != null)
 			this.sc = sc.toLowerCase();
 		this.suffix = suffix;
+
+		setParent(element, suffix);
 	}
 
 	@Override

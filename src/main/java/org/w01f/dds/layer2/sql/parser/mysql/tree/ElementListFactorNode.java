@@ -10,6 +10,8 @@ public class ElementListFactorNode extends ElementNode  implements Cloneable {
 
 	public ElementListFactorNode(ElementListNode elementList) {
 		this.elementList = elementList;
+
+		super.setParent(elementList);
 	}
 
 	@Override

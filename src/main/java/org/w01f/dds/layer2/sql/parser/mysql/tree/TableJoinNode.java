@@ -16,6 +16,8 @@ public class TableJoinNode extends TableRelNode  implements Cloneable {
 	public TableJoinNode(TableNameAndAliasNode table, TableJoinSuffixNode suffix) {
 		this.table = table;
 		this.suffix = suffix;
+
+		setParent(table, suffix);
 	}
 
 	@Override

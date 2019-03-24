@@ -15,6 +15,8 @@ public class ExpressionIsOrIsNotNode extends ExpressionNode  implements Cloneabl
 		this.element = element;
 		this.not = not;
 		this.what = what.toLowerCase();
+
+		setParent(element);
 	}
 
 	@Override

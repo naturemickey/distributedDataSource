@@ -15,6 +15,8 @@ public class JoinConditionNode extends SQLSyntaxTreeNode  implements Cloneable  
 	public JoinConditionNode(WhereConditionNode on, ColumnNamesNode columnNames) {
 		this.on = on;
 		this.columnNames = columnNames;
+
+		setParent(on, columnNames);
 	}
 
 	@Override

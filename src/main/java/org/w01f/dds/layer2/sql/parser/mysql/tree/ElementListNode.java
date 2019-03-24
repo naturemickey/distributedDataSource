@@ -22,6 +22,8 @@ public class ElementListNode extends SQLSyntaxTreeNode implements Cloneable  {
 
 	public ElementListNode(List<ElementNode> elements) {
 		this.elements = elements;
+
+		super.setParent(elements);
 	}
 
 	@Override

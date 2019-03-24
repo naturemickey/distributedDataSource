@@ -27,6 +27,8 @@ public class SelectPrefixNode extends SQLSyntaxTreeNode implements Cloneable {
         this.where = where;
         this.groupByExprs = groupByExprs;
         this.having = having;
+
+        setParent(selectExprs, tables, where, groupByExprs, having);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ElementDateNode extends ElementOpFactoryNode  implements Cloneable {
+public final class ElementDateNode extends ElementOpFactoryNode  implements Cloneable {
 	private String dt;
 	private String str;
 

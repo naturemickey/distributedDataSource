@@ -16,6 +16,8 @@ public class SelectExprsNode extends SQLSyntaxTreeNode  implements Cloneable {
 		this.element = element;
 		this.alias = alias;
 		this.suffix = suffix;
+
+		setParent(element, suffix);
 	}
 
 	@Override

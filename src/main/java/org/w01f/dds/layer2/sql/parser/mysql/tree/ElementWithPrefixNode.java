@@ -13,6 +13,8 @@ public class ElementWithPrefixNode extends ElementOpFactoryNode  implements Clon
 	public ElementWithPrefixNode(String prefix, ElementOpFactoryNode elementOpFactory) {
 		this.prefix = prefix.toLowerCase();
 		this.elementOpFactory = elementOpFactory;
+
+		super.setParent(elementOpFactory);
 	}
 
 	@Override

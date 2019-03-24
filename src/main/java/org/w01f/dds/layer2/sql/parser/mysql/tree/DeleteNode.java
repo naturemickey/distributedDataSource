@@ -18,6 +18,8 @@ public class DeleteNode extends SQLSyntaxTreeNode  implements Cloneable {
 		this.tableNameAndAlias = tableNameAndAlias;
 		this.whereCondition = whereCondition;
 		this.rowCount = rowCount;
+
+		super.setParent(tableNameAndAlias, whereCondition, rowCount);
 	}
 
 	@Override

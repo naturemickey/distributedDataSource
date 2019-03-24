@@ -27,6 +27,8 @@ public class TableJoinSuffixNode extends SQLSyntaxTreeNode implements Cloneable 
 		this.tableRecu = tableRecu;
 		this.condition = condition;
 		this.suffix = suffix;
+
+		setParent(tables, tableRecu, condition, suffix);
 	}
 
 	@Override

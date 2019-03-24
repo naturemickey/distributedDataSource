@@ -16,6 +16,8 @@ public class ExpressionLikeNode extends ExpressionNode implements Cloneable  {
 		this.not = not;
 		this.left = left;
 		this.right = right;
+
+		setParent(left, right);
 	}
 
 	@Override

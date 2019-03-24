@@ -13,6 +13,8 @@ public class TableRecuNode extends TableRelNode implements Cloneable  {
 
 	public TableRecuNode(TableRelNode tableRel) {
 		this.tableRel = tableRel;
+
+		setParent(tableRel);
 	}
 
 	@Override

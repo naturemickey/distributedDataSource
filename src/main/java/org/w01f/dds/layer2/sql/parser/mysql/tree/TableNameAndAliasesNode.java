@@ -22,6 +22,8 @@ public class TableNameAndAliasesNode extends SQLSyntaxTreeNode implements Clonea
 
     public TableNameAndAliasesNode(List<TableNameAndAliasNode> tableNameAndAlias) {
         this.tableNameAndAlias = tableNameAndAlias;
+
+        setParent(tableNameAndAlias);
     }
 
     @Override

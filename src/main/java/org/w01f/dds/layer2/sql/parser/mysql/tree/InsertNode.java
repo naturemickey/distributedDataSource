@@ -19,6 +19,8 @@ public class InsertNode extends SQLSyntaxTreeNode  implements Cloneable {
 		this.tableName = tableName;
 		this.columnNames = columnNames;
 		this.valueNames = valueNames;
+
+		setParent(columnNames, valueNames);
 	}
 
 	public InsertNode(String tableName, ColumnNamesNode columnNames, SelectNode select) {

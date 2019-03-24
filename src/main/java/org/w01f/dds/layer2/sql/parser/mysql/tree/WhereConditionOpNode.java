@@ -17,6 +17,8 @@ public class WhereConditionOpNode extends WhereConditionNode implements Cloneabl
 		this.expression = expression;
 		this.expressionOperator = expressionOperator;
 		this.whereCondition = whereCondition;
+
+		setParent(expression, whereCondition);
 	}
 
 	@Override

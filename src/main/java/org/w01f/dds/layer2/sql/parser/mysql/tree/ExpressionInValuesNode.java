@@ -15,6 +15,8 @@ public class ExpressionInValuesNode extends ExpressionNode implements Cloneable 
 		this.element = element;
 		this.not = not;
 		this.values = values;
+
+		setParent(element, values);
 	}
 
 	@Override

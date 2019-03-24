@@ -17,6 +17,8 @@ public class ElementCaseNode extends ElementOpFactoryNode implements Cloneable  
 		this.value = value;
 		this.caseWhenPart = caseWhenPart;
 		this.elseEl = elseEl;
+
+		super.setParent(value, caseWhenPart, elseEl);
 	}
 
 	@Override

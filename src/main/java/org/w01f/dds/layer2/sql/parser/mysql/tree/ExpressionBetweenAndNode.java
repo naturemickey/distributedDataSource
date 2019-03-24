@@ -19,6 +19,8 @@ public class ExpressionBetweenAndNode extends ExpressionNode implements Cloneabl
 		this.not = not;
 		this.left = left;
 		this.right = right;
+
+		super.setParent(element, left, right);
 	}
 
 	@Override

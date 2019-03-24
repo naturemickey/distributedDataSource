@@ -39,8 +39,9 @@ public class DistributedStatement implements InvocationHandler, Statement {
                     throw new RuntimeException(e);
                 }
             });
+            return null;
         }
-        return method.invoke(statement, args);
+        return method.invoke(this, args);
     }
 
     @Override

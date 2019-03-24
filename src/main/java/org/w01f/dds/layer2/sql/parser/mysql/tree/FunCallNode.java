@@ -13,6 +13,8 @@ public class FunCallNode extends ElementOpFactoryNode implements Cloneable  {
 	public FunCallNode(String name, ParamListNode paramList) {
 		this.name = name;
 		this.paramList = paramList;
+
+		setParent(paramList);
 	}
 
 	@Override

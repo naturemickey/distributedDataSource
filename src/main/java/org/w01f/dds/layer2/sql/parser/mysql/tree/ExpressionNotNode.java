@@ -11,6 +11,8 @@ public class ExpressionNotNode extends ExpressionNode implements Cloneable {
 
     public ExpressionNotNode(ExpressionNode expression) {
         this.expression = expression;
+
+        setParent(expression);
     }
 
     @Override

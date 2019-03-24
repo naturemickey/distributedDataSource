@@ -16,6 +16,8 @@ public class ExpressionInSelectNode extends ExpressionNode implements Cloneable 
 		this.element = element;
 		this.not = not;
 		this.select = select;
+
+		setParent(element, select);
 	}
 
 	@Override

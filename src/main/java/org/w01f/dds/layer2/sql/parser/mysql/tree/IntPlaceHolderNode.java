@@ -13,6 +13,8 @@ public class IntPlaceHolderNode extends SQLSyntaxTreeNode implements Cloneable {
 
     public IntPlaceHolderNode(ElementPlaceholderNode placeholderNode) {
         this.placeholderNode = placeholderNode;
+
+        setParent(placeholderNodes);
     }
 
     public IntPlaceHolderNode(String intText) {

@@ -16,6 +16,8 @@ public class ExpressionRelationalNode extends ExpressionNode implements Cloneabl
 		this.left = left;
 		this.right = right;
 		this.relationalOp = relationalOp;
+
+		setParent(left, right);
 	}
 
 	@Override

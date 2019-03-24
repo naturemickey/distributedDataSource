@@ -18,6 +18,8 @@ public class ParamListNode extends SQLSyntaxTreeNode implements Cloneable{
 		this.element = element;
 		this.exprRelational = exprRelational;
 		this.suffix = suffix;
+
+		setParent(element, exprRelational, suffix);
 	}
 
 	@Override

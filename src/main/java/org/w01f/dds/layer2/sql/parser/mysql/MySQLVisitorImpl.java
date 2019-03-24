@@ -7,6 +7,12 @@ import org.w01f.dds.layer2.sql.parser.mysql.tree.*;
 import java.util.stream.Collectors;
 
 public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
+
+    @Override public SQLSyntaxTreeNode visitStat(MySQLParser.StatContext ctx) {
+        return new StatNode(visitChildren(ctx));
+    }
+
+
     @Override
     public SQLSyntaxTreeNode visitCommit(MySQLParser.CommitContext ctx) {
         return new CommitNode();

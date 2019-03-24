@@ -23,6 +23,8 @@ public class SelectSuffixNode extends SQLSyntaxTreeNode  implements Cloneable {
 		this.rowCount = rowCount;
 		this.lock = lock;
 		this.hasOffsetWord = hasOffsetWord;
+
+		setParent(orderByExprs, offset, rowCount);
 	}
 
 	@Override

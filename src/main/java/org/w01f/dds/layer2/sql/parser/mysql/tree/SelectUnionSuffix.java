@@ -16,6 +16,8 @@ public class SelectUnionSuffix extends SQLSyntaxTreeNode implements Cloneable  {
 		this.method = method;
 		this.select = select;
 		this.suffix = suffix;
+
+		setParent(select, suffix);
 	}
 
 	@Override

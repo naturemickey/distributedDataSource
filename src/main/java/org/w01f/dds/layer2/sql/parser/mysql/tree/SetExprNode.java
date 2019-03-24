@@ -12,6 +12,8 @@ public class SetExprNode extends SQLSyntaxTreeNode implements Cloneable {
     public SetExprNode(ElementNode left, ElementNode right) {
         this.left = left;
         this.right = right;
+
+        setParent(left, right);
     }
 
     @Override

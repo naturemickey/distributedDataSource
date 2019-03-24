@@ -18,6 +18,8 @@ public class UpdateMultipleTableNode extends UpdateNode  implements Cloneable {
 		this.tableNameAndAliases = tableNameAndAliases;
 		this.setExprs = setExprs;
 		this.whereCondition = whereCondition;
+
+		setParent(tableNameAndAliases, setExprs, whereCondition);
 	}
 
 	@Override

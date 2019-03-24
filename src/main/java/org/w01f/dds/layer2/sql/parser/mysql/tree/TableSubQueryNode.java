@@ -16,6 +16,8 @@ public class TableSubQueryNode extends TableRelNode implements Cloneable {
     public TableSubQueryNode(SelectNode select, String alias) {
         this.select = select;
         this.alias = alias;
+
+        setParent(select);
     }
 
     @Override

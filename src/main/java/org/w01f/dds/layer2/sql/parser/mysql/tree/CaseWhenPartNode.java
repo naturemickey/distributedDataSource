@@ -8,8 +8,8 @@ public class CaseWhenPartNode extends SQLSyntaxTreeNode implements Cloneable {
 
     @Override
     public CaseWhenPartNode clone() {
-        ElementNode whenElementNode = whenEl == null ? null :whenEl.clone();
-        ExpressionRelationalNode whenRelationalNode = whenRe == null ? null: whenRe.clone();
+        ElementNode whenElementNode = whenEl == null ? null : whenEl.clone();
+        ExpressionRelationalNode whenRelationalNode = whenRe == null ? null : whenRe.clone();
         ElementNode thenElementNode = then == null ? null : then.clone();
         CaseWhenPartNode suffixCW = suffix == null ? null : suffix.clone();
         return new CaseWhenPartNode(whenElementNode, whenRelationalNode, thenElementNode, suffixCW);
@@ -20,6 +20,8 @@ public class CaseWhenPartNode extends SQLSyntaxTreeNode implements Cloneable {
         this.whenRe = whenRe;
         this.then = then;
         this.suffix = suffix;
+
+        setParent(whenEl, whenRe, then, suffix);
     }
 
     @Override

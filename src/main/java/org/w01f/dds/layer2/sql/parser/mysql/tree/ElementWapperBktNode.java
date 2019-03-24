@@ -11,6 +11,8 @@ public class ElementWapperBktNode extends ElementOpFactoryNode implements Clonea
 
     public ElementWapperBktNode(ElementNode element) {
         this.element = element;
+
+        super.setParent(element);
     }
 
     @Override

@@ -15,6 +15,8 @@ public class ElementOpEleNode extends ElementNode implements Cloneable  {
 	public ElementOpEleNode(ElementOpFactoryNode factory, ElementOpEleSuffixNode suffix) {
 		this.factory = factory;
 		this.suffix = suffix;
+
+		super.setParent(factory, suffix);
 	}
 
 	@Override

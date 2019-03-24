@@ -22,6 +22,8 @@ public class ValueListNode extends SQLSyntaxTreeNode implements Cloneable  {
 	
 	public ValueListNode(List<ElementNode> elements) {
 		this.elements = elements;
+
+		setParent(elements);
 	}
 
 	@Override

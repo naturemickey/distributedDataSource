@@ -12,6 +12,8 @@ public class ElementSubQueryNode extends ElementOpFactoryNode  implements Clonea
 	public ElementSubQueryNode(String with, SelectNode select) {
 		this.with = with;
 		this.select = select;
+
+		super.setParent(select);
 	}
 
 	@Override

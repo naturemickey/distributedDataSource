@@ -17,6 +17,8 @@ public class WhereConditionSubNode extends WhereConditionNode implements Cloneab
 		this.wc1 = wc1;
 		this.expressionOperator = expressionOperator;
 		this.wc2 = wc2;
+
+		setParent(wc1, wc2);
 	}
 
 	@Override

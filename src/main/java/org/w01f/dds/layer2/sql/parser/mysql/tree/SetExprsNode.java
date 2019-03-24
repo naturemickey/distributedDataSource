@@ -22,6 +22,8 @@ public class SetExprsNode extends SQLSyntaxTreeNode  implements Cloneable {
 
 	public SetExprsNode(List<SetExprNode> setExprs) {
 		this.setExprs = setExprs;
+
+		setParent(setExprs);
 	}
 
 	@Override

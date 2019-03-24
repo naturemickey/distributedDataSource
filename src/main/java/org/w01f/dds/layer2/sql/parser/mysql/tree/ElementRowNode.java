@@ -11,6 +11,8 @@ public class ElementRowNode extends ElementOpFactoryNode implements Cloneable {
 
     public ElementRowNode(ParamListNode paramList) {
         this.paramList = paramList;
+
+        super.setParent(paramList);
     }
 
     @Override
