@@ -23,26 +23,30 @@ public class DataSourceProxy {
     }
 
     public void commitAll() throws SQLException {
-        List<Connection> connections = null;
+        List<Connection> connections = openedConn.get();
         try {
-            connections = openedConn.get();
             for (Connection connection : connections) {
                 connection.commit();
             }
         } finally {
-            if (connections != null) connections.clear();
+            for (Connection connection : connections) {
+                connection.close();
+            }
+            connections.clear();
         }
     }
 
     public void rollbackAll() throws SQLException {
-        List<Connection> connections = null;
+        List<Connection> connections = openedConn.get();
         try {
-            connections = openedConn.get();
             for (Connection connection : connections) {
                 connection.rollback();
             }
         } finally {
-            if (connections != null) connections.clear();
+            for (Connection connection : connections) {
+                connection.close();
+            }
+            connections.clear();
         }
     }
 
