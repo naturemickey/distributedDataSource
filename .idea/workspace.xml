@@ -2,58 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61ec973a-05be-4638-96ae-e509d874d2c5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/MySQLVisitorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/MySQLVisitorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/CaseWhenPartNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/CaseWhenPartNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/DeleteNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/DeleteNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementCaseNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementCaseNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementDateNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementDateNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementListFactorNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementListFactorNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementOpEleNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementOpEleNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementOpEleSuffixNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementOpEleSuffixNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementPlaceholderNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementPlaceholderNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementRowNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementRowNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementSubQueryNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementSubQueryNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementWapperBktNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementWapperBktNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementWithPrefixNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementWithPrefixNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionBetweenAndNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionBetweenAndNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionExistsNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionExistsNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionInSelectNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionInSelectNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionInValuesNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionInValuesNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionIsOrIsNotNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionIsOrIsNotNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionLikeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionLikeNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionNotNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionNotNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionRelationalNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ExpressionRelationalNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/FunCallNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/FunCallNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/GbobExprsNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/GbobExprsNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/InsertNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/InsertNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/IntPlaceHolderNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/IntPlaceHolderNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/JoinConditionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/JoinConditionNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ParamListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ParamListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SQLSyntaxTreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SQLSyntaxTreeNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectExprsNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectExprsNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectInner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectInner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectPrefixNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectPrefixNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectSuffixNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectSuffixNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectUnionSuffix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectUnionSuffix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SetExprNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SetExprNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SetExprsNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SetExprsNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableJoinNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableJoinNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableJoinSuffixNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableJoinSuffixNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableNameAndAliasesNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableNameAndAliasesNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableRecuNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableRecuNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableSubQueryNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableSubQueryNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TablesNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TablesNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/UpdateMultipleTableNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/UpdateMultipleTableNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/UpdateSignleTableNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/UpdateSignleTableNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ValueListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ValueListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/WhereConditionOpNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/WhereConditionOpNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/WhereConditionSubNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/WhereConditionSubNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -65,70 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SQLSyntaxTreeNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/StatNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-              <folding>
-                <element signature="e#125#126#0" expanded="true" />
-                <element signature="e#152#153#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org.w01f.dds/service/TestServiceBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementPlaceholderNode.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#283#284#0" expanded="true" />
-                <element signature="e#319#320#0" expanded="true" />
-                <element signature="e#527#528#0" expanded="true" />
-                <element signature="e#561#562#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="462">
+              <caret line="45" column="12" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -164,6 +55,7 @@
       <find>return this</find>
       <find>return this;</find>
       <find>elementlist</find>
+      <find>throws SQLException</find>
     </findStrings>
     <replaceStrings>
       <replace>String sql</replace>
@@ -175,7 +67,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/MySQLVisitorImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/CaseWhenPartNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/DeleteNode.java" />
@@ -224,8 +115,9 @@
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/WhereConditionSubNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/StatNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SQLSyntaxTreeNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementPlaceholderNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java" />
       </list>
     </option>
   </component>
@@ -501,7 +393,7 @@
     <property name="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4::/gen-listener" value="true" />
     <property name="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4::/gen-visitor" value="true" />
     <property name="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4::/output-dir" value="src/main/java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553433390506" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553496057049" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -628,7 +520,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24626866" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24626866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -637,8 +529,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27982646" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.27006507" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26789588" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.27006507" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -658,7 +550,7 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22014925" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24626866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -667,8 +559,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24403471" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26819128" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.27006507" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -689,22 +581,6 @@
     </layout-to-restore>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java</url>
-          <line>28</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="res &amp; 0xff00" language="JAVA" />
@@ -721,27 +597,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementRowNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementSubQueryNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementTextNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementTextParamNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1047,37 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SQLSyntaxTreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org.w01f.dds/service/TestServiceBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementPlaceholderNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -1089,6 +913,141 @@
             <element signature="e#527#528#0" expanded="true" />
             <element signature="e#561#562#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SQLSyntaxTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/param/Params.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/app/jdk-11.0.2/lib/src.zip!/java.sql/java/sql/PreparedStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="115" column="9" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="605">
+          <caret line="31" column="45" lean-forward="true" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org.w01f.dds/service/TestServiceBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="69" column="24" lean-forward="true" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+          <folding>
+            <element signature="e#2382#2383#0" expanded="true" />
+            <element signature="e#2439#2440#0" expanded="true" />
+            <element signature="e#2499#2500#0" expanded="true" />
+            <element signature="e#2556#2557#0" expanded="true" />
+            <element signature="e#2625#2626#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+            <element signature="e#2808#2809#0" expanded="true" />
+            <element signature="e#2865#2866#0" expanded="true" />
+            <element signature="e#2940#2941#0" expanded="true" />
+            <element signature="e#2997#2998#0" expanded="true" />
+            <element signature="e#3066#3067#0" expanded="true" />
+            <element signature="e#3123#3124#0" expanded="true" />
+            <element signature="e#3194#3195#0" expanded="true" />
+            <element signature="e#3251#3252#0" expanded="true" />
+            <element signature="e#3318#3319#0" expanded="true" />
+            <element signature="e#3375#3376#0" expanded="true" />
+            <element signature="e#3444#3445#0" expanded="true" />
+            <element signature="e#3501#3502#0" expanded="true" />
+            <element signature="e#3572#3573#0" expanded="true" />
+            <element signature="e#3629#3630#0" expanded="true" />
+            <element signature="e#3702#3703#0" expanded="true" />
+            <element signature="e#3759#3760#0" expanded="true" />
+            <element signature="e#3840#3841#0" expanded="true" />
+            <element signature="e#3897#3898#0" expanded="true" />
+            <element signature="e#3970#3971#0" expanded="true" />
+            <element signature="e#4027#4028#0" expanded="true" />
+            <element signature="e#4099#4100#0" expanded="true" />
+            <element signature="e#4152#4153#0" expanded="true" />
+            <element signature="e#4221#4222#0" expanded="true" />
+            <element signature="e#4278#4279#0" expanded="true" />
+            <element signature="e#4347#4348#0" expanded="true" />
+            <element signature="e#4404#4405#0" expanded="true" />
+            <element signature="e#4483#4484#0" expanded="true" />
+            <element signature="e#4540#4541#0" expanded="true" />
+            <element signature="e#5237#5238#0" expanded="true" />
+            <element signature="e#5294#5295#0" expanded="true" />
+            <element signature="e#5517#5518#0" expanded="true" />
+            <element signature="e#5574#5575#0" expanded="true" />
+            <element signature="e#5643#5644#0" expanded="true" />
+            <element signature="e#5700#5701#0" expanded="true" />
+            <element signature="e#5769#5770#0" expanded="true" />
+            <element signature="e#5826#5827#0" expanded="true" />
+            <element signature="e#5897#5898#0" expanded="true" />
+            <element signature="e#5954#5955#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6094#6095#0" expanded="true" />
+            <element signature="e#6177#6178#0" expanded="true" />
+            <element signature="e#6234#6235#0" expanded="true" />
+            <element signature="e#6475#6476#0" expanded="true" />
+            <element signature="e#6532#6533#0" expanded="true" />
+            <element signature="e#6599#6600#0" expanded="true" />
+            <element signature="e#6656#6657#0" expanded="true" />
+            <element signature="e#6727#6728#0" expanded="true" />
+            <element signature="e#6784#6785#0" expanded="true" />
+            <element signature="e#6862#6863#0" expanded="true" />
+            <element signature="e#6919#6920#0" expanded="true" />
+            <element signature="e#7151#7152#0" expanded="true" />
+            <element signature="e#7208#7209#0" expanded="true" />
+            <element signature="e#7297#7298#0" expanded="true" />
+            <element signature="e#7354#7355#0" expanded="true" />
+            <element signature="e#7600#7601#0" expanded="true" />
+            <element signature="e#7657#7658#0" expanded="true" />
+            <element signature="e#7738#7739#0" expanded="true" />
+            <element signature="e#7795#7796#0" expanded="true" />
+            <element signature="e#8510#8511#0" expanded="true" />
+            <element signature="e#8567#8568#0" expanded="true" />
+            <element signature="e#8651#8652#0" expanded="true" />
+            <element signature="e#8708#8709#0" expanded="true" />
+            <element signature="e#8795#8796#0" expanded="true" />
+            <element signature="e#8852#8853#0" expanded="true" />
+            <element signature="e#8939#8940#0" expanded="true" />
+            <element signature="e#8996#8997#0" expanded="true" />
+            <element signature="e#9072#9073#0" expanded="true" />
+            <element signature="e#9129#9130#0" expanded="true" />
+            <element signature="e#9215#9216#0" expanded="true" />
+            <element signature="e#9272#9273#0" expanded="true" />
+            <element signature="e#9349#9350#0" expanded="true" />
+            <element signature="e#9406#9407#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="45" column="12" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
         </state>
       </provider>
     </entry>

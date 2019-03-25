@@ -2,7 +2,7 @@ package org.w01f.dds.layer1.dsproxy;
 
 import org.w01f.dds.layer2.sql.parser.mysql.ParserUtils;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.ElementPlaceholderNode;
-import org.w01f.dds.layer2.sql.parser.mysql.tree.SQLSyntaxTreeNode;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -16,7 +16,7 @@ import java.util.function.BiConsumer;
 public class DistributedPreparedStatement extends DistributedStatement implements PreparedStatement {
 
     private PreparedStatement statement;
-    private SQLSyntaxTreeNode sqlSyntaxTree;
+    private StatNode sqlSyntaxTree;
 
     public DistributedPreparedStatement(PreparedStatement statement, String sql) {
         super(statement);
@@ -33,6 +33,13 @@ public class DistributedPreparedStatement extends DistributedStatement implement
             }
             ElementPlaceholderNode placeholderNode = placeholderNodes.get(i - 1);
             placeholderNode.setSetter(setter);
+        }
+    }
+
+    private void clearSetter() {
+        List<ElementPlaceholderNode> placeholderNodes = this.sqlSyntaxTree.getPlaceholderNodes();
+        for (ElementPlaceholderNode placeholderNode : placeholderNodes) {
+            placeholderNode.setSetter(null);
         }
     }
 
@@ -66,265 +73,268 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     }
 
     @Override
-    public void setNull(int parameterIndex, int sqlType) throws SQLException {
-        statement.setNull(parameterIndex, sqlType);
-    }
-
-    @Override
-    public void setBoolean(int parameterIndex, boolean x) throws SQLException {
-        statement.setBoolean(parameterIndex, x);
-    }
-
-    @Override
-    public void setByte(int parameterIndex, byte x) throws SQLException {
-        statement.setByte(parameterIndex, x);
-    }
-
-    @Override
-    public void setShort(int parameterIndex, short x) throws SQLException {
-        statement.setShort(parameterIndex, x);
-    }
-
-    @Override
-    public void setInt(int parameterIndex, int x) throws SQLException {
-        statement.setInt(parameterIndex, x);
-    }
-
-    @Override
-    public void setLong(int parameterIndex, long x) throws SQLException {
-        statement.setLong(parameterIndex, x);
-    }
-
-    @Override
-    public void setFloat(int parameterIndex, float x) throws SQLException {
-        statement.setFloat(parameterIndex, x);
-    }
-
-    @Override
-    public void setDouble(int parameterIndex, double x) throws SQLException {
-        statement.setDouble(parameterIndex, x);
-    }
-
-    @Override
-    public void setBigDecimal(int parameterIndex, BigDecimal x) throws SQLException {
-        statement.setBigDecimal(parameterIndex, x);
-    }
-
-    @Override
-    public void setString(int parameterIndex, String x) throws SQLException {
-        statement.setString(parameterIndex, x);
-    }
-
-    @Override
-    public void setBytes(int parameterIndex, byte[] x) throws SQLException {
-        statement.setBytes(parameterIndex, x);
-    }
-
-    @Override
-    public void setDate(int parameterIndex, Date x) throws SQLException {
-        statement.setDate(parameterIndex, x);
-    }
-
-    @Override
-    public void setTime(int parameterIndex, Time x) throws SQLException {
-        statement.setTime(parameterIndex, x);
-    }
-
-    @Override
-    public void setTimestamp(int parameterIndex, Timestamp x) throws SQLException {
-        statement.setTimestamp(parameterIndex, x);
-    }
-
-    @Override
-    public void setAsciiStream(int parameterIndex, InputStream x, int length) throws SQLException {
-        statement.setAsciiStream(parameterIndex, x, length);
-    }
-
-    @Override
-    @Deprecated
-    public void setUnicodeStream(int parameterIndex, InputStream x, int length) throws SQLException {
-        statement.setUnicodeStream(parameterIndex, x, length);
-    }
-
-    @Override
-    public void setBinaryStream(int parameterIndex, InputStream x, int length) throws SQLException {
-        statement.setBinaryStream(parameterIndex, x, length);
-    }
-
-    @Override
     public void clearParameters() throws SQLException {
+        clearSetter();
         statement.clearParameters();
-    }
-
-    @Override
-    public void setObject(int parameterIndex, Object x, int targetSqlType) throws SQLException {
-        statement.setObject(parameterIndex, x, targetSqlType);
-    }
-
-    @Override
-    public void setObject(int parameterIndex, Object x) throws SQLException {
-        statement.setObject(parameterIndex, x);
-    }
-
-    @Override
-    public void setCharacterStream(int parameterIndex, Reader reader, int length) throws SQLException {
-        statement.setCharacterStream(parameterIndex, reader, length);
-    }
-
-    @Override
-    public void setRef(int parameterIndex, Ref x) throws SQLException {
-        statement.setRef(parameterIndex, x);
-    }
-
-    @Override
-    public void setBlob(int parameterIndex, Blob x) throws SQLException {
-        statement.setBlob(parameterIndex, x);
-    }
-
-    @Override
-    public void setClob(int parameterIndex, Clob x) throws SQLException {
-        statement.setClob(parameterIndex, x);
-    }
-
-    @Override
-    public void setArray(int parameterIndex, Array x) throws SQLException {
-        statement.setArray(parameterIndex, x);
-    }
-
-    @Override
-    public void setDate(int parameterIndex, Date x, Calendar cal) throws SQLException {
-        statement.setDate(parameterIndex, x, cal);
-    }
-
-    @Override
-    public void setTime(int parameterIndex, Time x, Calendar cal) throws SQLException {
-        statement.setTime(parameterIndex, x, cal);
-    }
-
-    @Override
-    public void setTimestamp(int parameterIndex, Timestamp x, Calendar cal) throws SQLException {
-        statement.setTimestamp(parameterIndex, x, cal);
-    }
-
-    @Override
-    public void setNull(int parameterIndex, int sqlType, String typeName) throws SQLException {
-        statement.setNull(parameterIndex, sqlType, typeName);
-    }
-
-    @Override
-    public void setURL(int parameterIndex, URL x) throws SQLException {
-        statement.setURL(parameterIndex, x);
-    }
-
-    @Override
-    public void setRowId(int parameterIndex, RowId x) throws SQLException {
-        statement.setRowId(parameterIndex, x);
-    }
-
-    @Override
-    public void setNString(int parameterIndex, String value) throws SQLException {
-        statement.setNString(parameterIndex, value);
-    }
-
-    @Override
-    public void setNCharacterStream(int parameterIndex, Reader value, long length) throws SQLException {
-        statement.setNCharacterStream(parameterIndex, value, length);
-    }
-
-    @Override
-    public void setNClob(int parameterIndex, NClob value) throws SQLException {
-        statement.setNClob(parameterIndex, value);
-    }
-
-    @Override
-    public void setClob(int parameterIndex, Reader reader, long length) throws SQLException {
-        statement.setClob(parameterIndex, reader, length);
-    }
-
-    @Override
-    public void setBlob(int parameterIndex, InputStream inputStream, long length) throws SQLException {
-        statement.setBlob(parameterIndex, inputStream, length);
-    }
-
-    @Override
-    public void setNClob(int parameterIndex, Reader reader, long length) throws SQLException {
-        statement.setNClob(parameterIndex, reader, length);
-    }
-
-    @Override
-    public void setSQLXML(int parameterIndex, SQLXML xmlObject) throws SQLException {
-        statement.setSQLXML(parameterIndex, xmlObject);
-    }
-
-    @Override
-    public void setObject(int parameterIndex, Object x, int targetSqlType, int scaleOrLength) throws SQLException {
-        statement.setObject(parameterIndex, x, targetSqlType, scaleOrLength);
-    }
-
-    @Override
-    public void setAsciiStream(int parameterIndex, InputStream x, long length) throws SQLException {
-        statement.setAsciiStream(parameterIndex, x, length);
-    }
-
-    @Override
-    public void setBinaryStream(int parameterIndex, InputStream x, long length) throws SQLException {
-        statement.setBinaryStream(parameterIndex, x, length);
-    }
-
-    @Override
-    public void setCharacterStream(int parameterIndex, Reader reader, long length) throws SQLException {
-        statement.setCharacterStream(parameterIndex, reader, length);
-    }
-
-    @Override
-    public void setAsciiStream(int parameterIndex, InputStream x) throws SQLException {
-        statement.setAsciiStream(parameterIndex, x);
-    }
-
-    @Override
-    public void setBinaryStream(int parameterIndex, InputStream x) throws SQLException {
-        statement.setBinaryStream(parameterIndex, x);
-    }
-
-    @Override
-    public void setCharacterStream(int parameterIndex, Reader reader) throws SQLException {
-        statement.setCharacterStream(parameterIndex, reader);
-    }
-
-    @Override
-    public void setNCharacterStream(int parameterIndex, Reader value) throws SQLException {
-        statement.setNCharacterStream(parameterIndex, value);
-    }
-
-    @Override
-    public void setClob(int parameterIndex, Reader reader) throws SQLException {
-        statement.setClob(parameterIndex, reader);
-    }
-
-    @Override
-    public void setBlob(int parameterIndex, InputStream inputStream) throws SQLException {
-        statement.setBlob(parameterIndex, inputStream);
-    }
-
-    @Override
-    public void setNClob(int parameterIndex, Reader reader) throws SQLException {
-        statement.setNClob(parameterIndex, reader);
     }
 
     // These methods are not supported:
 
     @Override
-    public void addBatch() throws SQLException {
+    public void addBatch() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public ResultSetMetaData getMetaData() throws SQLException {
+    public ResultSetMetaData getMetaData() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public ParameterMetaData getParameterMetaData() throws SQLException {
+    public ParameterMetaData getParameterMetaData() {
+        throw new UnsupportedOperationException();
+    }
+
+    // These set methods do not need to implement.
+
+    @Override
+    public void setNull(int parameterIndex, int sqlType) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBoolean(int parameterIndex, boolean x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setByte(int parameterIndex, byte x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setShort(int parameterIndex, short x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setInt(int parameterIndex, int x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setLong(int parameterIndex, long x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setFloat(int parameterIndex, float x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setDouble(int parameterIndex, double x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBigDecimal(int parameterIndex, BigDecimal x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setString(int parameterIndex, String x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBytes(int parameterIndex, byte[] x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setDate(int parameterIndex, Date x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setTime(int parameterIndex, Time x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setTimestamp(int parameterIndex, Timestamp x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setAsciiStream(int parameterIndex, InputStream x, int length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public void setUnicodeStream(int parameterIndex, InputStream x, int length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBinaryStream(int parameterIndex, InputStream x, int length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setObject(int parameterIndex, Object x, int targetSqlType) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setObject(int parameterIndex, Object x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setCharacterStream(int parameterIndex, Reader reader, int length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setRef(int parameterIndex, Ref x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBlob(int parameterIndex, Blob x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setClob(int parameterIndex, Clob x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setArray(int parameterIndex, Array x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setDate(int parameterIndex, Date x, Calendar cal) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setTime(int parameterIndex, Time x, Calendar cal) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setTimestamp(int parameterIndex, Timestamp x, Calendar cal) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setNull(int parameterIndex, int sqlType, String typeName) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setURL(int parameterIndex, URL x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setRowId(int parameterIndex, RowId x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setNString(int parameterIndex, String value) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setNCharacterStream(int parameterIndex, Reader value, long length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setNClob(int parameterIndex, NClob value) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setClob(int parameterIndex, Reader reader, long length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBlob(int parameterIndex, InputStream inputStream, long length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setNClob(int parameterIndex, Reader reader, long length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setSQLXML(int parameterIndex, SQLXML xmlObject) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setObject(int parameterIndex, Object x, int targetSqlType, int scaleOrLength) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setAsciiStream(int parameterIndex, InputStream x, long length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBinaryStream(int parameterIndex, InputStream x, long length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setCharacterStream(int parameterIndex, Reader reader, long length) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setAsciiStream(int parameterIndex, InputStream x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBinaryStream(int parameterIndex, InputStream x) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setCharacterStream(int parameterIndex, Reader reader) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setNCharacterStream(int parameterIndex, Reader value) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setClob(int parameterIndex, Reader reader) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBlob(int parameterIndex, InputStream inputStream) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setNClob(int parameterIndex, Reader reader) {
         throw new UnsupportedOperationException();
     }
 }
