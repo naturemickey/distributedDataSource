@@ -1,4 +1,6 @@
-package org.w01f.dds.layer3.dataapi;
+package org.w01f.dds.layer4.data;
+
+import org.w01f.dds.layer3.dataapi.IDataAccess;
 
 import java.sql.ResultSet;
 

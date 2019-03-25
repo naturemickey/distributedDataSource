@@ -1,4 +1,6 @@
-package org.w01f.dds.layer3.indexapi;
+package org.w01f.dds.layer4.index;
+
+import org.w01f.dds.layer3.indexapi.IIndexAccess;
 
 import java.util.List;
 
