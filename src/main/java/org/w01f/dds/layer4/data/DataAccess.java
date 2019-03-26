@@ -3,16 +3,16 @@ package org.w01f.dds.layer4.data;
 import org.w01f.dds.layer1.id.IDGenerator;
 import org.w01f.dds.layer3.dataapi.IDataAccess;
 import org.w01f.dds.layer5.DataSourceProxy;
+import org.w01f.dds.layer5.ResultSetProxy;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class DataAccess implements IDataAccess {
 
@@ -75,12 +75,8 @@ public class DataAccess implements IDataAccess {
 
     @Override
     public int delete(String tableName, String[] ids) {
-        Map<Integer, List<String>> dbIdsMap = new HashMap<>();
-        for (String id : ids) {
-            int dbNo = IDGenerator.getDbNo(id);
-            List<String> idList = dbIdsMap.getOrDefault(dbNo, new ArrayList<>());
-            idList.add(id);
-        }
+        Map<Integer, List<String>> dbIdsMap = splitIds(ids);
+
         // return dbIdsMap.entrySet().stream().map(e -> this.delete(sqlPrefix, e.getKey(), e.getValue())).reduce(0, Integer::sum);
 
         int res = 0;
@@ -90,6 +86,16 @@ public class DataAccess implements IDataAccess {
             res += this.delete(tableName, dbNo, idList);
         }
         return res;
+    }
+
+    private Map<Integer, List<String>> splitIds(String[] ids) {
+        Map<Integer, List<String>> dbIdsMap = new HashMap<>();
+        for (String id : ids) {
+            int dbNo = IDGenerator.getDbNo(id);
+            List<String> idList = dbIdsMap.getOrDefault(dbNo, new ArrayList<>());
+            idList.add(id);
+        }
+        return dbIdsMap;
     }
 
     private int delete(String tableName, Integer dbNo, List<String> ids) {
@@ -175,11 +181,76 @@ public class DataAccess implements IDataAccess {
 
     @Override
     public ResultSet select(String tableName, String id) {
-        return null;
+        return this.select(tableName, null, id);
     }
 
     @Override
     public ResultSet select(String tableName, String[] ids) {
-        return null;
+        return this.select(tableName, null, ids);
+    }
+
+    private Supplier<ResultSet> select(String tableName, String[] columns, Integer dbNo, List<String> ids) {
+        String columnNames;
+        if (columns == null)
+            columnNames = "*";
+        else
+            columnNames = Arrays.asList(columns).stream().collect(Collectors.joining(", "));
+        String prefix = "select " + columnNames + " from " + tableName + " where id in (";
+        StringBuilder sb = new StringBuilder(prefix);
+        for (int i = 0; i < ids.size(); i++) {
+            sb.append("?, ");
+        }
+        sb.delete(sb.length() - 3, sb.length() - 1);
+        sb.append(")");
+
+        Supplier<ResultSet> supplier = () -> {
+            try {
+                Connection connection = this.dataSourceProxy.getConnection(dbNo);
+                PreparedStatement preparedStatement = connection.prepareStatement(sb.toString());
+
+                for (int i = 0; i < ids.size(); i++) {
+                    String id = ids.get(i);
+                    preparedStatement.setString(i + 1, id);
+                }
+                return preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        };
+        return supplier;
+    }
+
+    @Override
+    public ResultSet select(String tableName, String[] columns, String id) {
+        String columnNames;
+        if (columns == null)
+            columnNames = "*";
+        else
+            columnNames = Arrays.asList(columns).stream().collect(Collectors.joining(", "));
+        String sql = "select " + columnNames + " from " + tableName + " where id = ?";
+
+        try {
+            Connection connection = dataSourceProxy.getConnection(IDGenerator.getDbNo(id));
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ResultSet select(String tableName, String[] columns, String[] ids) {
+        Map<Integer, List<String>> dbIdsMap = splitIds(ids);
+
+        List<Supplier<ResultSet>> supplierList = new ArrayList<>(dbIdsMap.size());
+        for (Map.Entry<Integer, List<String>> entry : dbIdsMap.entrySet()) {
+            Integer dbNo = entry.getKey();
+            List<String> idList = entry.getValue();
+
+            supplierList.add(this.select(tableName, columns, dbNo, idList));
+        }
+        return new ResultSetProxy(supplierList).getProxy();
     }
 }

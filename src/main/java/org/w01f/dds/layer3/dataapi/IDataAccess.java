@@ -16,6 +16,10 @@ public interface IDataAccess {
 
     ResultSet select(String tableName, String id);
 
+    ResultSet select(String tableName, String[] columns, String id);
+
     ResultSet select(String tableName, String[] ids);
+
+    ResultSet select(String tableName, String[] columns, String[] ids);
 
 }
