@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public final class ColumnNamesNode extends SQLSyntaxTreeNode  implements Cloneable {
 
-	private List<String> names = new ArrayList<>();
+	private List<String> names;
 
 	@Override
 	public ColumnNamesNode clone() {
@@ -22,4 +22,7 @@ public final class ColumnNamesNode extends SQLSyntaxTreeNode  implements Cloneab
 		return names.stream().collect(Collectors.joining(", "));
 	}
 
+	public List<String> getNames() {
+		return names;
+	}
 }

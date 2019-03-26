@@ -3,47 +3,53 @@ package org.w01f.dds.layer5;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DataSourceProxy {
 
     private Map<Integer, DataSource> dsMap = new HashMap<>();
-    private ThreadLocal<List<Connection>> openedConn = new ThreadLocal<>();
+    private ThreadLocal<Map<Integer, Connection>> openedConn = new ThreadLocal<>();
 
     {
-        openedConn.set(new ArrayList<>());
+        openedConn.set(new HashMap<>());
     }
 
     public Connection getConnection(Integer dbNo) throws SQLException {
         DataSource dataSource = dsMap.get(dbNo);
-        return dataSource.getConnection();
+
+        Map<Integer, Connection> connectionMap = openedConn.get();
+        Connection connection = connectionMap.get(dbNo);
+        if (connection == null) {
+            connection = dataSource.getConnection();
+            connectionMap.put(dbNo, connection);
+        }
+
+        return connection;
     }
 
-    public void commitAll() throws SQLException {
-        List<Connection> connections = openedConn.get();
+    void commitAll() throws SQLException {
+        Map<Integer, Connection> connections = openedConn.get();
         try {
-            for (Connection connection : connections) {
+            for (Connection connection : connections.values()) {
                 connection.commit();
             }
         } finally {
-            for (Connection connection : connections) {
+            for (Connection connection : connections.values()) {
                 connection.close();
             }
             connections.clear();
         }
     }
 
-    public void rollbackAll() throws SQLException {
-        List<Connection> connections = openedConn.get();
+    void rollbackAll() throws SQLException {
+        Map<Integer, Connection> connections = openedConn.get();
         try {
-            for (Connection connection : connections) {
+            for (Connection connection : connections.values()) {
                 connection.rollback();
             }
         } finally {
-            for (Connection connection : connections) {
+            for (Connection connection : connections.values()) {
                 connection.close();
             }
             connections.clear();

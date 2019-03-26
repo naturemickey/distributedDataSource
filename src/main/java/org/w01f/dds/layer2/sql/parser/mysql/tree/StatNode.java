@@ -6,6 +6,14 @@ public class StatNode extends SQLSyntaxTreeNode {
         this.parent = this;
     }
 
+    public SQLSyntaxTreeNode getDml() {
+        return dml;
+    }
+
+    public InsertNode getDmlAsInsert() {
+        return (InsertNode) dml;
+    }
+
     private SQLSyntaxTreeNode dml;
 
     public StatNode(SQLSyntaxTreeNode dml) {
