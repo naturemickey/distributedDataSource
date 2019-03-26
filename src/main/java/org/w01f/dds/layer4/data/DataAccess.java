@@ -8,7 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DataAccess implements IDataAccess {
 
@@ -58,14 +62,72 @@ public class DataAccess implements IDataAccess {
 
     }
 
+
+    private Map<String, String> deletePrefixCache = new ConcurrentHashMap<>();
+
+    private String buildDeletePrefix(String tableName) {
+        return new StringBuilder("delete from ").append(tableName).append(" where id in(").toString();
+    }
+
+    private String getDeletePrefix(String tableName) {
+        return deletePrefixCache.computeIfAbsent(tableName, this::buildDeletePrefix);
+    }
+
     @Override
     public int delete(String tableName, String[] ids) {
-        return 0;
+        Map<Integer, List<String>> dbIdsMap = new HashMap<>();
+        for (String id : ids) {
+            int dbNo = IDGenerator.getDbNo(id);
+            List<String> idList = dbIdsMap.getOrDefault(dbNo, new ArrayList<>());
+            idList.add(id);
+        }
+        // return dbIdsMap.entrySet().stream().map(e -> this.delete(sqlPrefix, e.getKey(), e.getValue())).reduce(0, Integer::sum);
+
+        int res = 0;
+        for (Map.Entry<Integer, List<String>> entry : dbIdsMap.entrySet()) {
+            Integer dbNo = entry.getKey();
+            List<String> idList = entry.getValue();
+            res += this.delete(tableName, dbNo, idList);
+        }
+        return res;
+    }
+
+    private int delete(String tableName, Integer dbNo, List<String> ids) {
+        String sqlPrefix = getDeletePrefix(tableName);
+        StringBuilder sqlSb = new StringBuilder(sqlPrefix);
+        for (int i = 0, len = ids.size(); i < len; i++) {
+            sqlSb.append("?, ");
+        }
+        sqlSb.delete(sqlSb.length() - 3, sqlSb.length() - 1);
+        sqlSb.append(")");
+
+        String sql = sqlSb.toString();
+
+        try {
+            Connection connection = dataSourceProxy.getConnection(dbNo);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < ids.size(); i++) {
+                String id = ids.get(i);
+                preparedStatement.setObject(i + 1, id);
+            }
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public int delete(String tableName, String id) {
-        return 0;
+        String sql = new StringBuilder("delete from ").append(tableName).append(" where id = ?").toString();
+
+        try {
+            Connection connection = this.dataSourceProxy.getConnection(IDGenerator.getDbNo(id));
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
