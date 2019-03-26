@@ -66,7 +66,7 @@ public class DataAccess implements IDataAccess {
     private Map<String, String> deletePrefixCache = new ConcurrentHashMap<>();
 
     private String buildDeletePrefix(String tableName) {
-        return new StringBuilder("delete from ").append(tableName).append(" where id in(").toString();
+        return "delete from " + tableName + " where id in(";
     }
 
     private String getDeletePrefix(String tableName) {
@@ -132,12 +132,45 @@ public class DataAccess implements IDataAccess {
 
     @Override
     public int update(String tableName, Map<String, Object> valueMap, String id) {
-        return 0;
+
+        Object[] values = new Object[valueMap.size()];
+        StringBuilder sqlSb = new StringBuilder("update ").append(tableName).append(" set ");
+
+        int idx = 0;
+        for (Map.Entry<String, Object> entry : valueMap.entrySet()) {
+            String columnName = entry.getKey();
+            Object value = entry.getValue();
+            sqlSb.append(columnName).append(" = ?, ");
+            values[idx++] = value;
+        }
+        sqlSb.delete(sqlSb.length() - 3, sqlSb.length() - 1);
+        sqlSb.append(" where id = ?");
+
+        try {
+            Connection connection = dataSourceProxy.getConnection(IDGenerator.getDbNo(id));
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlSb.toString());
+            for (int i = 0; i < values.length; i++) {
+                preparedStatement.setObject(i + 1, values[i]);
+            }
+            preparedStatement.setString(values.length, id);
+
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public int update(String tableName, Map<String, Object> valueMap, String[] ids) {
-        return 0;
+        // TODO : improve this method in furture.
+
+        int sum = 0;
+
+        for (String id : ids) {
+            sum += this.update(tableName, valueMap, id);
+        }
+
+        return sum;
     }
 
     @Override
