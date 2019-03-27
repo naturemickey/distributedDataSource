@@ -22,7 +22,7 @@ public class SelectInner extends SQLSyntaxTreeNode implements Cloneable {
 	public String toString() {
 		String suffixStr = suffix == null ? "" : suffix.toString();
 		if (suffixStr.length() > 0)
-			return prefix + " " + suffix;
+			return prefix.toString() + suffixStr;
 		return prefix.toString();
 	}
 
