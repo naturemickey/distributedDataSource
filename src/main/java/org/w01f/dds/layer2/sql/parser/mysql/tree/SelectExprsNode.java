@@ -1,48 +1,33 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class SelectExprsNode extends SQLSyntaxTreeNode  implements Cloneable {
-	private ElementNode element;
-	private String alias;
-	private SelectExprsNode suffix;
+	private List<SelectElementNode> nodes;
 
 	@Override
 	public SelectExprsNode clone() {
-		ElementNode elementNode = element == null ? null :element.clone();
-		SelectExprsNode exprsNode = suffix == null ? null : suffix.clone();
-		return new SelectExprsNode(elementNode, alias, exprsNode);
+		List<SelectElementNode> nodeList = null;
+		if (this.nodes != null) {
+			nodeList = new ArrayList<>(this.nodes.size());
+			for (SelectElementNode node : this.nodes) {
+				nodeList.add(node.clone());
+			}
+		}
+		return new SelectExprsNode(nodeList);
 	}
 
-	public SelectExprsNode(ElementNode element, String alias, SelectExprsNode suffix) {
-		this.element = element;
-		this.alias = alias;
-		this.suffix = suffix;
+	public SelectExprsNode(List<SelectElementNode> nodes) {
+		this.nodes = nodes;
 
-		setParent(element, suffix);
+		setParent(nodes);
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(element);
-		if (alias != null)
-			sb.append(" as ").append(alias);
-		if (suffix != null)
-			sb.append(", ").append(suffix);
-
-		return sb.toString();
-	}
-
-	public SelectExprsNode getLastNode() {
-		return suffix == null ? this : suffix.getLastNode();
-	}
-
-	public SelectExprsNode getSuffix() {
-		return suffix;
-	}
-
-	public void setSuffix(SelectExprsNode suffix) {
-		this.suffix = suffix;
+		return nodes.stream().map(SelectElementNode::toString).collect(Collectors.joining(", "));
 	}
 
 }

@@ -169,7 +169,6 @@ public class DataAccess implements IDataAccess {
     @Override
     public int update(String tableName, Map<String, Object> valueMap, String[] ids) {
         // TODO : improve this method in furture.
-
         int sum = 0;
 
         for (String id : ids) {

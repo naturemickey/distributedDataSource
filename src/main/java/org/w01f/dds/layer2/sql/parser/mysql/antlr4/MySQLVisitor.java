@@ -95,6 +95,12 @@ public interface MySQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelectExprs(MySQLParser.SelectExprsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySQLParser#selectElement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectElement(MySQLParser.SelectElementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySQLParser#tables}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

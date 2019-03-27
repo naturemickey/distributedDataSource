@@ -53,7 +53,8 @@ selectUnionSuffix
 	;
 
 intPlaceHolder : INT | elementPlaceholder ;
-selectExprs    : element (AS? alias=ID)? (',' selectExprs)? ;
+selectExprs    : selectElement (',' selectElement)* ;
+selectElement  : element (AS? alias=ID)? ;
 tables         : tableRel (',' tableRel)* ;
 
 tableRel

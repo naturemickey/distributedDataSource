@@ -21,4 +21,9 @@ public class StatNode extends SQLSyntaxTreeNode {
 
         setParent(dml);
     }
+
+    @Override
+    public String toString() {
+        return dml.toString();
+    }
 }

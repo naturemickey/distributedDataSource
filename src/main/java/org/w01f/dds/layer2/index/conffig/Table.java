@@ -32,5 +32,8 @@ public class Table {
 
     public void setIndices(Index[] indices) {
         this.indices = indices;
+        for (Index index : indices) {
+            index.setTable(this);
+        }
     }
 }

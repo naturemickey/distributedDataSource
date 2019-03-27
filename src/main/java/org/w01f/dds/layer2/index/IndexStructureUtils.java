@@ -17,23 +17,21 @@ public class IndexStructureUtils {
         for (Table table : tables) {
             if (table.getUniques() != null) {
                 for (Index index : table.getUniques()) {
-                    makeCache(table, index, true);
+                    makeCache(index, true);
                 }
             }
 
             if (table.getIndices() != null) {
                 for (Index index : table.getIndices()) {
-                    makeCache(table, index, false);
+                    makeCache(index, false);
                 }
             }
         }
     }
 
-    private static String indexDelimiter = ",";
-
-    private static void makeCache(Table table, Index index, boolean isUnique) {
-        String tableName = table.getName();
-        String indexName = tableName + "." + Arrays.asList(index.getColumns()).stream().collect(Collectors.joining(indexDelimiter));
+    private static void makeCache(Index index, boolean isUnique) {
+        String tableName = index.getTable().getName();
+        String indexName = index.getName();
         Map<String, Boolean> idxMap = indexMap.get(tableName);
         if (idxMap == null) {
             idxMap = new HashMap<>();

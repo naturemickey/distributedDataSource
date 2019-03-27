@@ -46,6 +46,9 @@ public abstract class SQLSyntaxTreeNode implements Cloneable {
     }
 
     public <T extends SQLSyntaxTreeNode> void setParent(List<T> nodes) {
+        if (nodes == null) {
+            return;
+        }
         for (T node : nodes) {
             if (node != null) {
                 node.parent = this;

@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 
 public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
 
-    @Override public SQLSyntaxTreeNode visitStat(MySQLParser.StatContext ctx) {
+    @Override
+    public SQLSyntaxTreeNode visitStat(MySQLParser.StatContext ctx) {
         return new StatNode(visitChildren(ctx));
     }
 
@@ -355,10 +356,14 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
 
     @Override
     public SQLSyntaxTreeNode visitSelectExprs(MySQLParser.SelectExprsContext ctx) {
+        return new SelectExprsNode(ctx.selectElement().stream().map(e -> this.visitSelectElement(e)).collect(Collectors.toList()));
+    }
+
+    @Override
+    public SelectElementNode visitSelectElement(MySQLParser.SelectElementContext ctx) {
         ElementNode element = (ElementNode) this.visitElement(ctx.element());
         String alias = ctx.alias == null ? null : ctx.alias.getText();
-        SelectExprsNode suffix = ctx.selectExprs() != null ? (SelectExprsNode) this.visitSelectExprs(ctx.selectExprs()) : null;
-        return new SelectExprsNode(element, alias, suffix);
+        return new SelectElementNode(element, alias);
     }
 
     @Override
