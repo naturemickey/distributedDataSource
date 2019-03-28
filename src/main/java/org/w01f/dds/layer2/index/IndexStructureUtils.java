@@ -1,12 +1,10 @@
 package org.w01f.dds.layer2.index;
 
-import org.w01f.dds.layer2.index.conffig.Index;
-import org.w01f.dds.layer2.index.conffig.Table;
+import org.w01f.dds.layer2.index.config.Index;
+import org.w01f.dds.layer2.index.config.Table;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class IndexStructureUtils {
 
@@ -15,15 +13,9 @@ public class IndexStructureUtils {
 
     public static void parseIndexConfig(Table[] tables) {
         for (Table table : tables) {
-            if (table.getUniques() != null) {
-                for (Index index : table.getUniques()) {
-                    makeCache(index, true);
-                }
-            }
-
             if (table.getIndices() != null) {
                 for (Index index : table.getIndices()) {
-                    makeCache(index, false);
+                    makeCache(index, index.isUnique());
                 }
             }
         }
