@@ -1,6 +1,7 @@
 package org.w01f.dds.layer2.index.config;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Index {
@@ -42,5 +43,18 @@ public class Index {
             name = table.getName() + "." + Arrays.asList(columns).stream().map(Column::getName).collect(Collectors.joining(indexDelimiter));
         }
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Index index = (Index) o;
+        return getName().equals(index.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }

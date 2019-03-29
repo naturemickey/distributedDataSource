@@ -26,6 +26,10 @@ public class ValueListNode extends SQLSyntaxTreeNode implements Cloneable  {
 		setParent(elements);
 	}
 
+	public List<ElementNode> getElements() {
+		return elements;
+	}
+
 	@Override
 	public String toString() {
 		return this.elements.stream().map(e -> e.toString()).collect(Collectors.joining(", "));
