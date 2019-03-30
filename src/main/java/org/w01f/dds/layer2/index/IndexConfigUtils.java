@@ -6,7 +6,7 @@ import org.w01f.dds.layer2.index.config.Table;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IndexStructureUtils {
+public class IndexConfigUtils {
 
     // tableName --> indexName --> is(or not)unique
 //    private static Map<String, Map<String, Boolean>> indexMap = new HashMap<>();

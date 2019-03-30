@@ -2,3 +2,9 @@
 /out/
 /target/
 /classes/
+/.idea/
+.idea/compiler.xml
+.idea/misc.xml
+.idea/workspace.xml
+.DS_Store
+/db/

@@ -6,8 +6,7 @@ import org.antlr.v4.runtime.CodePointBuffer;
 import org.antlr.v4.runtime.CodePointCharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.w01f.dds.layer2.index.IndexStructureUtils;
-import org.w01f.dds.layer2.index.config.Column;
+import org.w01f.dds.layer2.index.IndexConfigUtils;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.index.config.Table;
 import org.w01f.dds.layer2.sql.parser.mysql.antlr4.MySQLLexer;
@@ -69,7 +68,7 @@ public class ParserUtils {
             }
         }
 
-        Table table = IndexStructureUtils.getTableConfig(insert.getTableName());
+        Table table = IndexConfigUtils.getTableConfig(insert.getTableName());
         List<Index> indices = table.getIndices();
         Map<Index, BiConsumer<PreparedStatement, Integer>[]> indexSetterMap = new HashMap<>();
         BiConsumer<PreparedStatement, Integer> idSetter = elements.get(names.indexOf("id")).setter();

@@ -1,5 +1,6 @@
 package org.w01f.dds.layer1.dsproxy;
 
+import org.w01f.dds.layer2.sql.SqlHandler;
 import org.w01f.dds.layer2.sql.parser.mysql.ParserUtils;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.ElementPlaceholderNode;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
@@ -16,16 +17,17 @@ import java.util.function.BiConsumer;
 public class DistributedPreparedStatement extends DistributedStatement implements PreparedStatement {
 
     private PreparedStatement statement;
-    private StatNode sqlSyntaxTree;
+    private StatNode statNode;
+    private SqlHandler sqlHandler = new SqlHandler();
 
     public DistributedPreparedStatement(PreparedStatement statement, String sql) {
         super(statement);
         this.statement = statement;
-        this.sqlSyntaxTree = ParserUtils.parse(sql);
+        this.statNode = ParserUtils.parse(sql);
     }
 
     private void prepareSetter() {
-        List<ElementPlaceholderNode> placeholderNodes = this.sqlSyntaxTree.getPlaceholderNodes();
+        List<ElementPlaceholderNode> placeholderNodes = this.statNode.getPlaceholderNodes();
         for (int i = 1; i <= placeholderNodes.size(); ++i) {
             BiConsumer<PreparedStatement, Integer> setter = this.params.getSetter(i);
             if (setter == null) {
@@ -37,14 +39,14 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     }
 
     private void clearSetter() {
-        List<ElementPlaceholderNode> placeholderNodes = this.sqlSyntaxTree.getPlaceholderNodes();
+        List<ElementPlaceholderNode> placeholderNodes = this.statNode.getPlaceholderNodes();
         for (ElementPlaceholderNode placeholderNode : placeholderNodes) {
             placeholderNode.setSetter(null);
         }
     }
 
     private void setParams() {
-        List<ElementPlaceholderNode> placeholderNodes = this.sqlSyntaxTree.getPlaceholderNodes();
+        List<ElementPlaceholderNode> placeholderNodes = this.statNode.getPlaceholderNodes();
         for (int i = 0, len = placeholderNodes.size(); i < len; ++i) {
             ElementPlaceholderNode elementPlaceholderNode = placeholderNodes.get(i);
             elementPlaceholderNode.setter().accept(statement, i + 1);
@@ -55,6 +57,8 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     public ResultSet executeQuery() throws SQLException {
         prepareSetter();
         setParams();
+        sqlHandler.executeQuery(this.statNode);
+        // TODO
         return statement.executeQuery();
     }
 
@@ -62,6 +66,7 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     public int executeUpdate() throws SQLException {
         prepareSetter();
         setParams();
+        sqlHandler.executeUpdate(this.statNode);
         return statement.executeUpdate();
     }
 
@@ -69,6 +74,7 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     public boolean execute() throws SQLException {
         prepareSetter();
         setParams();
+        sqlHandler.execute(this.statNode);
         return statement.execute();
     }
 

@@ -14,7 +14,7 @@ public class Table {
     List<Index> indices = new ArrayList<>();
 
     public Table(String name) {
-        this.name = name;
+        this.name = name.toLowerCase();
     }
 
     public String getName() {

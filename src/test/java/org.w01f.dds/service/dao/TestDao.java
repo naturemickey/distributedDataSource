@@ -16,24 +16,24 @@ public class TestDao implements ITestDao {
     @Override
     public void testInsert(String id, String name) {
         this.jdbcTemplate.update("insert into ttt(id, name) values(?, ?)", id, name);
-        this.jdbcTemplate.update("insert into ttt(id, name) values(\"" + id + "\", \"" + name + "\")");
+        //this.jdbcTemplate.update("insert into ttt(id, name) values(\"" + id + "\", \"" + name + "\")");
     }
 
     @Override
     public void testUpdate(String id, String name) {
         this.jdbcTemplate.update("update ttt set name = ? where id = ?", name, id);
-        this.jdbcTemplate.update("update ttt set name = \"" + name + "\" where id = \"" + id + "\"");
+       // this.jdbcTemplate.update("update ttt set name = \"" + name + "\" where id = \"" + id + "\"");
     }
 
     @Override
     public void testDelete(String id) {
         this.jdbcTemplate.update("delete from ttt where id = ?", id);
-        this.jdbcTemplate.update("delete from ttt where id = \"" + id + "\"");
+        //this.jdbcTemplate.update("delete from ttt where id = \"" + id + "\"");
     }
 
     @Override
     public String testSelet(String id) {
-        List<Map<String, Object>> list1 = this.jdbcTemplate.queryForList("select name from ttt where id = \"" + id + '"');
+        //List<Map<String, Object>> list1 = this.jdbcTemplate.queryForList("select name from ttt where id = \"" + id + '"');
         List<Map<String, Object>> list = this.jdbcTemplate.queryForList("select name from ttt where id = ?", id);
         if (list.size() > 0) {
             return (String) list.get(0).get("name");
