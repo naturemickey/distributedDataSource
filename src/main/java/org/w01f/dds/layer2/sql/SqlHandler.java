@@ -1,5 +1,6 @@
 package org.w01f.dds.layer2.sql;
 
+import org.w01f.dds.layer1.dsproxy.param.Param;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.sql.parser.mysql.ParserUtils;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.InsertNode;
@@ -23,7 +24,9 @@ public class SqlHandler {
     public int executeUpdate(StatNode statNode) {
         if (statNode.isInsert()) {
             InsertNode insertNode = statNode.getDmlAsInsert();
-            Map<Index, BiConsumer<PreparedStatement, Integer>[]> indexMap = ParserUtils.parseInsertIndex(insertNode);
+            Map<Index, Param[]> indexMap = ParserUtils.parseInsertIndex(insertNode);
+
+            this.indexAccess.insert(indexMap);
         }
         return 0;
     }

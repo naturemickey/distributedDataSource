@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.CodePointBuffer;
 import org.antlr.v4.runtime.CodePointCharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.w01f.dds.layer1.dsproxy.param.Param;
 import org.w01f.dds.layer2.index.IndexConfigUtils;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.index.config.Table;
@@ -44,7 +45,7 @@ public class ParserUtils {
         }
     }
 
-    public static Map<Index, BiConsumer<PreparedStatement, Integer>[]>  parseInsertIndex(InsertNode insert) {
+    public static Map<Index, Param[]>  parseInsertIndex(InsertNode insert) {
         List<String> names = null;
         List<ElementPlaceholderNode> elements = new ArrayList<>();
 
@@ -70,17 +71,19 @@ public class ParserUtils {
 
         Table table = IndexConfigUtils.getTableConfig(insert.getTableName());
         List<Index> indices = table.getIndices();
-        Map<Index, BiConsumer<PreparedStatement, Integer>[]> indexSetterMap = new HashMap<>();
-        BiConsumer<PreparedStatement, Integer> idSetter = elements.get(names.indexOf("id")).setter();
+        Map<Index, Param[]> indexSetterMap = new HashMap<>();
+        Param idParam = elements.get(names.indexOf("id")).getParam();
 
         for (Index index : indices) {
             int len = index.getColumns().length;
-            BiConsumer<PreparedStatement, Integer>[] setters = new BiConsumer[len + 1];
+            Param[] params = new Param[len + 1];
             for (int i = 0; i < len; i++) {
                 int si= names.indexOf(index.getColumns()[i].getName());
-                setters[i] = elements.get(si).setter();
+                params[i] = elements.get(si).getParam();
             }
-            setters[len] = idSetter;
+            params[len] = idParam;
+
+            indexSetterMap.put(index, params);
         }
 
         return indexSetterMap;

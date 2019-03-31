@@ -19,8 +19,8 @@ public class TestServiceBean {
         IndexConfigUtils.parseConfig(new Table[]{table});
 
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-        DataSource sqliteDS = (DataSource) ac.getBean("dataSource");
-        sqliteDS.getConnection().createStatement().execute("create table ttt(id varchar(100), name varchar(100))");
+        //DataSource sqliteDS = (DataSource) ac.getBean("dataSource");
+        //sqliteDS.getConnection().createStatement().execute("create table ttt(id varchar(100), name varchar(100))");
         ITestBiz testBiz = ac.getBean(ITestBiz.class);
         String id = "test_id";
         testBiz.testInsert(id, "test_name1");

@@ -7,13 +7,13 @@ import java.util.function.BiConsumer;
 
 public class Params {
 
-    private Map<Integer, BiConsumer<PreparedStatement, Integer>> map = new TreeMap<>();
+    private Map<Integer, Param> map = new TreeMap<>();
 
     public void addParam(int parameterIntex, BiConsumer<PreparedStatement, Integer> setter) {
-        map.put(parameterIntex, setter);
+        map.put(parameterIntex, new Param(setter));
     }
 
-    public BiConsumer<PreparedStatement, Integer> getSetter(int parameterIndex) {
+    public Param getParam(int parameterIndex) {
         return map.get(parameterIndex);
     }
 }

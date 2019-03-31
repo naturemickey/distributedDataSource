@@ -1,5 +1,6 @@
 package org.w01f.dds.layer1.dsproxy;
 
+import org.w01f.dds.layer1.dsproxy.param.Param;
 import org.w01f.dds.layer2.sql.SqlHandler;
 import org.w01f.dds.layer2.sql.parser.mysql.ParserUtils;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.ElementPlaceholderNode;
@@ -12,7 +13,6 @@ import java.net.URL;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 public class DistributedPreparedStatement extends DistributedStatement implements PreparedStatement {
 
@@ -29,19 +29,19 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     private void prepareSetter() {
         List<ElementPlaceholderNode> placeholderNodes = this.statNode.getPlaceholderNodes();
         for (int i = 1; i <= placeholderNodes.size(); ++i) {
-            BiConsumer<PreparedStatement, Integer> setter = this.params.getSetter(i);
-            if (setter == null) {
+            Param param = this.params.getParam(i);
+            if (param == null) {
                 throw new RuntimeException("parameter index set error. you didn't set no " + i);
             }
             ElementPlaceholderNode placeholderNode = placeholderNodes.get(i - 1);
-            placeholderNode.setSetter(setter);
+            placeholderNode.setParam(param);
         }
     }
 
     private void clearSetter() {
         List<ElementPlaceholderNode> placeholderNodes = this.statNode.getPlaceholderNodes();
         for (ElementPlaceholderNode placeholderNode : placeholderNodes) {
-            placeholderNode.setSetter(null);
+            placeholderNode.setParam(null);
         }
     }
 
@@ -49,7 +49,7 @@ public class DistributedPreparedStatement extends DistributedStatement implement
         List<ElementPlaceholderNode> placeholderNodes = this.statNode.getPlaceholderNodes();
         for (int i = 0, len = placeholderNodes.size(); i < len; ++i) {
             ElementPlaceholderNode elementPlaceholderNode = placeholderNodes.get(i);
-            elementPlaceholderNode.setter().accept(statement, i + 1);
+            elementPlaceholderNode.getParam().putValue(statement, i + 1);
         }
     }
 

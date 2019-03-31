@@ -1,18 +1,20 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
+import org.w01f.dds.layer1.dsproxy.param.Param;
+
 import java.sql.PreparedStatement;
 import java.util.function.BiConsumer;
 
 public class ElementPlaceholderNode extends ElementTextNode implements Cloneable {
 
-    private BiConsumer<PreparedStatement, Integer> setter;
+    private Param param;
 
-    public void setSetter(BiConsumer<PreparedStatement, Integer> param) {
-        this.setter = param;
+    public Param getParam() {
+        return param;
     }
 
-    public BiConsumer<PreparedStatement, Integer> setter() {
-        return setter;
+    public void setParam(Param param) {
+        this.param = param;
     }
 
     public ElementPlaceholderNode(String placeholder) {
