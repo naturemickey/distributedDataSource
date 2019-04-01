@@ -10,10 +10,6 @@ public class StatNode extends SQLSyntaxTreeNode {
         return dml;
     }
 
-    public InsertNode getDmlAsInsert() {
-        return (InsertNode) dml;
-    }
-
     private SQLSyntaxTreeNode dml;
 
     public StatNode(SQLSyntaxTreeNode dml) {
@@ -41,5 +37,21 @@ public class StatNode extends SQLSyntaxTreeNode {
 
     public boolean isSelect() {
         return dml instanceof SelectNode;
+    }
+
+    public InsertNode getDmlAsInsert() {
+        return (InsertNode) dml;
+    }
+
+    public UpdateNode getDmlAsUpdate() {
+        return ((UpdateNode) dml);
+    }
+
+    public DeleteNode getDmlAsDelete() {
+        return DeleteNode.class.cast(dml);
+    }
+
+    public SelectNode getDmlAsSelect() {
+        return (SelectNode) dml;
     }
 }

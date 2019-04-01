@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61ec973a-05be-4638-96ae-e509d874d2c5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/param/Params.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/param/Params.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/SqlHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/SqlHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementPlaceholderNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementPlaceholderNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer3/indexapi/IIndexAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer3/indexapi/IIndexAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer4/index/IndexAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer4/index/IndexAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer5/DataSourceProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer5/DataSourceProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org.w01f.dds/service/TestServiceBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org.w01f.dds/service/TestServiceBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/StatNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/StatNode.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,65 +22,33 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer5/DataSourceProxy.java">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-              <folding>
-                <element signature="e#324#325#0" expanded="true" />
-                <element signature="e#355#356#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/SqlHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org.w01f.dds/service/TestServiceBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/id/IDGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="78" selection-start-line="78" selection-end-line="78" />
+            <state relative-caret-position="275">
+              <caret line="59" column="24" lean-forward="true" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer4/index/IndexAccess.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/SqlHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="48" column="66" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
+            <state relative-caret-position="450">
+              <caret line="30" column="41" lean-forward="true" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#665#666#0" expanded="true" />
+                <element signature="e#692#693#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/resources/beans.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="80" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -145,7 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SelectUnionSuffix.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SetExprNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/SetExprsNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/TableJoinNode.java" />
@@ -177,25 +136,26 @@
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer4/index/SQLBuildUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ValueListNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/index/config/Index.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/StatNode.java" />
         <option value="$PROJECT_DIR$/src/test/java/org.w01f.dds/service/dao/TestDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/index/config/Table.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/index/IndexStructureUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/index/IndexConfigUtils.java" />
         <option value="$PROJECT_DIR$/src/test/resources/beans.xml" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/param/Params.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/ElementPlaceholderNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/param/ValueGetter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/param/Param.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/ParserUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer3/indexapi/IIndexAccess.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer5/DataSourceProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/SqlHandler.java" />
         <option value="$PROJECT_DIR$/src/test/java/org.w01f.dds/service/TestServiceBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer4/index/IndexAccess.java" />
+        <option value="$PROJECT_DIR$/db/readme.txt" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/StatNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/SqlHandler.java" />
       </list>
     </option>
   </component>
@@ -207,9 +167,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="13" />
-    <option name="width" value="1378" />
-    <option name="height" value="667" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -353,6 +312,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="dds" type="462c0819:PsiDirectoryNode" />
               <item name="layer3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="distributedDS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="distributedDataSource" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dds" type="462c0819:PsiDirectoryNode" />
+              <item name="layer3" type="462c0819:PsiDirectoryNode" />
+              <item name="dataapi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="distributedDS" type="b2602c69:ProjectViewProjectNode" />
@@ -554,6 +523,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27825466" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -564,7 +534,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26746988" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26746988" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2686747" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -642,17 +612,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/MySQLVisitorImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="364" column="59" selection-start-line="364" selection-start-column="59" selection-end-line="364" selection-end-column="59" />
-          <folding>
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/WhereConditionNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -799,27 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/StatNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#159#160#0" expanded="true" />
-            <element signature="e#200#201#0" expanded="true" />
-            <element signature="e#226#227#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#611#612#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#696#697#0" expanded="true" />
-            <element signature="e#734#735#0" expanded="true" />
-            <element signature="e#781#782#0" expanded="true" />
-            <element signature="e#819#820#0" expanded="true" />
-            <element signature="e#866#867#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/distributedDataSource.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -861,13 +799,6 @@
             <element signature="e#1528#1529#0" expanded="true" />
             <element signature="e#1588#1589#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -944,13 +875,6 @@
             <element signature="e#277#278#0" expanded="true" />
             <element signature="e#308#309#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1037,16 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/SqlHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org.w01f.dds/service/TestServiceBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1067,6 +981,62 @@
           <caret line="48" column="66" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer1/dsproxy/DistributedPreparedStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="59" column="24" lean-forward="true" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/tree/StatNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+          <folding>
+            <element signature="e#125#126#0" expanded="true" />
+            <element signature="e#159#160#0" expanded="true" />
+            <element signature="e#200#201#0" expanded="true" />
+            <element signature="e#226#227#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#608#609#0" expanded="true" />
+            <element signature="e#812#813#0" expanded="true" />
+            <element signature="e#851#852#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1024#1025#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1100#1101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/w01f/dds/layer2/sql/SqlHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="41" lean-forward="true" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
           </folding>
         </state>
       </provider>
