@@ -54,10 +54,6 @@ public class SQLbreakUtil {
         return indexSetterMap;
     }
 
-    /**
-     * @param whereConditionNode
-     * @return
-     */
     public static List<List<ExpressionNode>> breakWhere(WhereConditionNode whereConditionNode) {
         if (whereConditionNode instanceof WhereConditionOpNode) {
             WhereConditionOpNode node = ((WhereConditionOpNode) whereConditionNode);
@@ -71,7 +67,7 @@ public class SQLbreakUtil {
             }
             switch (expressionOperator) {
                 case "and" -> {
-                    final List<List<ExpressionNode>> wcRes = breakWhere(whereConditionNode);
+                    final List<List<ExpressionNode>> wcRes = breakWhere(whereCondition);
 
                     List<List<ExpressionNode>> result = new ArrayList<>(wcRes.size());
 
@@ -150,7 +146,7 @@ public class SQLbreakUtil {
         return map;
     }
 
-    public static Index chooseIndex(List<ExpressionNode> andWhere, List<Index> indexList) {
+    private static Index chooseIndex(List<ExpressionNode> andWhere, List<Index> indexList) {
         List<Index> indicesRes = new ArrayList<>();
         for (ExpressionNode expressionNode : andWhere) {
             for (Index index : indexList) {
@@ -246,14 +242,14 @@ public class SQLbreakUtil {
 
                 if (node != null) {
                     final String text = node.getTxt();
-                    if (textMatchColumn(name, text)) return true;
+                    return textMatchColumn(name, text);
                 }
             }
         }
         return false;
     }
 
-    private static ElementTextNode getElementTextNode(ExpressionRelationalNode expressionRelationalNode) {
+    public static ElementTextNode getElementTextNode(ExpressionRelationalNode expressionRelationalNode) {
         final ElementNode left = expressionRelationalNode.getLeft();
         final ElementNode right = expressionRelationalNode.getRight();
         ElementTextNode node = null;
@@ -265,16 +261,14 @@ public class SQLbreakUtil {
         return node;
     }
 
-    private static boolean textMatchColumn(String name, String text) {
+    public static boolean textMatchColumn(String name, String text) {
         if (text.equals(name)) {
             return true;
         }
         if (text.contains(".")) {
             String[] ss = text.split("\\.");
             if (ss.length == 2) {
-                if (ss[1].equals(name)) {
-                    return true;
-                }
+                return ss[1].equals(name);
             }
         }
         return false;

@@ -26,4 +26,15 @@ public class ExpressionLikeNode extends ExpressionNode implements Cloneable  {
 		return left + like + right;
 	}
 
+	public boolean isNot() {
+		return not;
+	}
+
+	public ElementNode getLeft() {
+		return left;
+	}
+
+	public ElementNode getRight() {
+		return right;
+	}
 }

@@ -3,11 +3,14 @@ package org.w01f.dds.layer4.index;
 import org.w01f.dds.layer1.dsproxy.param.Param;
 import org.w01f.dds.layer1.id.IDGenerator;
 import org.w01f.dds.layer2.index.config.Index;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.ElementPlaceholderNode;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 import org.w01f.dds.layer3.indexapi.IIndexAccess;
 import org.w01f.dds.layer5.DataSourceProxy;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +63,25 @@ public class IndexAccess implements IIndexAccess {
                 throw new RuntimeException(e);
             }
 
+        }
+    }
+
+    @Override
+    public ResultSet query(StatNode statNode) {
+        try {
+            Connection connection = dataSourceProxy.getConnection(0);
+            final String sql = statNode.toString();
+
+            try (final PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
+                for (int i = 0, len = placeholderNodes.size(); i < len; i++) {
+                    final ElementPlaceholderNode node = placeholderNodes.get(i);
+                    node.getParam().putValue(preparedStatement, i + 1);
+                }
+                return preparedStatement.executeQuery();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -3,6 +3,8 @@ package org.w01f.dds.layer4.index;
 import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.index.config.Table;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.ExpressionNode;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -72,25 +74,29 @@ public class SQLBuildUtils {
         sb.append("?, ?)");
         return sb.toString();
     }
+//
+//    public static String sql4DeleteIndex(Index index) {
+//        String tableName = buildIndexTableName(index);
+//        StringBuilder sb = new StringBuilder("delete from ").append(tableName).append(" where id = ? and index_name = ?");
+//        for (int i = 0, len = index.getColumns().length; i < len; i++) {
+//            sb.append(" and v").append(i).append(" = ?");
+//        }
+//        return sb.toString();
+//    }
+//
+//    public static String sql4QueryIndex(Index index) {
+//        String tableName = buildIndexTableName(index);
+//        StringBuilder sb = new StringBuilder("select id from ").append(tableName).append(" where index_name = ?");
+//        StringBuilder order = new StringBuilder(" order by id");
+//        for (int i = 0, len = index.getColumns().length; i < len; i++) {
+//            sb.append(" and v").append(i).append(" = ?");
+//            order.append(", v").append(i);
+//        }
+//        return sb.append(order).toString();
+//    }
 
-    public static String sql4DeleteIndex(Index index) {
-        String tableName = buildIndexTableName(index);
-        StringBuilder sb = new StringBuilder("delete from ").append(tableName).append(" where id = ? and index_name = ?");
-        for (int i = 0, len = index.getColumns().length; i < len; i++) {
-            sb.append(" and v").append(i).append(" = ?");
-        }
-        return sb.toString();
-    }
-
-    public static String sql4QueryIndex(Index index) {
-        String tableName = buildIndexTableName(index);
-        StringBuilder sb = new StringBuilder("select id from ").append(tableName).append(" where index_name = ?");
-        StringBuilder order = new StringBuilder(" order by id");
-        for (int i = 0, len = index.getColumns().length; i < len; i++) {
-            sb.append(" and v").append(i).append(" = ?");
-            order.append(", v").append(i);
-        }
-        return sb.append(order).toString();
+    public static StatNode sql4QueryIndex(Index index, List<ExpressionNode> whereNodes) {
+        return null;
     }
 
     public static void main(String[] args) {
@@ -104,10 +110,10 @@ public class SQLBuildUtils {
         System.out.println(sql4InsertIndex(unique));
         System.out.println(sql4InsertIndex(index));
 
-        System.out.println(sql4DeleteIndex(unique));
-        System.out.println(sql4DeleteIndex(index));
-
-        System.out.println(sql4QueryIndex(unique));
-        System.out.println(sql4QueryIndex(index));
+//        System.out.println(sql4DeleteIndex(unique));
+//        System.out.println(sql4DeleteIndex(index));
+//
+//        System.out.println(sql4QueryIndex(unique));
+//        System.out.println(sql4QueryIndex(index));
     }
 }

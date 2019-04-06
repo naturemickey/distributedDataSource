@@ -27,4 +27,20 @@ public class ExpressionBetweenAndNode extends ExpressionNode implements Cloneabl
 	public String toString() {
 		return element.toString() + (not ? " not " : "") + " between " + left + " and " + right;
 	}
+
+	public ElementNode getElement() {
+		return element;
+	}
+
+	public boolean isNot() {
+		return not;
+	}
+
+	public ElementNode getLeft() {
+		return left;
+	}
+
+	public ElementNode getRight() {
+		return right;
+	}
 }

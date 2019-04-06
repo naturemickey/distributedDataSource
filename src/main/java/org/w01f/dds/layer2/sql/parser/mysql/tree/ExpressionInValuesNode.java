@@ -27,4 +27,16 @@ public class ExpressionInValuesNode extends ExpressionNode implements Cloneable 
 			return this.element.toString() + " in (" + this.values + ")";
 		}
 	}
+
+	public ElementNode getElement() {
+		return element;
+	}
+
+	public boolean isNot() {
+		return not;
+	}
+
+	public ValueListNode getValues() {
+		return values;
+	}
 }
