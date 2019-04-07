@@ -11,6 +11,12 @@ public class SelectNode extends SQLSyntaxTreeNode implements Cloneable {
 		return new SelectNode(selectInner2, selectUnionSuffix);
 	}
 
+	public SelectNode(SelectInner selectInner) {
+		this.selectInner = selectInner;
+
+		super.setParent(selectInner);
+	}
+
 	public SelectNode(SelectInner selectInner, SelectUnionSuffix suffix) {
 		this.selectInner = selectInner;
 		this.suffix = suffix;

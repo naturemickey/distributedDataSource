@@ -13,6 +13,12 @@ public class WhereConditionOpNode extends WhereConditionNode implements Cloneabl
         return new WhereConditionOpNode(expressionNode, expressionOperator, whereConditionNode);
     }
 
+    public WhereConditionOpNode(ExpressionNode expression) {
+        this.expression = expression;
+
+        setParent(expression);
+    }
+
     public WhereConditionOpNode(ExpressionNode expression, String expressionOperator, WhereConditionNode whereCondition) {
         this.expression = expression;
         this.expressionOperator = expressionOperator == null ? null : expressionOperator.toLowerCase();

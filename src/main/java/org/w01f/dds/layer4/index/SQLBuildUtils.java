@@ -3,8 +3,7 @@ package org.w01f.dds.layer4.index;
 import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.index.config.Table;
-import org.w01f.dds.layer2.sql.parser.mysql.tree.ExpressionNode;
-import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -62,8 +61,8 @@ public class SQLBuildUtils {
     }
 
     public static String sql4InsertIndex(Index index) {
-        String tableName = buildIndexTableName(index);
-        StringBuilder sb = new StringBuilder("insert into ").append(tableName).append("(index_name, ");
+        final String tableName = buildIndexTableName(index);
+        final StringBuilder sb = new StringBuilder("insert into ").append(tableName).append("(index_name, ");
         for (int i = 0, len = index.getColumns().length; i < len; i++) {
             sb.append('v').append(i).append(", ");
         }
@@ -96,7 +95,34 @@ public class SQLBuildUtils {
 //    }
 
     public static StatNode sql4QueryIndex(Index index, List<ExpressionNode> whereNodes) {
-        return null;
+        final String indexName = index.getName();
+        final String tableName = buildIndexTableName(index);
+
+        // select :
+        final ElementTextNode id = new ElementTextNode("id");
+        final SelectElementNode selectElementNode = new SelectElementNode(id);
+        final SelectExprsNode selectExprsNode = new SelectExprsNode(Arrays.asList(selectElementNode));
+
+        // from :
+        final TableNameAndAliasNode tableNameAndAliasNode = new TableNameAndAliasNode(tableName);
+        final TablesNode tablesNode = new TablesNode(Arrays.asList(tableNameAndAliasNode));
+
+        // where :
+        final ElementTextNode left = new ElementTextNode("index_name");
+        final ElementTextParamNode right = new ElementTextParamNode("'" + indexName + "'");
+        final ExpressionRelationalNode indexExpression = new ExpressionRelationalNode(left, right, "=");
+
+        WhereConditionOpNode whereConditionNode = new WhereConditionOpNode(indexExpression);
+        for (ExpressionNode whereNode : whereNodes) {
+            whereConditionNode = new WhereConditionOpNode(whereNode, "and", whereConditionNode);
+        }
+
+        // select + from + where :
+        final SelectPrefixNode selectPrefixNode = new SelectPrefixNode(selectExprsNode, tablesNode, whereConditionNode);
+        final SelectInner selectInner = new SelectInner(selectPrefixNode, null);
+        final SelectNode selectNode = new SelectNode(selectInner);
+
+        return new StatNode(selectNode);
     }
 
     public static void main(String[] args) {

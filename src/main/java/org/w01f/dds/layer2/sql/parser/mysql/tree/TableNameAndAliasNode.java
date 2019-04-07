@@ -13,6 +13,10 @@ public class TableNameAndAliasNode extends TableRelNode implements Cloneable {
         return new TableNameAndAliasNode(name, alias);
     }
 
+    public TableNameAndAliasNode(String name) {
+        this.name = name;
+    }
+
     public TableNameAndAliasNode(String name, String alias) {
         this.name = name;
         this.alias = alias;

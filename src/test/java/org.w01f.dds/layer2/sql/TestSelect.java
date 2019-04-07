@@ -48,6 +48,7 @@ public class TestSelect {
 				"select * from tt_express_task_info this_ where this_.id in ("+sb+")", //
 				"select date '2016-10-01' + 1" , //
 				"select a, b from tab1, tab2 t where x = y or z = x", //
+				"select id from i_s t where index_name = 'abc.def'", //
 		}) {
 			System.out.println(ParserUtils.parse(sql));
 		}

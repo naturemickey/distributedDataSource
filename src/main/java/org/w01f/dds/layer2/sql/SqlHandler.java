@@ -49,14 +49,13 @@ public class SqlHandler {
                 final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
                 final List<ExpressionNode> newIndexWhereNodes = new ArrayList<>();
 
-                boolean isFirst = true;
-                for (Column column : index.getColumns()) {
-                    final ExpressionNode expression = getExpression(column.getName(), andWhere, isFirst);
+                for (int i = 0; i < index.getColumns().length; i++) {
+                    final Column column = index.getColumns()[i];
+
+                    final ExpressionNode expression = getExpression(column.getName(), andWhere, i);
                     if (expression != null) {
                         newIndexWhereNodes.add(expression);
                     }
-
-                    isFirst = false;
                 }
 
                 newDeleteWhereNodes.addAll(andWhere);
@@ -69,53 +68,76 @@ public class SqlHandler {
         return 1;
     }
 
-    private ExpressionNode getExpression(String columnName, List<ExpressionNode> andWhere, boolean isFirst) {
+    private ExpressionNode getExpression(String columnName, List<ExpressionNode> andWhere, int columnNo) {
         for (int i = 0; i < andWhere.size(); i++) {
             ExpressionNode expressionNode = andWhere.get(i);
-            if (isMatch(columnName, expressionNode, isFirst)) {
+            final ExpressionNode newExpressionNode = convertToNewWhere(columnName, expressionNode, columnNo);
+            if (newExpressionNode != null) {
                 andWhere.remove(i);
 
-                return expressionNode;
+                return newExpressionNode;
             }
         }
         return null;
     }
 
-    private boolean isMatch(String columnName, ExpressionNode expressionNode, boolean isFirst) {
+    private ExpressionNode convertToNewWhere(String columnName, ExpressionNode expressionNode, int columnNo) {
         // only support these 4 types:
         if (expressionNode instanceof ExpressionRelationalNode) {
             final String op = ((ExpressionRelationalNode) expressionNode).getRelationalOp();
+            final ElementNode left = ((ExpressionRelationalNode) expressionNode).getLeft();
+            final ElementNode right = ((ExpressionRelationalNode) expressionNode).getRight();
+
+            boolean isFirst = columnNo == 0;
             if ((isFirst && op.equals("=")) || !isFirst) {
                 final ElementTextNode node = SQLbreakUtil.getElementTextNode(((ExpressionRelationalNode) expressionNode));
                 if (node != null) {
                     if (SQLbreakUtil.textMatchColumn(columnName, node.getTxt())) {
-                        return true;
+                        final ElementTextNode elementTextNode = new ElementTextNode("v" + columnNo);
+                        if (left == node) {
+                            return new ExpressionRelationalNode(elementTextNode, right, op);
+                        } else {
+                            return new ExpressionRelationalNode(left, elementTextNode, op);
+                        }
                     }
                 }
             }
         } else if (expressionNode instanceof ExpressionBetweenAndNode) {
             final ElementNode element = ((ExpressionBetweenAndNode) expressionNode).getElement();
+            final boolean not = ((ExpressionBetweenAndNode) expressionNode).isNot();
+            final ElementNode left = ((ExpressionBetweenAndNode) expressionNode).getLeft();
+            final ElementNode right = ((ExpressionBetweenAndNode) expressionNode).getRight();
+
             if (element instanceof ElementTextNode) {
                 if (SQLbreakUtil.textMatchColumn(columnName, ((ElementTextNode) element).getTxt())) {
-                    return true;
+                    final ElementTextNode elementTextNode = new ElementTextNode("v" + columnNo);
+                    return new ExpressionBetweenAndNode(elementTextNode, not, left, right);
                 }
             }
         } else if (expressionNode instanceof ExpressionInValuesNode) {
             final ElementNode element = ((ExpressionInValuesNode) expressionNode).getElement();
+            final boolean not = ((ExpressionInValuesNode) expressionNode).isNot();
+            final ValueListNode values = ((ExpressionInValuesNode) expressionNode).getValues();
+
             if (element instanceof ElementTextNode) {
                 if (SQLbreakUtil.textMatchColumn(columnName, ((ElementTextNode) element).getTxt())) {
-                    return true;
+                    final ElementTextNode elementTextNode = new ElementTextNode("v" + columnNo);
+                    return new ExpressionInValuesNode(elementTextNode, not, values);
                 }
             }
         } else if (expressionNode instanceof ExpressionLikeNode) {
-            final ElementNode element = ((ExpressionLikeNode) expressionNode).getLeft();
-            if (element instanceof ElementTextNode) {
-                if (SQLbreakUtil.textMatchColumn(columnName, ((ElementTextNode) element).getTxt())) {
-                    return true;
+            final ElementNode left = ((ExpressionLikeNode) expressionNode).getLeft();
+            final boolean not = ((ExpressionLikeNode) expressionNode).isNot();
+            final ElementNode right = ((ExpressionLikeNode) expressionNode).getRight();
+
+            if (left instanceof ElementTextNode) {
+                if (SQLbreakUtil.textMatchColumn(columnName, ((ElementTextNode) left).getTxt())) {
+                    final ElementTextNode elementTextNode = new ElementTextNode("v" + columnNo);
+                    return new ExpressionLikeNode(not, elementTextNode, right);
                 }
             }
         }
-        return false;
+        return null;
     }
 
     public boolean execute(StatNode statNode) {
