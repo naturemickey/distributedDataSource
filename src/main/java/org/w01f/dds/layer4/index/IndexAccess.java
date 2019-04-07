@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class IndexAccess implements IIndexAccess {
 
-    private DataSourceProxy dataSourceProxy = DataSourceProxy.getInstance();
+    private DataSourceProxy dataSourceProxy = new DataSourceProxy("indexdb.sqlitedb");
 
     public void setDataSourceProxy(DataSourceProxy dataSourceProxy) {
         this.dataSourceProxy = dataSourceProxy;

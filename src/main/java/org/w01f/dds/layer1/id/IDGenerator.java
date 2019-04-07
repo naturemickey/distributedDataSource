@@ -34,7 +34,7 @@ public class IDGenerator {
         data[start + 7] = (byte) (value >>> 0);
     }
 
-    public void setId(Object object) {
+    public static void setId(Object object) {
         try {
             IdFields fields = getIdFields(object.getClass());
             byte[] dbNo = null;
@@ -62,7 +62,7 @@ public class IDGenerator {
                     if (field.getName().equals("id")) {
                         fields.id = field;
                         field.setAccessible(true);
-                    } else if (field.getName().equals("parent_id")) {
+                    } else if (field.getName().equals("parentId") || field.getName().equals("parent_id")) {
                         fields.pid = field;
                         field.setAccessible(true);
                     }

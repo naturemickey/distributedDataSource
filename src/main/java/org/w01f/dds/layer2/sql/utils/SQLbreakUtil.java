@@ -129,24 +129,7 @@ public class SQLbreakUtil {
         }
     }
 
-    public static Map<Index, List<ExpressionNode>> chooseIndics(List<List<ExpressionNode>> andWhereList, List<Index> indexList) {
-        Map<Index, List<ExpressionNode>> map = new HashMap<>();
-        for (List<ExpressionNode> andWhere : andWhereList) {
-            final Index index = chooseIndex(andWhere, indexList);
-            if (index == null) {
-                final StringBuilder sb = new StringBuilder("where");
-                for (ExpressionNode expressionNode : andWhere) {
-                    sb.append(" ").append(expressionNode).append(" and ");
-                }
-                sb.delete(sb.length() - 5, sb.length());
-                throw new RuntimeException("there is no index match: " + sb);
-            }
-            map.put(index, andWhere);
-        }
-        return map;
-    }
-
-    private static Index chooseIndex(List<ExpressionNode> andWhere, List<Index> indexList) {
+    public static Index chooseIndex(List<ExpressionNode> andWhere, List<Index> indexList) {
         List<Index> indicesRes = new ArrayList<>();
         for (ExpressionNode expressionNode : andWhere) {
             for (Index index : indexList) {
@@ -274,5 +257,48 @@ public class SQLbreakUtil {
         return false;
     }
 
+    public static List<String> getIds(List<ExpressionNode> andWhere) {
+        List<String> ids = new ArrayList<>();
+        for (ExpressionNode expressionNode : andWhere) {
+            if (expressionNode instanceof ExpressionRelationalNode) {
+                final String op = ((ExpressionRelationalNode) expressionNode).getRelationalOp();
+                final ElementNode left = ((ExpressionRelationalNode) expressionNode).getLeft();
+                final ElementNode right = ((ExpressionRelationalNode) expressionNode).getRight();
 
+                if (op.equals("=")) {
+                    ElementTextNode maybeIdField = null;
+                    ElementPlaceholderNode maybeParamField = null;
+
+                    if (left instanceof ElementTextNode && right instanceof ElementPlaceholderNode) {
+                        maybeIdField = ((ElementTextNode) left);
+                        maybeParamField = ((ElementPlaceholderNode) right);
+                    } else if (right instanceof ElementTextNode && left instanceof ElementPlaceholderNode) {
+                        maybeIdField = ((ElementTextNode) right);
+                        maybeParamField = ((ElementPlaceholderNode) left);
+                    }
+
+                    if (maybeIdField != null && maybeParamField != null && textMatchColumn("id", ((ElementTextNode) maybeIdField).getTxt())) {
+                        ids.add(((ElementPlaceholderNode) maybeParamField).getParam().getValue()[1].toString());
+                    }
+                }
+            } else if (expressionNode instanceof ExpressionInValuesNode) {
+                final ElementNode element = ((ExpressionInValuesNode) expressionNode).getElement();
+                final ValueListNode values = ((ExpressionInValuesNode) expressionNode).getValues();
+                final boolean not = ((ExpressionInValuesNode) expressionNode).isNot();
+
+                if (element instanceof ElementTextNode && !not) {
+                    if (textMatchColumn("id", ((ElementTextNode) element).getTxt())) {
+                        for (ElementNode valuesElement : values.getElements()) {
+                            if (valuesElement instanceof ElementPlaceholderNode) {
+                                ids.add(((ElementPlaceholderNode) valuesElement).getParam().getValue()[1].toString());
+                            } else {
+                                throw new RuntimeException("id in () statement must all are placeholder");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return ids;
+    }
 }

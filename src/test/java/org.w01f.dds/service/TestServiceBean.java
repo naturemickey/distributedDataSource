@@ -2,6 +2,8 @@ package org.w01f.dds.service;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.w01f.dds.layer1.id.IDConfig;
+import org.w01f.dds.layer1.id.IDGenerator;
 import org.w01f.dds.layer2.index.IndexConfigUtils;
 import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
@@ -18,16 +20,25 @@ public class TestServiceBean {
         new Index(table, new Column[]{new Column("name", Column.Type.VARCHAR1000)});
         IndexConfigUtils.parseConfig(new Table[]{table});
 
+        new IDConfig("0");
+
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         //DataSource sqliteDS = (DataSource) ac.getBean("dataSource");
         //sqliteDS.getConnection().createStatement().execute("create table ttt(id varchar(100), name varchar(100))");
         ITestBiz testBiz = ac.getBean(ITestBiz.class);
-        String id = "test_id";
+        final Test test = new Test();
+        IDGenerator.setId(test);
+        String id = test.id;
         testBiz.testInsert(id, "test_name1");
         System.out.println(testBiz.testSelet(id));
         testBiz.testUpdate(id, "test_name2");
         System.out.println(testBiz.testSelet(id));
         testBiz.testDelete(id);
         System.out.println(testBiz.testSelet(id));
+    }
+
+
+    static class Test {
+        String id;
     }
 }

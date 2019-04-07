@@ -1,6 +1,7 @@
 package org.w01f.dds.layer2.sql;
 
 import org.w01f.dds.layer1.dsproxy.param.Param;
+import org.w01f.dds.layer1.id.IDGenerator;
 import org.w01f.dds.layer2.index.IndexConfigUtils;
 import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
@@ -13,9 +14,8 @@ import org.w01f.dds.layer4.index.IndexAccess;
 import org.w01f.dds.layer4.index.SQLBuildUtils;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class SqlHandler {
 
@@ -33,39 +33,69 @@ public class SqlHandler {
 
             this.indexAccess.insert(indexMap);
 
-            // TODO: need add logic for data insert.
+            final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
+            final List<String> names = insertNode.getColumnNames().getNames();
+            final ElementPlaceholderNode idHolder = placeholderNodes.get(names.indexOf("id"));
+            final String id = idHolder.getParam().getValue()[1].toString();
+
+            dataAccess.execute(statNode, IDGenerator.getDbNo(id));
         } else if (statNode.isUpdate()) {
             UpdateNode updateNode = statNode.getDmlAsUpdate();
+
+            // TODO:
         } else if (statNode.isDelete()) {
             DeleteNode deleteNode = statNode.getDmlAsDelete();
 
             final String tableName = deleteNode.getTableNameAndAlias().getName();
             final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(deleteNode.getWhereCondition());
-            final Map<Index, List<ExpressionNode>> indexMap = SQLbreakUtil.chooseIndics(wheres, IndexConfigUtils.getTableConfig(tableName).getIndices());
+            final List<Index> indices = IndexConfigUtils.getTableConfig(tableName).getIndices();
 
-            for (Map.Entry<Index, List<ExpressionNode>> entry : indexMap.entrySet()) {
-                final Index index = entry.getKey();
-                final List<ExpressionNode> andWhere = entry.getValue();
-                final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
-                final List<ExpressionNode> newIndexWhereNodes = new ArrayList<>();
+            for (List<ExpressionNode> andWhere : wheres) {
+                final Index index = SQLbreakUtil.chooseIndex(andWhere, indices);
 
-                for (int i = 0; i < index.getColumns().length; i++) {
-                    final Column column = index.getColumns()[i];
+                if (index == null) {
+                    // todo : maybe there are id
+                    final List<String> ids = SQLbreakUtil.getIds(andWhere);
+                    if (ids.isEmpty()) {
+                        noIndexThrow(tableName, andWhere);
+                    } else {
+                        Set<Integer> dbNos = ids.stream().map(IDGenerator::getDbNo).collect(Collectors.toSet());
 
-                    final ExpressionNode expression = getExpression(column.getName(), andWhere, i);
-                    if (expression != null) {
-                        newIndexWhereNodes.add(expression);
+                        return dbNos.stream().mapToInt(dbNo -> this.dataAccess.executeUpdate(statNode, dbNo)).sum();
                     }
+                } else {
+                    final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
+                    final List<ExpressionNode> newIndexWhereNodes = new ArrayList<>();
+
+                    for (int i = 0; i < index.getColumns().length; i++) {
+                        final Column column = index.getColumns()[i];
+
+                        final ExpressionNode expression = getExpression(column.getName(), andWhere, i);
+                        if (expression != null) {
+                            newIndexWhereNodes.add(expression);
+                        }
+                    }
+
+                    newDeleteWhereNodes.addAll(andWhere);
+
+                    final StatNode selectIndexNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes);
+                    ResultSet idRs = indexAccess.query(selectIndexNode);
+
+                    // TODO
                 }
-
-                newDeleteWhereNodes.addAll(andWhere);
-
-                final StatNode selectIndexNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes);
-                ResultSet idRs = indexAccess.query(selectIndexNode);
             }
         }
 
         return 1;
+    }
+
+    private void noIndexThrow(String tableName, List<ExpressionNode> andWhere) {
+        final StringBuilder sb = new StringBuilder("from ").append(tableName).append(" where");
+        for (ExpressionNode expressionNode : andWhere) {
+            sb.append(" ").append(expressionNode).append(" and ");
+        }
+        sb.delete(sb.length() - 5, sb.length());
+        throw new RuntimeException("there is no index match: " + sb);
     }
 
     private ExpressionNode getExpression(String columnName, List<ExpressionNode> andWhere, int columnNo) {

@@ -10,24 +10,18 @@ import java.util.Map;
 
 public class DataSourceProxy {
 
-    private static DataSourceProxy instance = new DataSourceProxy();
-
-    public static DataSourceProxy getInstance() {
-        return instance;
-    }
-
-    private Map<Integer, DataSource> dsMap = new HashMap<>();
-    private ThreadLocal<Map<Integer, Connection>> openedConn = new ThreadLocal<>();
-
-    {
+    public DataSourceProxy(String dbName) {
         openedConn.set(new HashMap<>());
 
         DruidDataSource ds = new DruidDataSource();
         ds.setDriverClassName("org.sqlite.JDBC");
-        ds.setUrl("jdbc:sqlite:db/indexdb.sqlitedb");
+        ds.setUrl("jdbc:sqlite:db/" + dbName);
 
         dsMap.put(0, ds);
     }
+
+    private Map<Integer, DataSource> dsMap = new HashMap<>();
+    private ThreadLocal<Map<Integer, Connection>> openedConn = new ThreadLocal<>();
 
     public Connection getConnection(Integer dbNo) throws SQLException {
         DataSource dataSource = dsMap.get(dbNo);
