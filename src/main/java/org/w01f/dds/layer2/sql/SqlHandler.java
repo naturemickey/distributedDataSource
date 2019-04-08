@@ -1,7 +1,5 @@
 package org.w01f.dds.layer2.sql;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.w01f.dds.layer1.dsproxy.param.Param;
 import org.w01f.dds.layer1.id.IDGenerator;
 import org.w01f.dds.layer2.index.IndexConfigUtils;
@@ -41,13 +39,6 @@ public class SqlHandler {
         }
     }
 
-    private int handleUpdate(StatNode statNode) {
-        UpdateNode updateNode = statNode.getDmlAsUpdate();
-
-        // TODO:
-        return 0;
-    }
-
     private int handleInsert(StatNode statNode) {
         InsertNode insertNode = statNode.getDmlAsInsert();
         Map<Index, Param[]> indexMap = SQLbreakUtil.parseInsertIndex(insertNode);
@@ -62,7 +53,28 @@ public class SqlHandler {
         return dataAccess.executeUpdate(statNode, IDGenerator.getDbNo(id));
     }
 
-    @Nullable
+    private int handleUpdate(StatNode statNode) {
+        UpdateNode un = statNode.getDmlAsUpdate();
+
+        if (un instanceof UpdateMultipleTableNode) {
+            throw new RuntimeException("not support mutiple table update sentence : " + statNode.toString());
+        }
+
+        final UpdateSignleTableNode updateNode = (UpdateSignleTableNode) un;
+
+        final SetExprsNode setExprs = updateNode.getSetExprs();
+        final TableNameAndAliasNode tableNameAndAlias = updateNode.getTableNameAndAlias();
+        final WhereConditionNode whereCondition = updateNode.getWhereCondition();
+        final IntPlaceHolderNode rowCount = updateNode.getRowCount();
+
+        if (rowCount == null) {
+            throw new RuntimeException("not support update rowcount : " + statNode.toString());
+        }
+
+        // TODO:
+        return 0;
+    }
+
     private int handleDelete(StatNode statNode) {
         final DeleteNode deleteNode = statNode.getDmlAsDelete();
 
@@ -139,7 +151,6 @@ public class SqlHandler {
         return sum;
     }
 
-    @NotNull
     private Map<Integer, Set<String>> getIntegerSetMap(ResultSet idRs) throws SQLException {
         Map<Integer, Set<String>> idMap = new HashMap<>();
         while (idRs.next()) {

@@ -43,24 +43,15 @@ public class UpdateSignleTableNode extends UpdateNode implements Cloneable {
         return tableNameAndAlias;
     }
 
-    public void setTableNameAndAlias(TableNameAndAliasNode tableNameAndAlias) {
-        this.tableNameAndAlias = tableNameAndAlias;
-    }
-
     public SetExprsNode getSetExprs() {
         return setExprs;
-    }
-
-    public void setSetExprs(SetExprsNode setExprs) {
-        this.setExprs = setExprs;
     }
 
     public WhereConditionNode getWhereCondition() {
         return whereCondition;
     }
 
-    public void setWhereCondition(WhereConditionNode whereCondition) {
-        this.whereCondition = whereCondition;
+    public IntPlaceHolderNode getRowCount() {
+        return rowCount;
     }
-
 }
