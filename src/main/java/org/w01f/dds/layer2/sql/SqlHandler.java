@@ -1,5 +1,7 @@
 package org.w01f.dds.layer2.sql;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.w01f.dds.layer1.dsproxy.param.Param;
 import org.w01f.dds.layer1.id.IDGenerator;
 import org.w01f.dds.layer2.index.IndexConfigUtils;
@@ -14,6 +16,7 @@ import org.w01f.dds.layer4.index.IndexAccess;
 import org.w01f.dds.layer4.index.SQLBuildUtils;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,65 +31,131 @@ public class SqlHandler {
 
     public int executeUpdate(StatNode statNode) {
         if (statNode.isInsert()) {
-            InsertNode insertNode = statNode.getDmlAsInsert();
-            Map<Index, Param[]> indexMap = SQLbreakUtil.parseInsertIndex(insertNode);
-
-            this.indexAccess.insert(indexMap);
-
-            final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
-            final List<String> names = insertNode.getColumnNames().getNames();
-            final ElementPlaceholderNode idHolder = placeholderNodes.get(names.indexOf("id"));
-            final String id = idHolder.getParam().getValue()[1].toString();
-
-            dataAccess.execute(statNode, IDGenerator.getDbNo(id));
+            return handleInsert(statNode);
         } else if (statNode.isUpdate()) {
-            UpdateNode updateNode = statNode.getDmlAsUpdate();
-
-            // TODO:
+            return handleUpdate(statNode);
         } else if (statNode.isDelete()) {
-            DeleteNode deleteNode = statNode.getDmlAsDelete();
-
-            final String tableName = deleteNode.getTableNameAndAlias().getName();
-            final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(deleteNode.getWhereCondition());
-            final List<Index> indices = IndexConfigUtils.getTableConfig(tableName).getIndices();
-
-            for (List<ExpressionNode> andWhere : wheres) {
-                final Index index = SQLbreakUtil.chooseIndex(andWhere, indices);
-
-                if (index == null) {
-                    // todo : maybe there are id
-                    final List<String> ids = SQLbreakUtil.getIds(andWhere);
-                    if (ids.isEmpty()) {
-                        noIndexThrow(tableName, andWhere);
-                    } else {
-                        Set<Integer> dbNos = ids.stream().map(IDGenerator::getDbNo).collect(Collectors.toSet());
-
-                        return dbNos.stream().mapToInt(dbNo -> this.dataAccess.executeUpdate(statNode, dbNo)).sum();
-                    }
-                } else {
-                    final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
-                    final List<ExpressionNode> newIndexWhereNodes = new ArrayList<>();
-
-                    for (int i = 0; i < index.getColumns().length; i++) {
-                        final Column column = index.getColumns()[i];
-
-                        final ExpressionNode expression = getExpression(column.getName(), andWhere, i);
-                        if (expression != null) {
-                            newIndexWhereNodes.add(expression);
-                        }
-                    }
-
-                    newDeleteWhereNodes.addAll(andWhere);
-
-                    final StatNode selectIndexNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes);
-                    ResultSet idRs = indexAccess.query(selectIndexNode);
-
-                    // TODO
-                }
-            }
+            return handleDelete(statNode);
+        } else {
+            throw new RuntimeException("it is impossible")
         }
 
         return 1;
+    }
+
+    private int handleUpdate(StatNode statNode) {
+        UpdateNode updateNode = statNode.getDmlAsUpdate();
+
+        // TODO:
+    }
+
+    private int handleInsert(StatNode statNode) {
+        InsertNode insertNode = statNode.getDmlAsInsert();
+        Map<Index, Param[]> indexMap = SQLbreakUtil.parseInsertIndex(insertNode);
+
+        this.indexAccess.insert(indexMap);
+
+        final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
+        final List<String> names = insertNode.getColumnNames().getNames();
+        final ElementPlaceholderNode idHolder = placeholderNodes.get(names.indexOf("id"));
+        final String id = idHolder.getParam().getValue()[1].toString();
+
+        return dataAccess.executeUpdate(statNode, IDGenerator.getDbNo(id));
+    }
+
+    @Nullable
+    private int handleDelete(StatNode statNode) {
+        final DeleteNode deleteNode = statNode.getDmlAsDelete();
+
+        final TableNameAndAliasNode tableNameAndAlias = deleteNode.getTableNameAndAlias();
+        final WhereConditionNode whereCondition = deleteNode.getWhereCondition();
+        final IntPlaceHolderNode rowCount = deleteNode.getRowCount();
+
+        if (rowCount != null) {
+            throw new RuntimeException("delete sentence not support limit word right now.");
+        }
+
+        final String tableName = tableNameAndAlias.getName();
+        final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(whereCondition);
+        final List<Index> indices = IndexConfigUtils.getTableConfig(tableName).getIndices();
+
+        int sum = 0;
+        for (List<ExpressionNode> andWhere : wheres) {
+            final Index index = SQLbreakUtil.chooseIndex(andWhere, indices);
+
+            if (index == null) {
+                final List<String> ids = SQLbreakUtil.getIds(andWhere);
+                if (ids.isEmpty()) {
+                    noIndexThrow(tableName, andWhere);
+                } else {
+                    Set<Integer> dbNos = ids.stream().map(IDGenerator::getDbNo).collect(Collectors.toSet());
+
+                    sum += dbNos.stream().mapToInt(dbNo -> this.dataAccess.executeUpdate(statNode, dbNo)).sum();
+                }
+            } else {
+                final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
+                final List<ExpressionNode> newIndexWhereNodes = new ArrayList<>();
+
+                for (int i = 0; i < index.getColumns().length; i++) {
+                    final Column column = index.getColumns()[i];
+
+                    final ExpressionNode expression = getExpression(column.getName(), andWhere, i);
+                    if (expression != null) {
+                        newIndexWhereNodes.add(expression);
+                    }
+                }
+
+                newDeleteWhereNodes.addAll(andWhere);
+
+                final StatNode selectIndexNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes);
+                ResultSet idRs = indexAccess.query(selectIndexNode);
+
+                try {
+                    // dbNo -> id set
+                    Map<Integer, Set<String>> idMap = getIntegerSetMap(idRs);
+
+                    for (Map.Entry<Integer, Set<String>> entry : idMap.entrySet()) {
+                        final Integer dbNo = entry.getKey();
+                        final Set<String> idSet = entry.getValue();
+
+                        final ElementTextNode idElement = new ElementTextNode("id");
+                        final ValueListNode valueListNode = new ValueListNode(idSet.stream().map(ElementPlaceholderNode::new).collect(Collectors.toList()));
+                        final ExpressionInValuesNode expressionInValuesNode = new ExpressionInValuesNode(idElement, valueListNode);
+
+
+                        WhereConditionOpNode whereConditionNode = new WhereConditionOpNode(expressionInValuesNode);
+                        for (ExpressionNode whereNode : newDeleteWhereNodes) {
+                            whereConditionNode = new WhereConditionOpNode(whereNode, "and", whereConditionNode);
+                        }
+
+                        final DeleteNode newDeleteNode = new DeleteNode(tableNameAndAlias, whereConditionNode);
+
+                        sum += this.dataAccess.executeUpdate(new StatNode(newDeleteNode), dbNo);
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return sum;
+    }
+
+    @NotNull
+    private Map<Integer, Set<String>> getIntegerSetMap(ResultSet idRs) throws SQLException {
+        Map<Integer, Set<String>> idMap = new HashMap<>();
+        while (idRs.next()) {
+            final String id = idRs.getString("id");
+            final int dbNo = IDGenerator.getDbNo(id);
+
+            idMap.compute(dbNo, (no, set) -> {
+                if (set == null) {
+                    set = new HashSet<>();
+                }
+                set.add(id);
+                return set;
+            });
+        }
+        return idMap;
     }
 
     private void noIndexThrow(String tableName, List<ExpressionNode> andWhere) {

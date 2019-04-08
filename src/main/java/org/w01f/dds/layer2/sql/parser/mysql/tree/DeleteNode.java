@@ -14,6 +14,10 @@ public class DeleteNode extends SQLSyntaxTreeNode implements Cloneable {
         return new DeleteNode(tableNameAndAliasNode, whereConditionNode, intPlaceHolderNode);
     }
 
+    public DeleteNode(TableNameAndAliasNode tableNameAndAlias, WhereConditionNode whereCondition) {
+        this(tableNameAndAlias, whereCondition, null);
+    }
+
     public DeleteNode(TableNameAndAliasNode tableNameAndAlias, WhereConditionNode whereCondition, IntPlaceHolderNode rowCount) {
         this.tableNameAndAlias = tableNameAndAlias;
         this.whereCondition = whereCondition;
