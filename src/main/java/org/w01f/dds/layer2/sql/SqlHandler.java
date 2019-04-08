@@ -37,16 +37,15 @@ public class SqlHandler {
         } else if (statNode.isDelete()) {
             return handleDelete(statNode);
         } else {
-            throw new RuntimeException("it is impossible")
+            throw new RuntimeException("it is impossible");
         }
-
-        return 1;
     }
 
     private int handleUpdate(StatNode statNode) {
         UpdateNode updateNode = statNode.getDmlAsUpdate();
 
         // TODO:
+        return 0;
     }
 
     private int handleInsert(StatNode statNode) {
