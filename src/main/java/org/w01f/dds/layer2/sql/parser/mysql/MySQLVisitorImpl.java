@@ -204,7 +204,7 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
             op = String.valueOf(text.charAt(0));
             elementText = new ElementTextNode(text.substring(1));
 
-            element = new ElementOpEleNode(elementText, element.getFactory());
+            element = new ElementOpEleNode(elementText, element.getSuffix());
         }
         return new ElementOpEleSuffixNode(op, element);
     }
