@@ -2,7 +2,7 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ElementTextNode extends ElementOpFactoryNode implements Cloneable  {
 
-	private String txt;
+	private final String txt;
 
 	@Override
 	public ElementTextNode clone() {
@@ -20,11 +20,6 @@ public class ElementTextNode extends ElementOpFactoryNode implements Cloneable  
 
 	public String getTxt() {
 		return txt;
-	}
-
-	public void setTxt(String txt) {
-		// TODO : 不应该有set方法
-		this.txt = txt;
 	}
 
 	@Override
