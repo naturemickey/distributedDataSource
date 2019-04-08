@@ -23,10 +23,6 @@ public class SqlHandler {
     private IIndexAccess indexAccess = new IndexAccess();
     private IDataAccess dataAccess = new DataAccess();
 
-    public ResultSet executeQuery(StatNode statNode) {
-        return null;
-    }
-
     public int executeUpdate(StatNode statNode) {
         if (statNode.isInsert()) {
             return handleInsert(statNode);
@@ -53,7 +49,13 @@ public class SqlHandler {
         return dataAccess.executeUpdate(statNode, IDGenerator.getDbNo(id));
     }
 
+    public ResultSet executeQuery(StatNode statNode) {
+        final SelectNode selectNode = statNode.getDmlAsSelect();
+        return null;
+    }
+
     private int handleUpdate(StatNode statNode) {
+        // this method just like 'handleDelete' method. very very like.
         UpdateNode un = statNode.getDmlAsUpdate();
 
         if (un instanceof UpdateMultipleTableNode) {
@@ -68,14 +70,76 @@ public class SqlHandler {
         final IntPlaceHolderNode rowCount = updateNode.getRowCount();
 
         if (rowCount == null) {
-            throw new RuntimeException("not support update rowcount : " + statNode.toString());
+            throw new RuntimeException("update sentence not support limit word right now : " + statNode.toString());
         }
 
-        // TODO:
-        return 0;
+        final String tableName = tableNameAndAlias.getName();
+        final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(whereCondition);
+        final List<Index> indices = IndexConfigUtils.getTableConfig(tableName).getIndices();
+
+        int sum = 0;
+        for (List<ExpressionNode> andWhere : wheres) {
+            final Index index = SQLbreakUtil.chooseIndex(andWhere, indices);
+
+            if (index == null) {
+                final List<String> ids = SQLbreakUtil.getIds(andWhere);
+                if (ids.isEmpty()) {
+                    noIndexThrow(tableName, andWhere);
+                } else {
+                    Set<Integer> dbNos = ids.stream().map(IDGenerator::getDbNo).collect(Collectors.toSet());
+
+                    sum += dbNos.stream().mapToInt(dbNo -> this.dataAccess.executeUpdate(statNode, dbNo)).sum();
+                }
+            } else {
+                final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
+                final List<ExpressionNode> newIndexWhereNodes = new ArrayList<>();
+
+                for (int i = 0; i < index.getColumns().length; i++) {
+                    final Column column = index.getColumns()[i];
+
+                    final ExpressionNode expression = getExpression(column.getName(), andWhere, i);
+                    if (expression != null) {
+                        newIndexWhereNodes.add(expression);
+                    }
+                }
+
+                newDeleteWhereNodes.addAll(andWhere);
+
+                final StatNode selectIndexNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes);
+                ResultSet idRs = indexAccess.query(selectIndexNode);
+
+                try {
+                    // dbNo -> id set
+                    Map<Integer, Set<String>> idMap = getIntegerSetMap(idRs);
+
+                    for (Map.Entry<Integer, Set<String>> entry : idMap.entrySet()) {
+                        final Integer dbNo = entry.getKey();
+                        final Set<String> idSet = entry.getValue();
+
+                        final ElementTextNode idElement = new ElementTextNode("id");
+                        final ValueListNode valueListNode = new ValueListNode(idSet.stream().map(ElementPlaceholderNode::new).collect(Collectors.toList()));
+                        final ExpressionInValuesNode expressionInValuesNode = new ExpressionInValuesNode(idElement, valueListNode);
+
+
+                        WhereConditionOpNode whereConditionNode = new WhereConditionOpNode(expressionInValuesNode);
+                        for (ExpressionNode whereNode : newDeleteWhereNodes) {
+                            whereConditionNode = new WhereConditionOpNode(whereNode, "and", whereConditionNode);
+                        }
+
+                        final UpdateNode newUpdateNode = new UpdateSignleTableNode(tableNameAndAlias, setExprs, whereConditionNode);
+
+                        sum += this.dataAccess.executeUpdate(new StatNode(newUpdateNode), dbNo);
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return sum;
     }
 
     private int handleDelete(StatNode statNode) {
+        // this method just like 'handleUpdate' method. very very like.
         final DeleteNode deleteNode = statNode.getDmlAsDelete();
 
         final TableNameAndAliasNode tableNameAndAlias = deleteNode.getTableNameAndAlias();
@@ -83,7 +147,7 @@ public class SqlHandler {
         final IntPlaceHolderNode rowCount = deleteNode.getRowCount();
 
         if (rowCount != null) {
-            throw new RuntimeException("delete sentence not support limit word right now.");
+            throw new RuntimeException("delete sentence not support limit word right now : " + statNode.toString());
         }
 
         final String tableName = tableNameAndAlias.getName();

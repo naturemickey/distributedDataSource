@@ -6,7 +6,7 @@ import java.util.List;
 public abstract class SQLSyntaxTreeNode implements Cloneable {
 
     protected SQLSyntaxTreeNode parent;
-    protected List<SQLSyntaxTreeNode> children= new ArrayList<>();
+    protected final List<SQLSyntaxTreeNode> children= new ArrayList<>();
 
     protected List<ElementPlaceholderNode> placeholderNodes = null;
 

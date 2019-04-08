@@ -2,9 +2,9 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class DeleteNode extends SQLSyntaxTreeNode implements Cloneable {
 
-    private TableNameAndAliasNode tableNameAndAlias;
-    private WhereConditionNode whereCondition;
-    private IntPlaceHolderNode rowCount;
+    private final TableNameAndAliasNode tableNameAndAlias;
+    private final WhereConditionNode whereCondition;
+    private final IntPlaceHolderNode rowCount;
 
     @Override
     public DeleteNode clone() {

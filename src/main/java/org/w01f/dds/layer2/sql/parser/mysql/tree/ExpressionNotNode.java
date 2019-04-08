@@ -2,7 +2,7 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ExpressionNotNode extends ExpressionNode implements Cloneable {
 
-    private ExpressionNode expression;
+    private final ExpressionNode expression;
 
     @Override
     public ExpressionNotNode clone() {

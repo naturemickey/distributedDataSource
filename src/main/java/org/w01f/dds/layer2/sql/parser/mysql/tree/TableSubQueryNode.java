@@ -5,8 +5,8 @@ import java.util.List;
 
 public class TableSubQueryNode extends TableRelNode implements Cloneable {
 
-    private SelectNode select;
-    private String alias;
+    private final SelectNode select;
+    private final String alias;
 
     @Override
     public TableSubQueryNode clone() {

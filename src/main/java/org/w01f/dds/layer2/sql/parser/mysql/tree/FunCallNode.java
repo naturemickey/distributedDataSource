@@ -2,8 +2,8 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class FunCallNode extends ElementOpFactoryNode implements Cloneable  {
 
-	private String name;
-	private ParamListNode paramList;
+	private final String name;
+	private final ParamListNode paramList;
 
 	@Override
 	public FunCallNode clone() {

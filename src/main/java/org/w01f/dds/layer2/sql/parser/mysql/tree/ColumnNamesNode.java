@@ -1,12 +1,13 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class ColumnNamesNode extends SQLSyntaxTreeNode  implements Cloneable {
 
-	private List<String> names;
+	private final List<String> names;
 
 	@Override
 	public ColumnNamesNode clone() {
@@ -14,7 +15,7 @@ public final class ColumnNamesNode extends SQLSyntaxTreeNode  implements Cloneab
 	}
 
 	public ColumnNamesNode(List<String> names) {
-		this.names = names;
+		this.names = Collections.unmodifiableList(names);
 	}
 
 	@Override

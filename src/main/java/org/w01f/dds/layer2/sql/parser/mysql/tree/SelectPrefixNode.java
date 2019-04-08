@@ -2,12 +2,12 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class SelectPrefixNode extends SQLSyntaxTreeNode implements Cloneable {
 
-    private boolean distinct;
-    private SelectExprsNode selectExprs;
-    private TablesNode tables;
-    private WhereConditionNode where;
-    private GbobExprsNode groupByExprs;
-    private WhereConditionNode having;
+    private final boolean distinct;
+    private final SelectExprsNode selectExprs;
+    private final TablesNode tables;
+    private final WhereConditionNode where;
+    private final GbobExprsNode groupByExprs;
+    private final WhereConditionNode having;
 
     @Override
     public SelectPrefixNode clone() {
@@ -20,9 +20,12 @@ public class SelectPrefixNode extends SQLSyntaxTreeNode implements Cloneable {
     }
 
     public SelectPrefixNode(SelectExprsNode selectExprs, TablesNode tables, WhereConditionNode where) {
+        this.distinct = false;
         this.selectExprs = selectExprs;
         this.tables = tables;
         this.where = where;
+        this.groupByExprs = null;
+        this.having = null;
 
         setParent(selectExprs, tables, where);
     }
@@ -62,48 +65,23 @@ public class SelectPrefixNode extends SQLSyntaxTreeNode implements Cloneable {
         return distinct;
     }
 
-    public void setDistinct(boolean distinct) {
-        this.distinct = distinct;
-    }
-
     public SelectExprsNode getSelectExprs() {
         return selectExprs;
-    }
-
-    public void setSelectExprs(SelectExprsNode selectExprs) {
-        this.selectExprs = selectExprs;
     }
 
     public TablesNode getTables() {
         return tables;
     }
 
-    public void setTables(TablesNode tables) {
-        this.tables = tables;
-    }
-
     public WhereConditionNode getWhere() {
         return where;
-    }
-
-    public void setWhere(WhereConditionNode where) {
-        this.where = where;
     }
 
     public GbobExprsNode getGroupByExprs() {
         return groupByExprs;
     }
 
-    public void setGroupByExprs(GbobExprsNode groupByExprs) {
-        this.groupByExprs = groupByExprs;
-    }
-
     public WhereConditionNode getHaving() {
         return having;
     }
-
-    public void setHaving(WhereConditionNode having) {
-        this.having = having;
-    }
-
 }

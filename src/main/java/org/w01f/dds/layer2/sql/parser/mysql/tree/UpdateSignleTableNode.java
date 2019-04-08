@@ -2,10 +2,10 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class UpdateSignleTableNode extends UpdateNode implements Cloneable {
 
-    private TableNameAndAliasNode tableNameAndAlias;
-    private SetExprsNode setExprs;
-    private WhereConditionNode whereCondition;
-    private IntPlaceHolderNode rowCount;
+    private final TableNameAndAliasNode tableNameAndAlias;
+    private final SetExprsNode setExprs;
+    private final WhereConditionNode whereCondition;
+    private final IntPlaceHolderNode rowCount;
 
     @Override
     public UpdateSignleTableNode clone() {
@@ -14,6 +14,11 @@ public class UpdateSignleTableNode extends UpdateNode implements Cloneable {
         WhereConditionNode whereConditionNode = whereCondition == null ? null : whereCondition.clone();
         IntPlaceHolderNode intPlaceHolderNode = rowCount == null ? null : rowCount.clone();
         return new UpdateSignleTableNode(tableNameAndAliasNode, setExprsNode, whereConditionNode, intPlaceHolderNode);
+    }
+
+
+    public UpdateSignleTableNode(TableNameAndAliasNode tableNameAndAlias, SetExprsNode setExprs, WhereConditionNode whereCondition) {
+        this(tableNameAndAlias, setExprs, whereCondition, null);
     }
 
     public UpdateSignleTableNode(TableNameAndAliasNode tableNameAndAlias, SetExprsNode setExprs, WhereConditionNode whereCondition, IntPlaceHolderNode rowCount) {

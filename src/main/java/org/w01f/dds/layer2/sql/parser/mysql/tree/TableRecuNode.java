@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TableRecuNode extends TableRelNode implements Cloneable  {
 
-	private TableRelNode tableRel;
+	private final TableRelNode tableRel;
 
 	@Override
 	public TableRecuNode clone() {
@@ -24,10 +24,6 @@ public class TableRecuNode extends TableRelNode implements Cloneable  {
 
 	public TableRelNode getTableRel() {
 		return tableRel;
-	}
-
-	public void setTableRel(TableRelNode tableRel) {
-		this.tableRel = tableRel;
 	}
 
 	@Override

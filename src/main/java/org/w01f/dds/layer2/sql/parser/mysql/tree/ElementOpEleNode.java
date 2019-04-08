@@ -2,8 +2,8 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ElementOpEleNode extends ElementNode implements Cloneable  {
 
-	private ElementOpFactoryNode factory;
-	private ElementOpEleSuffixNode suffix;
+	private final ElementOpFactoryNode factory;
+	private final ElementOpEleSuffixNode suffix;
 
 	@Override
 	public ElementOpEleNode clone() {
@@ -32,16 +32,7 @@ public class ElementOpEleNode extends ElementNode implements Cloneable  {
 		return factory;
 	}
 
-	public void setFactory(ElementOpFactoryNode factory) {
-		this.factory = factory;
-	}
-
 	public ElementOpEleSuffixNode getSuffix() {
 		return suffix;
 	}
-
-	public void setSuffix(ElementOpEleSuffixNode suffix) {
-		this.suffix = suffix;
-	}
-
 }

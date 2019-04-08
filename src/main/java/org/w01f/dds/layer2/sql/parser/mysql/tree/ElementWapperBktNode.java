@@ -2,7 +2,7 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ElementWapperBktNode extends ElementOpFactoryNode implements Cloneable {
 
-    private ElementNode element;
+    private final ElementNode element;
 
     @Override
     public ElementWapperBktNode clone() {

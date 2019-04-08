@@ -49,7 +49,7 @@ selectSuffix
 	   ((FOR lock=UPDATE) | (lock=LOCK IN SHARE MODE))?
 	;
 selectUnionSuffix
-	: UNION method=(ALL | DISTINCT)? ('(' selectStat ')' | selectStat) selectSuffix
+	: UNION method=(ALL | DISTINCT)? ('(' selectStat ')' | selectStat)
 	;
 
 intPlaceHolder : INT | elementPlaceholder ;

@@ -5,8 +5,8 @@ import java.util.List;
 
 public class TableJoinNode extends TableRelNode  implements Cloneable {
 
-	private TableNameAndAliasNode table;
-	private TableJoinSuffixNode suffix;
+	private final TableNameAndAliasNode table;
+	private final TableJoinSuffixNode suffix;
 
 	@Override
 	public TableJoinNode clone() {

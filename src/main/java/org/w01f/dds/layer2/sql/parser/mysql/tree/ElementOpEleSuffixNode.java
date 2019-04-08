@@ -2,8 +2,8 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ElementOpEleSuffixNode extends ElementNode implements Cloneable {
 
-    private String op;
-    private ElementOpEleNode element;
+    private final String op;
+    private final ElementOpEleNode element;
 
     @Override
     public ElementOpEleSuffixNode clone() {

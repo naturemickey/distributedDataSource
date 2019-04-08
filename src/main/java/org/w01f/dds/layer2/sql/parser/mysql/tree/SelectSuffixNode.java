@@ -2,11 +2,11 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class SelectSuffixNode extends SQLSyntaxTreeNode  implements Cloneable {
 
-	private GbobExprsNode orderByExprs;
-	private IntPlaceHolderNode offset;
-	private IntPlaceHolderNode rowCount;
-	private String lock;
-	private boolean hasOffsetWord;
+	private final GbobExprsNode orderByExprs;
+	private final IntPlaceHolderNode offset;
+	private final IntPlaceHolderNode rowCount;
+	private final String lock;
+	private final boolean hasOffsetWord;
 
 	@Override
 	public SelectSuffixNode clone() {

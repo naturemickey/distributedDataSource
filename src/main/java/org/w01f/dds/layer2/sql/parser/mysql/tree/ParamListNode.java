@@ -2,9 +2,9 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ParamListNode extends SQLSyntaxTreeNode implements Cloneable{
 
-	private ElementNode element;
-	ExpressionRelationalNode exprRelational;
-	private ParamListNode suffix;
+	private final ElementNode element;
+	private final ExpressionRelationalNode exprRelational;
+	private final ParamListNode suffix;
 
 	@Override
 	public ParamListNode clone() {

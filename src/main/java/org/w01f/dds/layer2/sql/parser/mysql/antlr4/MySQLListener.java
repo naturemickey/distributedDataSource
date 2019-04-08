@@ -1,4 +1,4 @@
-// Generated from D:/github/distributedDataSource/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4\MySQL.g4 by ANTLR 4.7.2
+// Generated from /Users/089239/GitHub/distributedDataSource/src/main/java/org/w01f/dds/layer2/sql/parser/mysql/antlr4/MySQL.g4 by ANTLR 4.7.2
 package org.w01f.dds.layer2.sql.parser.mysql.antlr4;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 

@@ -5,8 +5,8 @@ import java.util.List;
 
 public class TableNameAndAliasNode extends TableRelNode implements Cloneable {
 
-    private String name;
-    private String alias;
+    private final String name;
+    private final String alias;
 
     @Override
     public TableNameAndAliasNode clone() {
@@ -15,6 +15,7 @@ public class TableNameAndAliasNode extends TableRelNode implements Cloneable {
 
     public TableNameAndAliasNode(String name) {
         this.name = name;
+        this.alias = null;
     }
 
     public TableNameAndAliasNode(String name, String alias) {
@@ -30,14 +31,6 @@ public class TableNameAndAliasNode extends TableRelNode implements Cloneable {
             return name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public List<TableRelNode.TableAndJoinMod> getRealTables() {
         List<TableRelNode.TableAndJoinMod> res = new ArrayList<>();
@@ -45,4 +38,11 @@ public class TableNameAndAliasNode extends TableRelNode implements Cloneable {
         return res;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
 }

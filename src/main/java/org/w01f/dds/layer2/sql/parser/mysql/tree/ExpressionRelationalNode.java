@@ -1,9 +1,9 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ExpressionRelationalNode extends ExpressionNode implements Cloneable {
-    private ElementNode left;
-    private ElementNode right;
-    private String relationalOp;
+    private final ElementNode left;
+    private final ElementNode right;
+    private final String relationalOp;
 
     @Override
     public ExpressionRelationalNode clone() {

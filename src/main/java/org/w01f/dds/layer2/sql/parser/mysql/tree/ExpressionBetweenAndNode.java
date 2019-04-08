@@ -1,10 +1,10 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ExpressionBetweenAndNode extends ExpressionNode implements Cloneable  {
-	private ElementNode element;
-	private boolean not;
-	private ElementNode left;
-	private ElementNode right;
+	private final ElementNode element;
+	private final boolean not;
+	private final ElementNode left;
+	private final ElementNode right;
 
 	@Override
 	public ExpressionBetweenAndNode clone() {

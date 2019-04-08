@@ -2,8 +2,8 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class SelectInner extends SQLSyntaxTreeNode implements Cloneable {
 
-	private SelectPrefixNode prefix;
-	private SelectSuffixNode suffix;
+	private final SelectPrefixNode prefix;
+	private final SelectSuffixNode suffix;
 
 	@Override public SelectInner clone() {
 		SelectPrefixNode selectPrefixNode = prefix == null ? null : prefix.clone();
@@ -30,15 +30,7 @@ public class SelectInner extends SQLSyntaxTreeNode implements Cloneable {
 		return prefix;
 	}
 
-	public void setPrefix(SelectPrefixNode prefix) {
-		this.prefix = prefix;
-	}
-
 	public SelectSuffixNode getSuffix() {
 		return suffix;
-	}
-
-	public void setSuffix(SelectSuffixNode suffix) {
-		this.suffix = suffix;
 	}
 }

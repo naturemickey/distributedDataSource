@@ -1,12 +1,13 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ValueListNode extends SQLSyntaxTreeNode implements Cloneable  {
 
-	private List<ElementNode> elements;
+	private final List<ElementNode> elements;
 
 	@Override
 	public ValueListNode clone() {
@@ -21,7 +22,7 @@ public class ValueListNode extends SQLSyntaxTreeNode implements Cloneable  {
 	}
 	
 	public ValueListNode(List<ElementNode> elements) {
-		this.elements = elements;
+		this.elements = Collections.unmodifiableList(elements);
 
 		setParent(elements);
 	}

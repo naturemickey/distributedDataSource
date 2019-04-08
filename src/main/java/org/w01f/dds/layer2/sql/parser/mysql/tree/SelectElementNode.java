@@ -1,19 +1,22 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class SelectElementNode extends SQLSyntaxTreeNode {
-    private ElementNode element;
-    private String alias;
+    private final ElementNode element;
+    private final String alias;
 
 
     public SelectElementNode(ElementNode element) {
         this.element = element;
+        this.alias = null;
 
         super.setParent(element);
     }
 
     public SelectElementNode(ElementNode element, String alias) {
-        this(element);
+        this.element = element;
         this.alias = alias;
+
+        super.setParent(element);
     }
 
     @Override

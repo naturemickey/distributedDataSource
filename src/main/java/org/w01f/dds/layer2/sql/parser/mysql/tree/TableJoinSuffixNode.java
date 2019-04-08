@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TableJoinSuffixNode extends SQLSyntaxTreeNode implements Cloneable  {
-	private String tableJoinMod;
-	private TableNameAndAliasesNode tables;
-	private TableRecuNode tableRecu;
-	private JoinConditionNode condition;
-	private TableJoinSuffixNode suffix;
+	private final String tableJoinMod;
+	private final TableNameAndAliasesNode tables;
+	private final TableRecuNode tableRecu;
+	private final JoinConditionNode condition;
+	private final TableJoinSuffixNode suffix;
 
 	@Override
 	public TableJoinSuffixNode clone() {

@@ -1,12 +1,13 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SetExprsNode extends SQLSyntaxTreeNode  implements Cloneable {
 
-	private List<SetExprNode> setExprs;
+	private final List<SetExprNode> setExprs;
 
 	@Override
 	public SetExprsNode clone() {
@@ -21,7 +22,7 @@ public class SetExprsNode extends SQLSyntaxTreeNode  implements Cloneable {
 	}
 
 	public SetExprsNode(List<SetExprNode> setExprs) {
-		this.setExprs = setExprs;
+		this.setExprs = Collections.unmodifiableList(setExprs);
 
 		setParent(setExprs);
 	}

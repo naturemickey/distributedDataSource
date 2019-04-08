@@ -1,8 +1,8 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ElementSubQueryNode extends ElementOpFactoryNode  implements Cloneable {
-	private String with;
-	private SelectNode select;
+	private final String with;
+	private final SelectNode select;
 
 	@Override
 	public ElementSubQueryNode clone() {

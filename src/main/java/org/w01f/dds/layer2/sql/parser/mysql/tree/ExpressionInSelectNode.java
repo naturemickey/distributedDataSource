@@ -2,9 +2,9 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ExpressionInSelectNode extends ExpressionNode implements Cloneable  {
 
-	private ElementNode element;
-	private boolean not;
-	private SelectNode select;
+	private final ElementNode element;
+	private final boolean not;
+	private final SelectNode select;
 
 	@Override
 	public ExpressionInSelectNode clone() {

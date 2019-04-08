@@ -2,9 +2,9 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class UpdateMultipleTableNode extends UpdateNode  implements Cloneable {
 
-	private TableNameAndAliasesNode tableNameAndAliases;
-	private SetExprsNode setExprs;
-	private WhereConditionNode whereCondition;
+	private final TableNameAndAliasesNode tableNameAndAliases;
+	private final SetExprsNode setExprs;
+	private final WhereConditionNode whereCondition;
 
 	@Override
 	public UpdateMultipleTableNode clone() {
@@ -37,24 +37,11 @@ public class UpdateMultipleTableNode extends UpdateNode  implements Cloneable {
 		return tableNameAndAliases;
 	}
 
-	public void setTableNameAndAliases(TableNameAndAliasesNode tableNameAndAliases) {
-		this.tableNameAndAliases = tableNameAndAliases;
-	}
-
 	public SetExprsNode getSetExprs() {
 		return setExprs;
-	}
-
-	public void setSetExprs(SetExprsNode setExprs) {
-		this.setExprs = setExprs;
 	}
 
 	public WhereConditionNode getWhereCondition() {
 		return whereCondition;
 	}
-
-	public void setWhereCondition(WhereConditionNode whereCondition) {
-		this.whereCondition = whereCondition;
-	}
-
 }

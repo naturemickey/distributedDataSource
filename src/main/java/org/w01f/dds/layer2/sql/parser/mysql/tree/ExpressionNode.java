@@ -1,9 +1,9 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
-public class ExpressionNode extends SQLSyntaxTreeNode implements Cloneable  {
+public class ExpressionNode extends SQLSyntaxTreeNode implements Cloneable {
 
     @Override
-    public  ExpressionNode clone() {
+    public ExpressionNode clone() {
         return (ExpressionNode) super.clone();
     }
 }

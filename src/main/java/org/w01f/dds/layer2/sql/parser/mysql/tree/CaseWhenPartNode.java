@@ -1,10 +1,10 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class CaseWhenPartNode extends SQLSyntaxTreeNode implements Cloneable {
-    private ElementNode whenEl;
-    private ExpressionRelationalNode whenRe;
-    private ElementNode then;
-    private CaseWhenPartNode suffix;
+    private final ElementNode whenEl;
+    private final ExpressionRelationalNode whenRe;
+    private final ElementNode then;
+    private final CaseWhenPartNode suffix;
 
     @Override
     public CaseWhenPartNode clone() {

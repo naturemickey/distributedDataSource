@@ -1,23 +1,24 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class SelectUnionSuffix extends SQLSyntaxTreeNode implements Cloneable  {
-	private String method;
-	private SelectNode select;
-	private SelectSuffixNode suffix;
+	private final String method;
+	private final SelectNode select;
+	// private SelectSuffixNode suffix;
 
 	@Override
 	public SelectUnionSuffix clone() {
 		SelectNode selectNode = select == null ?null :select.clone();
-		SelectSuffixNode selectSuffixNode = suffix == null ? null :suffix.clone();
-		return new SelectUnionSuffix(method, selectNode, selectSuffixNode);
+		// SelectSuffixNode selectSuffixNode = suffix == null ? null :suffix.clone();
+		// return new SelectUnionSuffix(method, selectNode, selectSuffixNode);
+		return new SelectUnionSuffix(method, selectNode);
 	}
 
-	public SelectUnionSuffix(String method, SelectNode select, SelectSuffixNode suffix) {
+	public SelectUnionSuffix(String method, SelectNode select) {
 		this.method = method;
 		this.select = select;
-		this.suffix = suffix;
+		// this.suffix = suffix;
 
-		setParent(select, suffix);
+		setParent(select);
 	}
 
 	@Override
@@ -28,9 +29,9 @@ public class SelectUnionSuffix extends SQLSyntaxTreeNode implements Cloneable  {
 			sb.append(method).append(' ');
 		}
 		sb.append("(").append(select).append(")");
-		if (suffix != null) {
-			sb.append(' ').append(suffix);
-		}
+//		if (suffix != null) {
+//			sb.append(' ').append(suffix);
+//		}
 		return sb.toString();
 	}
 }

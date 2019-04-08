@@ -2,8 +2,8 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class JoinConditionNode extends SQLSyntaxTreeNode  implements Cloneable  {
 
-	private WhereConditionNode on;
-	private ColumnNamesNode columnNames;
+	private final WhereConditionNode on;
+	private final ColumnNamesNode columnNames;
 
 	@Override
 	public JoinConditionNode clone() {

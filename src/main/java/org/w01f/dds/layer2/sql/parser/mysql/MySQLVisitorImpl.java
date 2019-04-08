@@ -348,10 +348,10 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
         SelectNode select = (SelectNode) this.visitSelectStat(ctx.selectStat());
         SelectSuffixNode suffix = null;
 
-        if (ctx.selectSuffix() != null) {
-            suffix = (SelectSuffixNode) this.visitSelectSuffix(ctx.selectSuffix());
-        }
-        return new SelectUnionSuffix(method, select, suffix);
+//        if (ctx.selectSuffix() != null) {
+//            suffix = (SelectSuffixNode) this.visitSelectSuffix(ctx.selectSuffix());
+//        }
+        return new SelectUnionSuffix(method, select);
     }
 
     @Override

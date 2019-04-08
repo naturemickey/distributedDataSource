@@ -23,6 +23,7 @@ public class ElementTextNode extends ElementOpFactoryNode implements Cloneable  
 	}
 
 	public void setTxt(String txt) {
+		// TODO : 不应该有set方法
 		this.txt = txt;
 	}
 

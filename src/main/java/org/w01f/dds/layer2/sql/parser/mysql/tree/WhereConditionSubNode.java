@@ -2,9 +2,9 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class WhereConditionSubNode extends WhereConditionNode implements Cloneable {
 
-    private WhereConditionNode wc1;
-    private String expressionOperator;
-    private WhereConditionNode wc2;
+    private final WhereConditionNode wc1;
+    private final String expressionOperator;
+    private final WhereConditionNode wc2;
 
     @Override
     public WhereConditionSubNode clone() {
@@ -35,23 +35,11 @@ public class WhereConditionSubNode extends WhereConditionNode implements Cloneab
         return wc1;
     }
 
-    public void setWc1(WhereConditionNode wc1) {
-        this.wc1 = wc1;
-    }
-
     public String getExpressionOperator() {
         return expressionOperator;
     }
 
-    public void setExpressionOperator(String expressionOperator) {
-        this.expressionOperator = expressionOperator;
-    }
-
     public WhereConditionNode getWc2() {
         return wc2;
-    }
-
-    public void setWc2(WhereConditionNode wc2) {
-        this.wc2 = wc2;
     }
 }

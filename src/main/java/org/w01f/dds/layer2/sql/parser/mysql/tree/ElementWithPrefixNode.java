@@ -2,8 +2,8 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class ElementWithPrefixNode extends ElementOpFactoryNode  implements Cloneable {
 
-	private String prefix;
-	private ElementOpFactoryNode elementOpFactory;
+	private final String prefix;
+	private final ElementOpFactoryNode elementOpFactory;
 
 	@Override
 	public ElementWithPrefixNode clone() {

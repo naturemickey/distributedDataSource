@@ -1,8 +1,8 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class SelectNode extends SQLSyntaxTreeNode implements Cloneable {
-	private SelectInner selectInner;
-	private SelectUnionSuffix suffix;
+	private final SelectInner selectInner;
+	private final SelectUnionSuffix suffix;
 
 	@Override
 	public SelectNode clone() {
@@ -13,6 +13,7 @@ public class SelectNode extends SQLSyntaxTreeNode implements Cloneable {
 
 	public SelectNode(SelectInner selectInner) {
 		this.selectInner = selectInner;
+		this.suffix = null;
 
 		super.setParent(selectInner);
 	}
@@ -39,16 +40,7 @@ public class SelectNode extends SQLSyntaxTreeNode implements Cloneable {
 		return selectInner;
 	}
 
-	public void setSelectInner(SelectInner selectInner) {
-		this.selectInner = selectInner;
-	}
-
 	public SelectUnionSuffix getSuffix() {
 		return suffix;
 	}
-
-	public void setSuffix(SelectUnionSuffix suffix) {
-		this.suffix = suffix;
-	}
-
 }

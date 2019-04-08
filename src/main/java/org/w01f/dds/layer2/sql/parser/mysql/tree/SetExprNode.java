@@ -1,8 +1,8 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class SetExprNode extends SQLSyntaxTreeNode implements Cloneable {
-    private ElementNode left;
-    private ElementNode right;
+    private final ElementNode left;
+    private final ElementNode right;
 
     @Override
     public SetExprNode clone() {
