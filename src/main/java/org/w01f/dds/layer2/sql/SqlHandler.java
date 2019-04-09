@@ -51,6 +51,21 @@ public class SqlHandler {
 
     public ResultSet executeQuery(StatNode statNode) {
         final SelectNode selectNode = statNode.getDmlAsSelect();
+        final SelectInner selectInner = selectNode.getSelectInner();
+
+        if (selectNode.getSuffix() != null) {
+            // TODO 未来支持
+            throw new RuntimeException("not support union syntax : " + statNode);
+        }
+
+        final SelectPrefixNode prefix = selectInner.getPrefix();
+        final SelectSuffixNode suffix = selectInner.getSuffix();
+        final TablesNode tables = prefix.getTables();
+        final List<TableRelNode.TableAndJoinMod> realTables = tables.getRealTables();
+        if (realTables.size()>1) {
+            throw new RuntimeException("not support multi-table select : " + statNode);
+        }
+
         return null;
     }
 
