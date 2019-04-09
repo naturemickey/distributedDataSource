@@ -49,4 +49,23 @@ public class SelectSuffixNode extends SQLSyntaxTreeNode  implements Cloneable {
 		return sb.toString();
 	}
 
+	public GbobExprsNode getOrderByExprs() {
+		return orderByExprs;
+	}
+
+	public IntPlaceHolderNode getOffset() {
+		return offset;
+	}
+
+	public IntPlaceHolderNode getRowCount() {
+		return rowCount;
+	}
+
+	public String getLock() {
+		return lock;
+	}
+
+	public boolean isHasOffsetWord() {
+		return hasOffsetWord;
+	}
 }

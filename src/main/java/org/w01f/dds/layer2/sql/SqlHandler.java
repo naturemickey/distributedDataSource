@@ -54,16 +54,47 @@ public class SqlHandler {
         final SelectInner selectInner = selectNode.getSelectInner();
 
         if (selectNode.getSuffix() != null) {
-            // TODO 未来支持
+            // TODO 未来支持 union all，不考虑支持 union distinct
             throw new RuntimeException("not support union syntax : " + statNode);
         }
 
         final SelectPrefixNode prefix = selectInner.getPrefix();
         final SelectSuffixNode suffix = selectInner.getSuffix();
+
         final TablesNode tables = prefix.getTables();
+        final SelectExprsNode selectExprs = prefix.getSelectExprs();
+        final WhereConditionNode where = prefix.getWhere();
+        final GbobExprsNode groupByExprs = prefix.getGroupByExprs();
+        final boolean distinct = prefix.isDistinct();
+        final WhereConditionNode having = prefix.getHaving();
+
+        final IntPlaceHolderNode rowCount = suffix.getRowCount();
+        final String lock = suffix.getLock();
+        final IntPlaceHolderNode offset = suffix.getOffset();
+        final GbobExprsNode orderByExprs = suffix.getOrderByExprs();
+        // final boolean hasOffsetWord = suffix.isHasOffsetWord();
+
         final List<TableRelNode.TableAndJoinMod> realTables = tables.getRealTables();
-        if (realTables.size()>1) {
+        if (realTables.size() > 1) {
             throw new RuntimeException("not support multi-table select : " + statNode);
+        }
+        if (groupByExprs != null) { // TODO 未来可提供有限的支持：对有索引的列进行group操作。
+            throw new RuntimeException("not support 'group by' syntax : " + statNode);
+        }
+        if (orderByExprs != null) { // TODO 未来可考虑支持。
+            throw new RuntimeException("not support 'order by' syntax : " + statNode);
+        }
+        if (distinct) {
+            throw new RuntimeException("not support distinct word : " + statNode);
+        }
+        if (having != null) {
+            throw new RuntimeException("not support 'having' syntax : " + statNode);
+        }
+        if (offset != null || rowCount != null) { // TODO 未来可考虑支持
+            throw new RuntimeException("not support 'limit' syntax : " + statNode);
+        }
+        if (lock != null) {
+            throw new RuntimeException("not support '" + lock + "' syntax : " + statNode);
         }
 
         return null;
