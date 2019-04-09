@@ -78,16 +78,16 @@ public class SqlHandler {
         if (realTables.size() > 1) {
             throw new RuntimeException("not support multi-table select : " + statNode);
         }
-        if (groupByExprs != null) { // TODO 未来可提供有限的支持：对有索引的列进行group操作。
+        if (groupByExprs != null) { // TODO 未来可考虑提供有限的支持：对有索引的列进行group操作。
             throw new RuntimeException("not support 'group by' syntax : " + statNode);
         }
-        if (orderByExprs != null) { // TODO 未来可考虑支持。
+        if (orderByExprs != null) { // TODO 未来可考虑提供有限的支持：对有索引的列进行order操作。
             throw new RuntimeException("not support 'order by' syntax : " + statNode);
         }
         if (distinct) {
             throw new RuntimeException("not support distinct word : " + statNode);
         }
-        if (having != null) {
+        if (having != null) { // TODO 未来可考虑提供有限的支持：对有索引的列进行having操作。
             throw new RuntimeException("not support 'having' syntax : " + statNode);
         }
         if (offset != null || rowCount != null) { // TODO 未来可考虑支持
