@@ -4,12 +4,14 @@ import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 
 import java.sql.ResultSet;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public interface IDataAccess {
 //    void insert(String tableName, Map<String, Object> valueMap);
 
     void execute(StatNode statNode, int dbNo);
     int executeUpdate(StatNode statNode, int dbNo);
+    Supplier<ResultSet> executeQuery(StatNode statNode, int dbNo);
 
 //    int delete(String tableName, String[] ids);
 //

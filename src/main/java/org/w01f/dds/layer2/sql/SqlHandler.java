@@ -12,10 +12,12 @@ import org.w01f.dds.layer3.indexapi.IIndexAccess;
 import org.w01f.dds.layer4.data.DataAccess;
 import org.w01f.dds.layer4.index.IndexAccess;
 import org.w01f.dds.layer4.index.SQLBuildUtils;
+import org.w01f.dds.layer5.ResultSetProxy;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class SqlHandler {
@@ -63,7 +65,7 @@ public class SqlHandler {
 
         final TablesNode tables = prefix.getTables();
         final SelectExprsNode selectExprs = prefix.getSelectExprs();
-        final WhereConditionNode where = prefix.getWhere();
+        final WhereConditionNode whereCondition = prefix.getWhere();
         final GbobExprsNode groupByExprs = prefix.getGroupByExprs();
         final boolean distinct = prefix.isDistinct();
         final WhereConditionNode having = prefix.getHaving();
@@ -96,12 +98,82 @@ public class SqlHandler {
         if (lock != null) {
             throw new RuntimeException("not support '" + lock + "' syntax : " + statNode);
         }
+        final TableNameAndAliasNode tableNameAndAlias = realTables.get(0).getTableNameAndAliasNode();
+        final String tableName = tableNameAndAlias.getName();
 
-        return null;
+        final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(whereCondition);
+        final List<Index> indices = IndexConfigUtils.getTableConfig(tableName).getIndices();
+
+        for (List<ExpressionNode> andWhere : wheres) {
+            final Index index = SQLbreakUtil.chooseIndex(andWhere, indices);
+
+            if (index == null) {
+                final List<String> ids = SQLbreakUtil.getIds(andWhere);
+                if (ids.isEmpty()) {
+                    noIndexThrow(tableName, andWhere);
+                } else {
+                    Set<Integer> dbNos = ids.stream().map(IDGenerator::getDbNo).collect(Collectors.toSet());
+
+                    final List<Supplier<ResultSet>> suppliers = dbNos.stream().map(dbNo -> this.dataAccess.executeQuery(statNode, dbNo)).collect(Collectors.toList());
+
+                    return new ResultSetProxy(suppliers);
+                }
+            } else {
+                final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
+                final List<ExpressionNode> newIndexWhereNodes = new ArrayList<>();
+
+                for (int i = 0; i < index.getColumns().length; i++) {
+                    final Column column = index.getColumns()[i];
+
+                    final ExpressionNode expression = getExpression(column.getName(), andWhere, i);
+                    if (expression != null) {
+                        newIndexWhereNodes.add(expression);
+                    }
+                }
+
+                newDeleteWhereNodes.addAll(andWhere);
+
+                final StatNode selectIndexNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes);
+                ResultSet idRs = indexAccess.query(selectIndexNode);
+
+                try {
+                    // dbNo -> id set
+                    Map<Integer, Set<String>> idMap = getIntegerSetMap(idRs);
+
+                    List<Supplier<ResultSet>> results = new ArrayList<>(idMap.size());
+
+                    for (Map.Entry<Integer, Set<String>> entry : idMap.entrySet()) {
+                        final Integer dbNo = entry.getKey();
+                        final Set<String> idSet = entry.getValue();
+
+                        final ElementTextNode idElement = new ElementTextNode("id");
+                        final ValueListNode valueListNode = new ValueListNode(idSet.stream().map(ElementPlaceholderNode::new).collect(Collectors.toList()));
+                        final ExpressionInValuesNode expressionInValuesNode = new ExpressionInValuesNode(idElement, valueListNode);
+
+
+                        WhereConditionOpNode whereConditionNode = new WhereConditionOpNode(expressionInValuesNode);
+                        for (ExpressionNode whereNode : newDeleteWhereNodes) {
+                            whereConditionNode = new WhereConditionOpNode(whereNode, "and", whereConditionNode);
+                        }
+
+                        final SelectPrefixNode newSelectPrefixNode = new SelectPrefixNode(selectExprs, new TablesNode(tableNameAndAlias), whereConditionNode);
+                        final SelectInner newSelectInner = new SelectInner(newSelectPrefixNode);
+                        final SelectNode newSelectNode = new SelectNode(newSelectInner);
+                        final StatNode newStatNode = new StatNode(newSelectNode);
+
+                        results.add(this.dataAccess.executeQuery(newStatNode, dbNo));
+                    }
+
+                    return new ResultSetProxy(results);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        throw new RuntimeException("impossible to run until here.");
     }
 
     private int handleUpdate(StatNode statNode) {
-        // this method just like 'handleDelete' method. very very like.
         UpdateNode un = statNode.getDmlAsUpdate();
 
         if (un instanceof UpdateMultipleTableNode) {

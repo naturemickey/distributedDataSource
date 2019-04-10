@@ -2,35 +2,40 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class SelectInner extends SQLSyntaxTreeNode implements Cloneable {
 
-	private final SelectPrefixNode prefix;
-	private final SelectSuffixNode suffix;
+    private final SelectPrefixNode prefix;
+    private final SelectSuffixNode suffix;
 
-	@Override public SelectInner clone() {
-		SelectPrefixNode selectPrefixNode = prefix == null ? null : prefix.clone();
-		SelectSuffixNode selectSuffixNode = suffix == null ? null : suffix.clone();
-		return new SelectInner(selectPrefixNode, selectSuffixNode);
-	}
+    @Override
+    public SelectInner clone() {
+        SelectPrefixNode selectPrefixNode = prefix == null ? null : prefix.clone();
+        SelectSuffixNode selectSuffixNode = suffix == null ? null : suffix.clone();
+        return new SelectInner(selectPrefixNode, selectSuffixNode);
+    }
 
-	public SelectInner(SelectPrefixNode prefix, SelectSuffixNode suffix) {
-		this.prefix = prefix;
-		this.suffix = suffix;
+    public SelectInner(SelectPrefixNode prefix) {
+        this(prefix, null);
+    }
 
-		setParent(prefix, suffix);
-	}
+    public SelectInner(SelectPrefixNode prefix, SelectSuffixNode suffix) {
+        this.prefix = prefix;
+        this.suffix = suffix;
 
-	@Override
-	public String toString() {
-		String suffixStr = suffix == null ? "" : suffix.toString();
-		if (suffixStr.length() > 0)
-			return prefix.toString() + suffixStr;
-		return prefix.toString();
-	}
+        setParent(prefix, suffix);
+    }
 
-	public SelectPrefixNode getPrefix() {
-		return prefix;
-	}
+    @Override
+    public String toString() {
+        String suffixStr = suffix == null ? "" : suffix.toString();
+        if (suffixStr.length() > 0)
+            return prefix.toString() + suffixStr;
+        return prefix.toString();
+    }
 
-	public SelectSuffixNode getSuffix() {
-		return suffix;
-	}
+    public SelectPrefixNode getPrefix() {
+        return prefix;
+    }
+
+    public SelectSuffixNode getSuffix() {
+        return suffix;
+    }
 }

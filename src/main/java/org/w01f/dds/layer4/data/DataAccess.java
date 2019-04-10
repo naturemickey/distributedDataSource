@@ -7,7 +7,9 @@ import org.w01f.dds.layer5.DataSourceProxy;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.function.Supplier;
 
 public class DataAccess implements IDataAccess {
 
@@ -25,9 +27,8 @@ public class DataAccess implements IDataAccess {
 
     @Override
     public int executeUpdate(StatNode statNode, int dbNo) {
-        // TODO : deal with dbNo.
         try {
-            Connection connection = dataSourceProxy.getConnection(0);
+            Connection connection = dataSourceProxy.getConnection(dbNo);
             try (PreparedStatement preparedStatement = connection.prepareStatement(statNode.toString());) {
                 for (int i = 0; i < statNode.getPlaceholderNodes().size(); i++) {
                     final ElementPlaceholderNode node = statNode.getPlaceholderNodes().get(i);
@@ -40,7 +41,26 @@ public class DataAccess implements IDataAccess {
             throw new RuntimeException(e);
         }
     }
-//    @Override
+
+    @Override
+    public Supplier<ResultSet> executeQuery(StatNode statNode, int dbNo) {
+        return () -> {
+            try {
+                Connection connection = dataSourceProxy.getConnection(dbNo);
+                try (PreparedStatement preparedStatement = connection.prepareStatement(statNode.toString());) {
+                    for (int i = 0; i < statNode.getPlaceholderNodes().size(); i++) {
+                        final ElementPlaceholderNode node = statNode.getPlaceholderNodes().get(i);
+
+                        node.getParam().putValue(preparedStatement, i + 1);
+                    }
+                    return preparedStatement.executeQuery();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        };
+    }
+    //    @Override
 //    public void insert(String tableName, Map<String, Object> valueMap) {
 //        String id = (String) valueMap.get("id");
 //        if (id == null) {
