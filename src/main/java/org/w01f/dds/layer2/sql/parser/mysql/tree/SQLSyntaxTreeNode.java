@@ -6,11 +6,11 @@ import java.util.List;
 public abstract class SQLSyntaxTreeNode implements Cloneable {
 
     protected SQLSyntaxTreeNode parent;
-    protected final List<SQLSyntaxTreeNode> children= new ArrayList<>();
+    protected final List<SQLSyntaxTreeNode> children = new ArrayList<>();
 
     protected List<ElementPlaceholderNode> placeholderNodes = null;
 
-    public List<ElementPlaceholderNode> getPlaceholderNodes() {
+    public final List<ElementPlaceholderNode> getPlaceholderNodes() {
         if (placeholderNodes == null) {
             placeholderNodes = new ArrayList<>();
 
@@ -18,7 +18,7 @@ public abstract class SQLSyntaxTreeNode implements Cloneable {
                 if (node != null) {
                     if (node instanceof ElementPlaceholderNode) {
                         placeholderNodes.add((ElementPlaceholderNode) node);
-                    }else {
+                    } else {
                         placeholderNodes.addAll(node.getPlaceholderNodes());
                     }
                 }
@@ -36,7 +36,7 @@ public abstract class SQLSyntaxTreeNode implements Cloneable {
         }
     }
 
-    public void setParent(SQLSyntaxTreeNode... nodes) {
+    public final void setParent(SQLSyntaxTreeNode... nodes) {
         for (SQLSyntaxTreeNode node : nodes) {
             if (node != null) {
                 node.parent = this;
@@ -45,7 +45,7 @@ public abstract class SQLSyntaxTreeNode implements Cloneable {
         }
     }
 
-    public <T extends SQLSyntaxTreeNode> void setParent(List<T> nodes) {
+    public final <T extends SQLSyntaxTreeNode> void setParent(List<T> nodes) {
         if (nodes == null) {
             return;
         }

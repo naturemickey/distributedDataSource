@@ -6,10 +6,7 @@ public class SelectElementNode extends SQLSyntaxTreeNode {
 
 
     public SelectElementNode(ElementNode element) {
-        this.element = element;
-        this.alias = null;
-
-        super.setParent(element);
+        this(element, null);
     }
 
     public SelectElementNode(ElementNode element, String alias) {
