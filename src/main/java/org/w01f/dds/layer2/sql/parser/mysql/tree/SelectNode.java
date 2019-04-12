@@ -11,6 +11,10 @@ public class SelectNode extends SQLSyntaxTreeNode implements Cloneable {
 		return new SelectNode(selectInner2, selectUnionSuffix);
 	}
 
+	public SelectNode(TableNameAndAliasNode table, WhereConditionNode where){
+		this(new SelectInner(table, where));
+	}
+
 	public SelectNode(SelectInner selectInner) {
 		this(selectInner, null);
 	}

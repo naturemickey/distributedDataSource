@@ -1,6 +1,7 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,10 @@ public class SelectExprsNode extends SQLSyntaxTreeNode implements Cloneable {
             }
         }
         return new SelectExprsNode(nodeList);
+    }
+
+    public SelectExprsNode(SelectElementNode... nodes) {
+        this(Arrays.asList(nodes));
     }
 
     public SelectExprsNode(List<SelectElementNode> nodes) {

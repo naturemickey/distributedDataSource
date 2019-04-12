@@ -268,6 +268,8 @@ public class SqlHandler {
             throw new RuntimeException("delete sentence not support limit word right now : " + statNode.toString());
         }
 
+        
+
         final String tableName = tableNameAndAlias.getName();
         final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(whereCondition);
         final List<Index> indices = IndexConfigUtils.getTableConfig(tableName).getIndices();

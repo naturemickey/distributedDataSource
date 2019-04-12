@@ -12,6 +12,10 @@ public class SelectInner extends SQLSyntaxTreeNode implements Cloneable {
         return new SelectInner(selectPrefixNode, selectSuffixNode);
     }
 
+    public SelectInner(TableNameAndAliasNode table, WhereConditionNode where) {
+        this(new SelectPrefixNode(table, where));
+    }
+
     public SelectInner(SelectPrefixNode prefix) {
         this(prefix, null);
     }

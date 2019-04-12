@@ -19,6 +19,10 @@ public class SelectPrefixNode extends SQLSyntaxTreeNode implements Cloneable {
         return new SelectPrefixNode(distinct, selectExprsNode, tablesNode, whereNode, gbobExprsNode, havingNode);
     }
 
+    public SelectPrefixNode(TableNameAndAliasNode table, WhereConditionNode where) {
+        this(new SelectExprsNode(new SelectElementNode(new ElementTextNode("*"))), new TablesNode(table), where);
+    }
+
     public SelectPrefixNode(SelectExprsNode selectExprs, TablesNode tables, WhereConditionNode where) {
         this(false, selectExprs, tables, where, null, null);
     }
