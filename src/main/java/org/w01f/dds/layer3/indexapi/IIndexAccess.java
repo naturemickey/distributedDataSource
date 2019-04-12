@@ -21,4 +21,6 @@ public interface IIndexAccess {
 
     ResultSet query(StatNode statNode);
 
+    int executeUpdate(String sql, Object... params);
+
 }

@@ -1,10 +1,10 @@
 package org.w01f.dds.layer4.index;
 
 import org.w01f.dds.layer1.dsproxy.param.Param;
-import org.w01f.dds.layer1.id.IDGenerator;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.ElementPlaceholderNode;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
+import org.w01f.dds.layer2.sql.utils.SQLBuildUtils;
 import org.w01f.dds.layer3.indexapi.IIndexAccess;
 import org.w01f.dds.layer5.DataSourceProxy;
 
@@ -38,7 +38,7 @@ public class IndexAccess implements IIndexAccess {
             String insertIndex = SQLBuildUtils.sql4InsertIndex(index);
 
             try {
-               // Connection connection = dataSourceProxy.getConnection(dbNo);
+                // Connection connection = dataSourceProxy.getConnection(dbNo);
                 Connection connection = dataSourceProxy.getConnection(0);
 
 //                for (String sql : tableCreate) {
@@ -68,7 +68,7 @@ public class IndexAccess implements IIndexAccess {
 
     @Override
     public ResultSet query(StatNode statNode) {
-        try {
+        try {// TODO deal dbNo.
             Connection connection = dataSourceProxy.getConnection(0);
             final String sql = statNode.toString();
 
@@ -81,6 +81,22 @@ public class IndexAccess implements IIndexAccess {
                 return preparedStatement.executeQuery();
             }
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public int executeUpdate(String sql, Object... params) {
+        try {
+            final Connection connection = this.dataSourceProxy.getConnection(0);
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                for (int i = 0; i < params.length; i++) {
+                    preparedStatement.setObject(i + 1, params[i]);
+                }
+                return preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

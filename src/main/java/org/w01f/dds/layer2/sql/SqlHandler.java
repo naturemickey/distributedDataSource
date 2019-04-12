@@ -11,7 +11,7 @@ import org.w01f.dds.layer3.dataapi.IDataAccess;
 import org.w01f.dds.layer3.indexapi.IIndexAccess;
 import org.w01f.dds.layer4.data.DataAccess;
 import org.w01f.dds.layer4.index.IndexAccess;
-import org.w01f.dds.layer4.index.SQLBuildUtils;
+import org.w01f.dds.layer2.sql.utils.SQLBuildUtils;
 import org.w01f.dds.layer5.ResultSetProxy;
 
 import java.sql.ResultSet;
@@ -256,6 +256,24 @@ public class SqlHandler {
         return sum;
     }
 
+    private void deleteIndex(ResultSet resultSet, List<Index> indices) {
+        try {
+            while (resultSet.next()) {
+                for (Index index : indices) {
+                    final String id = resultSet.getString("id");
+                    final String indexName = index.getName();
+                    final String columnName = index.getColumns()[0].getName();
+                    final String value = resultSet.getString(columnName);
+
+                    final String sql = SQLBuildUtils.sql4DeleteIndex(index);
+                    this.indexAccess.executeUpdate(sql, id, indexName);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private int handleDelete(StatNode statNode) {
         // this method just like 'handleUpdate' method. very very like.
         final DeleteNode deleteNode = statNode.getDmlAsDelete();
@@ -267,12 +285,15 @@ public class SqlHandler {
         if (rowCount != null) {
             throw new RuntimeException("delete sentence not support limit word right now : " + statNode.toString());
         }
-
-        
-
         final String tableName = tableNameAndAlias.getName();
-        final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(whereCondition);
         final List<Index> indices = IndexConfigUtils.getTableConfig(tableName).getIndices();
+
+        final StatNode select = new StatNode(new SelectNode(tableNameAndAlias, whereCondition));
+        final ResultSet resultSet = this.executeQuery(select);
+
+        this.deleteIndex(resultSet, indices);
+
+        final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(whereCondition);
 
         int sum = 0;
         for (List<ExpressionNode> andWhere : wheres) {

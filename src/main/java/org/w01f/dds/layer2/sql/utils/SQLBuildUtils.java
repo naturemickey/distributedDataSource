@@ -1,4 +1,4 @@
-package org.w01f.dds.layer4.index;
+package org.w01f.dds.layer2.sql.utils;
 
 import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
@@ -73,15 +73,15 @@ public class SQLBuildUtils {
         sb.append("?, ?)");
         return sb.toString();
     }
-//
-//    public static String sql4DeleteIndex(Index index) {
-//        String tableName = buildIndexTableName(index);
-//        StringBuilder sb = new StringBuilder("delete from ").append(tableName).append(" where id = ? and index_name = ?");
+
+    public static String sql4DeleteIndex(Index index) {
+        String tableName = buildIndexTableName(index);
+        StringBuilder sb = new StringBuilder("delete from ").append(tableName).append(" where id = ? and index_name = ?");
 //        for (int i = 0, len = index.getColumns().length; i < len; i++) {
 //            sb.append(" and v").append(i).append(" = ?");
 //        }
-//        return sb.toString();
-//    }
+        return sb.toString();
+    }
 //
 //    public static String sql4QueryIndex(Index index) {
 //        String tableName = buildIndexTableName(index);

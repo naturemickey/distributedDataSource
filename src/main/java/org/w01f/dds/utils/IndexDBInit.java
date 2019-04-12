@@ -4,7 +4,7 @@ import org.w01f.dds.layer2.index.IndexConfigUtils;
 import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.index.config.Table;
-import org.w01f.dds.layer4.index.SQLBuildUtils;
+import org.w01f.dds.layer2.sql.utils.SQLBuildUtils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
