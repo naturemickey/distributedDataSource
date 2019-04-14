@@ -86,7 +86,46 @@ public class IndexAccess implements IIndexAccess {
     }
 
     @Override
-    public int executeUpdate(String sql, Object... params) {
+    public void insert(Index index, String id, Object... params) {
+        final String sql = SQLBuildUtils.sql4InsertIndex(index);
+        final String indexName = index.getName();
+        try {
+            final Connection connection = this.dataSourceProxy.getConnection(0);
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setObject(1, indexName);
+                for (int i = 0; i < params.length; i++) {
+                    preparedStatement.setObject(i + 2, params[i]);
+                }
+                preparedStatement.setString(2 + params.length, id);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void delete(Index index, String id, Object... params) {
+        final String sql = SQLBuildUtils.sql4DeleteIndex(index);
+        final String indexName = index.getName();
+        try {
+            final Connection connection = this.dataSourceProxy.getConnection(0);
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setObject(1, indexName);
+                preparedStatement.setString(2, id);
+                for (int i = 0; i < params.length; i++) {
+                    preparedStatement.setObject(i + 3, params[i]);
+                }
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private int executeUpdate(String sql, Object... params) {
         try {
             final Connection connection = this.dataSourceProxy.getConnection(0);
 

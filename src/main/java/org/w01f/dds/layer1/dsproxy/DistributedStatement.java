@@ -27,18 +27,19 @@ public class DistributedStatement implements InvocationHandler, Statement {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // System.out.println(method);
         if (method.getName().startsWith("set")) {
-            params.addParam((Integer) args[0], (p, i) -> {
-                Object[] params = new Object[args.length];
-                params[0] = i;
-                for (int x = 1; x < args.length; ++x) {
-                    params[x] = args[x];
-                }
-                try {
-                    method.invoke(p, params);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    throw new RuntimeException(e);
-                }
-            });
+            params.addParam(((Integer) args[0]), method, args);
+//            params.addParam((Integer) args[0], (p, i) -> {
+//                Object[] params = new Object[args.length];
+//                params[0] = i;
+//                for (int x = 1; x < args.length; ++x) {
+//                    params[x] = args[x];
+//                }
+//                try {
+//                    method.invoke(p, params);
+//                } catch (IllegalAccessException | InvocationTargetException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            });
             return null;
         }
         return method.invoke(this, args);

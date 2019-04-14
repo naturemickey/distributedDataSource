@@ -19,8 +19,11 @@ public interface IIndexAccess {
 
     void insert(Map<Index, Param[]> indexMap);
 
+    void insert(Index index, String id, Object... params);
+
+    void delete(Index index, String id, Object... params);
+
     ResultSet query(StatNode statNode);
 
-    int executeUpdate(String sql, Object... params);
 
 }

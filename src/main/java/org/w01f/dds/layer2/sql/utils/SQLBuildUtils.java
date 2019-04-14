@@ -77,9 +77,9 @@ public class SQLBuildUtils {
     public static String sql4DeleteIndex(Index index) {
         String tableName = buildIndexTableName(index);
         StringBuilder sb = new StringBuilder("delete from ").append(tableName).append(" where id = ? and index_name = ?");
-//        for (int i = 0, len = index.getColumns().length; i < len; i++) {
-//            sb.append(" and v").append(i).append(" = ?");
-//        }
+        for (int i = 0, len = index.getColumns().length; i < len; i++) {
+            sb.append(" and v").append(i).append(" = ?");
+        }
         return sb.toString();
     }
 //
