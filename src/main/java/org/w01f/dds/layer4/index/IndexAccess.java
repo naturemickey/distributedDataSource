@@ -113,8 +113,8 @@ public class IndexAccess implements IIndexAccess {
             final Connection connection = this.dataSourceProxy.getConnection(0);
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setObject(1, indexName);
-                preparedStatement.setString(2, id);
+                preparedStatement.setString(1, id);
+                preparedStatement.setObject(2, indexName);
                 for (int i = 0; i < params.length; i++) {
                     preparedStatement.setObject(i + 3, params[i]);
                 }
