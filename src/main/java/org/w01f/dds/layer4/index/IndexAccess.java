@@ -3,6 +3,7 @@ package org.w01f.dds.layer4.index;
 import org.w01f.dds.layer1.dsproxy.param.Param;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.ElementPlaceholderNode;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.ExpressionNode;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 import org.w01f.dds.layer2.sql.utils.SQLBuildUtils;
 import org.w01f.dds.layer3.indexapi.IIndexAccess;
@@ -29,17 +30,22 @@ public class IndexAccess implements IIndexAccess {
             Index index = entry.getKey();
             Param[] params = entry.getValue();
 
-            Param idParam = params[params.length - 1];
-            String id = idParam.getValue()[0].toString();
+            insert(index, params);
+        }
+    }
 
-            // int dbNo = IDGenerator.getDbNo(id);
+    private void insert(Index index, Param[] params) {
+        // Param idParam = params[params.length - 1];
+        // String id = idParam.getValue()[1].toString();
 
-            List<String> tableCreate = SQLBuildUtils.sql4CreateIndexTable(index);
-            String insertIndex = SQLBuildUtils.sql4InsertIndex(index);
+        // int dbNo = IDGenerator.getDbNo(id);
 
-            try {
-                // Connection connection = dataSourceProxy.getConnection(dbNo);
-                Connection connection = dataSourceProxy.getConnection(0);
+        // List<String> tableCreate = SQLBuildUtils.sql4CreateIndexTable(index);
+        String insertSQL = SQLBuildUtils.sql4InsertIndex(index);
+
+        try {
+            // Connection connection = dataSourceProxy.getConnection(dbNo);
+            Connection connection = dataSourceProxy.getConnection(0);
 
 //                for (String sql : tableCreate) {
 //                    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -47,27 +53,22 @@ public class IndexAccess implements IIndexAccess {
 //                    }
 //                }
 
-                try (PreparedStatement preparedStatement = connection.prepareStatement(insertIndex)) {
-
-                    preparedStatement.setString(1, index.getName());
-
-                    for (int i = 0; i < params.length; i++) {
-                        Param param = params[i];
-                        param.putValue(preparedStatement, i + 2);
-                    }
-
-                    preparedStatement.executeUpdate();
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+                preparedStatement.setString(1, index.getName());
+                for (int i = 0; i < params.length; i++) {
+                    params[i].putValue(preparedStatement, i + 2);
                 }
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+                preparedStatement.executeUpdate();
             }
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Override
-    public ResultSet query(StatNode statNode) {
+    public ResultSet query(Index index, List<ExpressionNode> newIndexWhereNodes) {
+        final StatNode statNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes);
         try {// TODO deal dbNo.
             Connection connection = dataSourceProxy.getConnection(0);
             final String sql = statNode.toString();
@@ -125,18 +126,4 @@ public class IndexAccess implements IIndexAccess {
         }
     }
 
-    private int executeUpdate(String sql, Object... params) {
-        try {
-            final Connection connection = this.dataSourceProxy.getConnection(0);
-
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                for (int i = 0; i < params.length; i++) {
-                    preparedStatement.setObject(i + 1, params[i]);
-                }
-                return preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

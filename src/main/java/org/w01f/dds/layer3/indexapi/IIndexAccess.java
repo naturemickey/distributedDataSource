@@ -2,9 +2,11 @@ package org.w01f.dds.layer3.indexapi;
 
 import org.w01f.dds.layer1.dsproxy.param.Param;
 import org.w01f.dds.layer2.index.config.Index;
+import org.w01f.dds.layer2.sql.parser.mysql.tree.ExpressionNode;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Map;
 
 public interface IIndexAccess {
@@ -23,7 +25,7 @@ public interface IIndexAccess {
 
     void delete(Index index, String id, Object... params);
 
-    ResultSet query(StatNode statNode);
+    ResultSet query(Index index, List<ExpressionNode> newIndexWhereNodes);
 
 
 }
