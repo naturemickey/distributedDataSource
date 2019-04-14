@@ -32,4 +32,7 @@ public class SetExprsNode extends SQLSyntaxTreeNode  implements Cloneable {
 		return setExprs.stream().map(se -> se.toString()).collect(Collectors.joining(", "));
 	}
 
+	public List<SetExprNode> getSetExprs() {
+		return setExprs;
+	}
 }
