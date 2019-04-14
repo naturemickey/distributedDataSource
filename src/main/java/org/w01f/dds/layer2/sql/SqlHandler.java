@@ -6,7 +6,6 @@ import org.w01f.dds.layer2.index.IndexConfigUtils;
 import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.*;
-import org.w01f.dds.layer2.sql.utils.SQLBuildUtils;
 import org.w01f.dds.layer2.sql.utils.SQLbreakUtil;
 import org.w01f.dds.layer3.dataapi.IDataAccess;
 import org.w01f.dds.layer3.indexapi.IIndexAccess;
@@ -29,6 +28,21 @@ public class SqlHandler {
 
     public DatabaseMetaData getMetaData() throws SQLException {
         return this.dataAccess.getMetaData();
+    }
+
+    public void commit() throws SQLException {
+        dataAccess.commit();
+        indexAccess.commit();
+    }
+
+    public void rollback() throws SQLException {
+        indexAccess.rollback();
+        dataAccess.rollback();
+    }
+
+    public void close() throws SQLException {
+        dataAccess.close();
+        indexAccess.close();
     }
 
     public boolean execute(StatNode statNode) {

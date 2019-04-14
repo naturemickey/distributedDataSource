@@ -126,4 +126,18 @@ public class IndexAccess implements IIndexAccess {
         }
     }
 
+    @Override
+    public void commit() throws SQLException {
+        this.dataSourceProxy.commitAll();
+    }
+
+    @Override
+    public void rollback() throws SQLException {
+        this.dataSourceProxy.rollbackAll();
+    }
+
+    @Override
+    public void close() throws SQLException {
+
+    }
 }

@@ -18,6 +18,12 @@ public interface IDataAccess {
 
     DatabaseMetaData getMetaData() throws SQLException;
 
+    void commit() throws SQLException;
+
+    void rollback() throws SQLException;
+
+    void close() throws SQLException;
+
 //    int delete(String tableName, String[] ids);
 //
 //    int delete(String tableName, String id);

@@ -13,14 +13,13 @@ public class DistributedConnection implements Connection {
 
     @Override
     public boolean getAutoCommit() throws SQLException {
-        // TODO should be always false
+        // should be always false
         return false;
     }
 
     @Override
     public void setAutoCommit(boolean autoCommit) throws SQLException {
-        // TODO should be always false
-        // this.connection.setAutoCommit(autoCommit);
+        // should be always false
     }
 
     @Override
@@ -50,17 +49,17 @@ public class DistributedConnection implements Connection {
 
     @Override
     public void commit() throws SQLException {
-        // TODO connection.commit();
+        sqlHandler.commit();
     }
 
     @Override
     public void rollback() throws SQLException {
-        // TODO connection.rollback();
+        sqlHandler.rollback();
     }
 
     @Override
     public void close() throws SQLException {
-        // TODO connection.close();
+        sqlHandler.close();
     }
 
     @Override

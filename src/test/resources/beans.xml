@@ -16,16 +16,14 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
-    <!-- 配置事务管理器 -->
     <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
     <tx:advice id="advice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="*" propagation="REQUIRED"/><!-- *是对所有方法都加 -->
+            <tx:method name="*" propagation="REQUIRED"/>
         </tx:attributes>
     </tx:advice>
-    <!-- 用切点把事务切进去 -->
     <aop:config>
         <aop:pointcut expression="execution(* org.w01f.dds.service.biz..*.*(..))" id="pointcut"/>
         <aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>

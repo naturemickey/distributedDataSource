@@ -35,13 +35,14 @@ public class DataSourceProxy {
         Connection connection = connectionMap.get(dbNo);
         if (connection == null) {
             connection = dataSource.getConnection();
+            connection.setAutoCommit(false);
             connectionMap.put(dbNo, connection);
         }
 
         return connection;
     }
 
-    void commitAll() throws SQLException {
+    public void commitAll() throws SQLException {
         Map<Integer, Connection> connections = openedConn.get();
         try {
             for (Connection connection : connections.values()) {
@@ -55,7 +56,7 @@ public class DataSourceProxy {
         }
     }
 
-    void rollbackAll() throws SQLException {
+    public void rollbackAll() throws SQLException {
         Map<Integer, Connection> connections = openedConn.get();
         try {
             for (Connection connection : connections.values()) {
