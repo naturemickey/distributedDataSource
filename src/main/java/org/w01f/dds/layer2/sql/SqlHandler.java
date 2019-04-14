@@ -14,6 +14,7 @@ import org.w01f.dds.layer4.data.DataAccess;
 import org.w01f.dds.layer4.index.IndexAccess;
 import org.w01f.dds.layer5.ResultSetProxy;
 
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -26,6 +27,15 @@ public class SqlHandler {
     private IIndexAccess indexAccess = new IndexAccess();
     private IDataAccess dataAccess = new DataAccess();
 
+    public DatabaseMetaData getMetaData() throws SQLException {
+        return this.dataAccess.getMetaData();
+    }
+
+    public boolean execute(StatNode statNode) {
+        executeUpdate(statNode);
+        return true;
+    }
+
     public int executeUpdate(StatNode statNode) {
         if (statNode.isInsert()) {
             return handleInsert(statNode);
@@ -36,20 +46,6 @@ public class SqlHandler {
         } else {
             throw new RuntimeException("it is impossible");
         }
-    }
-
-    private int handleInsert(StatNode statNode) {
-        InsertNode insertNode = statNode.getDmlAsInsert();
-        Map<Index, Param[]> indexMap = SQLbreakUtil.parseInsertIndex(insertNode);
-
-        this.indexAccess.insert(indexMap);
-
-        final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
-        final List<String> names = insertNode.getColumnNames().getNames();
-        final ElementPlaceholderNode idHolder = placeholderNodes.get(names.indexOf("id"));
-        final String id = idHolder.getParam().getValue()[1].toString();
-
-        return dataAccess.executeUpdate(statNode, IDGenerator.getDbNo(id));
     }
 
     public ResultSet executeQuery(StatNode statNode) {
@@ -71,10 +67,10 @@ public class SqlHandler {
         final boolean distinct = prefix.isDistinct();
         final WhereConditionNode having = prefix.getHaving();
 
-        final IntPlaceHolderNode rowCount = suffix.getRowCount();
-        final String lock = suffix.getLock();
-        final IntPlaceHolderNode offset = suffix.getOffset();
-        final GbobExprsNode orderByExprs = suffix.getOrderByExprs();
+        final IntPlaceHolderNode rowCount = suffix == null ? null : suffix.getRowCount();
+        final String lock = suffix == null ? null : suffix.getLock();
+        final IntPlaceHolderNode offset = suffix == null ? null : suffix.getOffset();
+        final GbobExprsNode orderByExprs = suffix == null ? null : suffix.getOrderByExprs();
         // final boolean hasOffsetWord = suffix.isHasOffsetWord();
 
         final List<TableRelNode.TableAndJoinMod> realTables = tables.getRealTables();
@@ -117,7 +113,7 @@ public class SqlHandler {
 
                     final List<Supplier<ResultSet>> suppliers = dbNos.stream().map(dbNo -> this.dataAccess.executeQuery(statNode, dbNo)).collect(Collectors.toList());
 
-                    return new ResultSetProxy(suppliers);
+                    return new ResultSetProxy(suppliers).getProxy();
                 }
             } else {
                 final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
@@ -165,13 +161,27 @@ public class SqlHandler {
                         results.add(this.dataAccess.executeQuery(newStatNode, dbNo));
                     }
 
-                    return new ResultSetProxy(results);
+                    return new ResultSetProxy(results).getProxy();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
         }
         throw new RuntimeException("impossible to run until here.");
+    }
+
+    private int handleInsert(StatNode statNode) {
+        InsertNode insertNode = statNode.getDmlAsInsert();
+        Map<Index, Param[]> indexMap = SQLbreakUtil.parseInsertIndex(insertNode);
+
+        this.indexAccess.insert(indexMap);
+
+        final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
+        final List<String> names = insertNode.getColumnNames().getNames();
+        final ElementPlaceholderNode idHolder = placeholderNodes.get(names.indexOf("id"));
+        final String id = idHolder.getParam().getValue()[1].toString();
+
+        return dataAccess.executeUpdate(statNode, IDGenerator.getDbNo(id));
     }
 
     private Map<String, Object> getRow(ResultSet resultSet) {
@@ -203,7 +213,7 @@ public class SqlHandler {
                 final Object value = ((ElementPlaceholderNode) right).getParam().getValue()[0];
 
                 map.put(name, value);
-            }else {
+            } else {
                 throw new RuntimeException("not support non-placeholder set : " + setExprsNode);
             }
         }
@@ -273,7 +283,7 @@ public class SqlHandler {
         final WhereConditionNode whereCondition = updateNode.getWhereCondition();
         final IntPlaceHolderNode rowCount = updateNode.getRowCount();
 
-        if (rowCount == null) {
+        if (rowCount != null) {
             throw new RuntimeException("update sentence not support limit word right now : " + statNode.toString());
         }
         final String tableName = tableNameAndAlias.getName();
@@ -550,10 +560,5 @@ public class SqlHandler {
             }
         }
         return null;
-    }
-
-    public boolean execute(StatNode statNode) {
-        executeUpdate(statNode);
-        return true;
     }
 }

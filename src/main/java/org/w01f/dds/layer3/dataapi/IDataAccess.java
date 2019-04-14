@@ -2,16 +2,21 @@ package org.w01f.dds.layer3.dataapi;
 
 import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.util.Map;
+import java.sql.SQLException;
 import java.util.function.Supplier;
 
 public interface IDataAccess {
 //    void insert(String tableName, Map<String, Object> valueMap);
 
     void execute(StatNode statNode, int dbNo);
+
     int executeUpdate(StatNode statNode, int dbNo);
+
     Supplier<ResultSet> executeQuery(StatNode statNode, int dbNo);
+
+    DatabaseMetaData getMetaData() throws SQLException;
 
 //    int delete(String tableName, String[] ids);
 //

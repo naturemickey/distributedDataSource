@@ -1,5 +1,7 @@
 package org.w01f.dds.layer1.dsproxy;
 
+import org.w01f.dds.layer2.sql.SqlHandler;
+
 import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
@@ -7,41 +9,37 @@ import java.util.concurrent.Executor;
 
 public class DistributedConnection implements Connection {
 
-    private Connection connection;
-
-    public DistributedConnection(Connection connection) {
-        this.connection = connection;
-    }
+    private SqlHandler sqlHandler = new SqlHandler();
 
     @Override
     public boolean getAutoCommit() throws SQLException {
         // TODO should be always false
-        return connection.getAutoCommit();
+        return false;
     }
 
     @Override
     public void setAutoCommit(boolean autoCommit) throws SQLException {
         // TODO should be always false
-        this.connection.setAutoCommit(autoCommit);
+        // this.connection.setAutoCommit(autoCommit);
     }
 
     @Override
     public Statement createStatement() throws SQLException {
         // we almost always use the prepareStatement method instead this method.
         // maybe we will support this method in further.
-        return new DistributedStatement(connection.createStatement()).getProxy();
+        return new DistributedStatement().getProxy();
         // throw new UnsupportedOperationException();
     }
 
     @Override
     public PreparedStatement prepareStatement(String sql) throws SQLException {
-        return new DistributedPreparedStatement(connection.prepareStatement(sql), sql).getProxy();
+        return new DistributedPreparedStatement(sql).getProxy();
         // return connection.prepareStatement(sql);
     }
 
     @Override
     public void setReadOnly(boolean readOnly) throws SQLException {
-        connection.setReadOnly(false);
+        // connection.setReadOnly(false);
     }
 
     @Override
@@ -52,19 +50,23 @@ public class DistributedConnection implements Connection {
 
     @Override
     public void commit() throws SQLException {
-        connection.commit();
+        // TODO connection.commit();
     }
 
     @Override
     public void rollback() throws SQLException {
-        connection.rollback();
+        // TODO connection.rollback();
     }
 
     @Override
     public void close() throws SQLException {
-        connection.close();
+        // TODO connection.close();
     }
 
+    @Override
+    public DatabaseMetaData getMetaData() throws SQLException {
+        return sqlHandler.getMetaData();
+    }
 
     // These are not support:
 
@@ -80,11 +82,6 @@ public class DistributedConnection implements Connection {
 
     @Override
     public String nativeSQL(String sql) throws SQLException {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public DatabaseMetaData getMetaData() throws SQLException {
         throw new UnsupportedOperationException();
     }
 

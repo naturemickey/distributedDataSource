@@ -1,6 +1,7 @@
 package org.w01f.dds.layer1.dsproxy;
 
 
+import org.w01f.dds.layer2.sql.SqlHandler;
 import org.w01f.dds.utils.GeneralCallPrinterBase;
 
 import javax.sql.DataSource;
@@ -11,20 +12,16 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
 public class DistributedDataSource implements DataSource {
-    private DataSource ds;
-
-    public void setDs(DataSource ds) {
-        this.ds = ds;
-    }
+    private SqlHandler sqlHandler = new SqlHandler();
 
     @Override
     public Connection getConnection() throws SQLException {
-        return new DistributedConnection(ds.getConnection());
+        return new DistributedConnection();
     }
 
     @Override
     public Connection getConnection(String username, String password) throws SQLException {
-        return new DistributedConnection(ds.getConnection(username, password));
+        return new DistributedConnection();
     }
 
     @Override

@@ -23,6 +23,11 @@ public class DataSourceProxy {
     private Map<Integer, DataSource> dsMap = new HashMap<>();
     private ThreadLocal<Map<Integer, Connection>> openedConn = new ThreadLocal<>();
 
+    public Connection getFirstConnection() throws SQLException {
+        final Integer no = dsMap.keySet().stream().findFirst().get();
+        return getConnection(no);
+    }
+
     public Connection getConnection(Integer dbNo) throws SQLException {
         DataSource dataSource = dsMap.get(dbNo);
 

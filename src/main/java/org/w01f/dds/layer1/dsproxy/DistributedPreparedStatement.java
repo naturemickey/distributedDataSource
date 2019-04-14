@@ -16,13 +16,11 @@ import java.util.List;
 
 public class DistributedPreparedStatement extends DistributedStatement implements PreparedStatement {
 
-    private PreparedStatement statement;
+    // private PreparedStatement statement;
     private StatNode statNode;
-    private SqlHandler sqlHandler = new SqlHandler();
 
-    public DistributedPreparedStatement(PreparedStatement statement, String sql) {
-        super(statement);
-        this.statement = statement;
+    public DistributedPreparedStatement(String sql) {
+        // this.statement = statement;
         this.statNode = ParserUtils.parse(sql);
     }
 
@@ -49,7 +47,7 @@ public class DistributedPreparedStatement extends DistributedStatement implement
         List<ElementPlaceholderNode> placeholderNodes = this.statNode.getPlaceholderNodes();
         for (int i = 0, len = placeholderNodes.size(); i < len; ++i) {
             ElementPlaceholderNode elementPlaceholderNode = placeholderNodes.get(i);
-            elementPlaceholderNode.getParam().putValue(statement, i + 1);
+            // elementPlaceholderNode.getParam().putValue(statement, i + 1);
         }
     }
 
@@ -57,31 +55,32 @@ public class DistributedPreparedStatement extends DistributedStatement implement
     public ResultSet executeQuery() throws SQLException {
         prepareSetter();
         setParams();
-        sqlHandler.executeQuery(this.statNode);
-        // TODO
-        return statement.executeQuery();
+        ResultSet resultSet = sqlHandler.executeQuery(this.statNode);
+
+        return resultSet;
+        // return statement.executeQuery();
     }
 
     @Override
     public int executeUpdate() throws SQLException {
         prepareSetter();
         setParams();
-        sqlHandler.executeUpdate(this.statNode);
-        return statement.executeUpdate();
+        return sqlHandler.executeUpdate(this.statNode);
+        // return statement.executeUpdate();
     }
 
     @Override
     public boolean execute() throws SQLException {
         prepareSetter();
         setParams();
-        sqlHandler.execute(this.statNode);
-        return statement.execute();
+        return sqlHandler.execute(this.statNode);
+        // return statement.execute();
     }
 
     @Override
     public void clearParameters() throws SQLException {
         clearSetter();
-        statement.clearParameters();
+        // statement.clearParameters();
     }
 
     // These methods are not supported:

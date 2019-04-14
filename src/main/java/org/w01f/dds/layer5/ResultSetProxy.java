@@ -17,7 +17,6 @@ public class ResultSetProxy implements ResultSet, InvocationHandler {
 
     private ResultSet resultSet;
     private List<Supplier<ResultSet>> suppliers;
-    private int idx = 0;
 
     private Object proxy;
 
@@ -28,26 +27,37 @@ public class ResultSetProxy implements ResultSet, InvocationHandler {
     public ResultSetProxy(List<Supplier<ResultSet>> suppliers) {
         this.suppliers = suppliers;
 
-        proxy = Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{}, this);
+        proxy = Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{ResultSet.class}, this);
     }
 
     @Override
     public boolean next() throws SQLException {
-        if (resultSet != null) {
-            boolean hasNext = resultSet.next();
-            if (!hasNext) {
-                resultSet.close();
-                resultSet = null;
-            } else {
+        setResultSet();
+
+        do {
+            if (this.resultSet == null)
+                return false;
+            if (this.resultSet.next())
                 return true;
+            nextResultSet();
+        } while (true);
+    }
+
+    private void setResultSet() throws SQLException {
+        if (resultSet == null) {
+            if (suppliers.size() > 0) {
+                resultSet = suppliers.get(0).get();
+                suppliers.remove(0);
             }
         }
-        if (idx < suppliers.size()) {
-            resultSet = suppliers.get(idx++).get();
-        }
-        if (resultSet == null)
-            return false;
-        return resultSet.next();
+    }
+
+    private void nextResultSet() {
+        if (suppliers.size() > 0) {
+            resultSet = suppliers.get(0).get();
+            suppliers.remove(0);
+        } else
+            resultSet = null;
     }
 
     @Override
@@ -62,6 +72,11 @@ public class ResultSetProxy implements ResultSet, InvocationHandler {
 
     @Override
     public void close() throws SQLException {
+        throw new SQLException("UnsupportedOperation");
+    }
+
+    @Override
+    public ResultSetMetaData getMetaData() throws SQLException {
         throw new SQLException("UnsupportedOperation");
     }
 
@@ -242,11 +257,6 @@ public class ResultSetProxy implements ResultSet, InvocationHandler {
 
     @Override
     public String getCursorName() throws SQLException {
-        throw new SQLException("UnsupportedOperation");
-    }
-
-    @Override
-    public ResultSetMetaData getMetaData() throws SQLException {
         throw new SQLException("UnsupportedOperation");
     }
 

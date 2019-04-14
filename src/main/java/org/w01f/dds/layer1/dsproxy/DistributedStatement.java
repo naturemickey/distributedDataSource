@@ -1,6 +1,7 @@
 package org.w01f.dds.layer1.dsproxy;
 
 import org.w01f.dds.layer1.dsproxy.param.Params;
+import org.w01f.dds.layer2.sql.SqlHandler;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
@@ -10,36 +11,22 @@ import java.sql.*;
 
 public class DistributedStatement implements InvocationHandler, Statement {
 
-    protected Statement statement;
     protected Params params = new Params();
     private Object proxy;
+    protected SqlHandler sqlHandler = new SqlHandler();
 
     public PreparedStatement getProxy() {
         return ((PreparedStatement) proxy);
     }
 
-    public DistributedStatement(Statement statement) {
-        this.statement = statement;
+    public DistributedStatement() {
         proxy = Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{PreparedStatement.class}, this);
     }
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        // System.out.println(method);
         if (method.getName().startsWith("set")) {
             params.addParam(((Integer) args[0]), method, args);
-//            params.addParam((Integer) args[0], (p, i) -> {
-//                Object[] params = new Object[args.length];
-//                params[0] = i;
-//                for (int x = 1; x < args.length; ++x) {
-//                    params[x] = args[x];
-//                }
-//                try {
-//                    method.invoke(p, params);
-//                } catch (IllegalAccessException | InvocationTargetException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            });
             return null;
         }
         return method.invoke(this, args);
@@ -47,27 +34,27 @@ public class DistributedStatement implements InvocationHandler, Statement {
 
     @Override
     public ResultSet executeQuery(String sql) throws SQLException {
-        return this.statement.executeQuery(sql);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int executeUpdate(String sql) throws SQLException {
-        return this.statement.executeUpdate(sql);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void close() throws SQLException {
-        this.statement.close();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean execute(String sql) throws SQLException {
-        return this.statement.execute(sql);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public ResultSet getResultSet() throws SQLException {
-        return this.getResultSet();
+        throw new UnsupportedOperationException();
     }
 
     // These methods are not supported:

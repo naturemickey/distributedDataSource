@@ -26,15 +26,15 @@ public class TestServiceBean {
         //DataSource sqliteDS = (DataSource) ac.getBean("dataSource");
         //sqliteDS.getConnection().createStatement().execute("create table ttt(id varchar(100), name varchar(100))");
         ITestBiz testBiz = ac.getBean(ITestBiz.class);
-        final Test test = new Test();
-        IDGenerator.setId(test);
-        String id = test.id;
-        testBiz.testInsert(id, "test_name1");
+
+        String id = IDGenerator.takeId();
+        id = "0000005e6cyyzec90wgPzJJ4fwt8ROPGCu7";
+        // testBiz.testInsert(id, "test_name1");
         System.out.println(testBiz.testSelet(id));
-        testBiz.testUpdate(id, "test_name2");
-        System.out.println(testBiz.testSelet(id));
-        testBiz.testDelete(id);
-        System.out.println(testBiz.testSelet(id));
+//        testBiz.testUpdate(id, "test_name2");
+//        System.out.println(testBiz.testSelet(id));
+//        testBiz.testDelete(id);
+//        System.out.println(testBiz.testSelet(id));
     }
 
 

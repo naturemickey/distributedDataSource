@@ -10,6 +10,14 @@ public class IDGenerator {
     private IDGenerator() {
     }
 
+    public static String takeId() {
+        return takeID(null);
+    }
+
+    public static String takeId(String parentId) {
+        return takeID(IDCoder.decode(parentId));
+    }
+
     private static String takeID(byte[] dbNo) {
         if (dbNo == null)
             dbNo = IDConfig.getInstance().getOne();

@@ -5,10 +5,7 @@ import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 import org.w01f.dds.layer3.dataapi.IDataAccess;
 import org.w01f.dds.layer5.DataSourceProxy;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.function.Supplier;
 
 public class DataAccess implements IDataAccess {
@@ -47,18 +44,24 @@ public class DataAccess implements IDataAccess {
         return () -> {
             try {
                 Connection connection = dataSourceProxy.getConnection(dbNo);
-                try (PreparedStatement preparedStatement = connection.prepareStatement(statNode.toString());) {
-                    for (int i = 0; i < statNode.getPlaceholderNodes().size(); i++) {
-                        final ElementPlaceholderNode node = statNode.getPlaceholderNodes().get(i);
+                PreparedStatement preparedStatement = connection.prepareStatement(statNode.toString());
+                for (int i = 0; i < statNode.getPlaceholderNodes().size(); i++) {
+                    final ElementPlaceholderNode node = statNode.getPlaceholderNodes().get(i);
 
-                        node.getParam().putValue(preparedStatement, i + 1);
-                    }
-                    return preparedStatement.executeQuery();
+                    node.getParam().putValue(preparedStatement, i + 1);
                 }
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                return resultSet;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         };
+    }
+
+    @Override
+    public DatabaseMetaData getMetaData() throws SQLException {
+        return this.dataSourceProxy.getFirstConnection().getMetaData();
     }
     //    @Override
 //    public void insert(String tableName, Map<String, Object> valueMap) {
