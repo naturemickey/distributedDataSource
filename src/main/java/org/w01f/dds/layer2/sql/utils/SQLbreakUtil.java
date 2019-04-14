@@ -278,7 +278,7 @@ public class SQLbreakUtil {
                     }
 
                     if (maybeIdField != null && maybeParamField != null && textMatchColumn("id", ((ElementTextNode) maybeIdField).getTxt())) {
-                        ids.add(((ElementPlaceholderNode) maybeParamField).getParam().getValue()[1].toString());
+                        ids.add(((ElementPlaceholderNode) maybeParamField).getParam().getValue().toString());
                     }
                 }
             } else if (expressionNode instanceof ExpressionInValuesNode) {
@@ -290,7 +290,7 @@ public class SQLbreakUtil {
                     if (textMatchColumn("id", ((ElementTextNode) element).getTxt())) {
                         for (ElementNode valuesElement : values.getElements()) {
                             if (valuesElement instanceof ElementPlaceholderNode) {
-                                ids.add(((ElementPlaceholderNode) valuesElement).getParam().getValue()[1].toString());
+                                ids.add(((ElementPlaceholderNode) valuesElement).getParam().getValue().toString());
                             } else {
                                 throw new RuntimeException("id in () statement must all are placeholder");
                             }

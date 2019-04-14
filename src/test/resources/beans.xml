@@ -42,6 +42,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
                 </property>
             </bean>
         </property>
+        <property name="slotDsMap" value="0-2047:0" />
     </bean>
     <bean id="sqlHandler" class="org.w01f.dds.layer2.sql.SqlHandler">
         <property name="indexAccess" ref="indexAccess"/>

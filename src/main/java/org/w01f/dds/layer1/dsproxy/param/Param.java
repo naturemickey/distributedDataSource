@@ -3,7 +3,6 @@ package org.w01f.dds.layer1.dsproxy.param;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.PreparedStatement;
-import java.util.Arrays;
 
 public class Param {
 
@@ -37,8 +36,12 @@ public class Param {
         }
     }
 
-    public Object[] getValue() {
+    public Object[] getValues() {
         return this.args;
+    }
+
+    public Object getValue() {
+        return this.args[1];
     }
 }
 

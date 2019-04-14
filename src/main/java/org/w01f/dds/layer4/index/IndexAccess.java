@@ -23,18 +23,27 @@ public class IndexAccess implements IIndexAccess {
     private DataSourceProxy dataSourceProxy;
     private Map<Integer, Integer> slotDsMap = new HashMap<>();
 
-    {
-        for (int i = 0; i < SlotConsistentHashing.getSlotcount(); i++) {
-            slotDsMap.put(i, 0);
-        }
-    }
-
     public void setDataSourceProxy(DataSourceProxy dataSourceProxy) {
         this.dataSourceProxy = dataSourceProxy;
     }
 
-    public void setSlotDsMap(Map<Integer, Integer> slotDsMap) {
-        this.slotDsMap = slotDsMap;
+    public void setSlotDsMap(String s) {
+        final String[] ss = s.split(",");
+        for (String s1 : ss) {
+            s1 = s1.trim();
+            final String[] s2 = s1.split(":");
+            final String dbNo = s2[1];
+            if (s2[0].indexOf("-") > 0) {
+                final String[] s3 = s2[0].split("-");
+                final String from = s3[0];
+                final String to = s3[1];
+                for (int i = Integer.valueOf(from), n = Integer.valueOf(to); i <= n; ++i) {
+                    slotDsMap.put(i, Integer.valueOf(dbNo));
+                }
+            } else {
+                slotDsMap.put(Integer.valueOf(s2[0]), Integer.valueOf(dbNo));
+            }
+        }
     }
 
     private int getSlotNo(String key) {
@@ -57,7 +66,7 @@ public class IndexAccess implements IIndexAccess {
     }
 
     private void insert(Index index, Param[] params) {
-        final String slotValue = params[0].getValue()[1].toString();
+        final String slotValue = params[0].getValue().toString();
         final int dbNo = getDbNo(slotValue);
         final int slotNo = getSlotNo(slotValue);
 

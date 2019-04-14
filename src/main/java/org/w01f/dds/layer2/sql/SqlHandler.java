@@ -157,7 +157,7 @@ public class SqlHandler {
 
                 newDeleteWhereNodes.addAll(andWhere);
 
-                String slotValue = ((ElementPlaceholderNode) slotExp.getRight()).getParam().getValue()[1].toString();
+                String slotValue = ((ElementPlaceholderNode) slotExp.getRight()).getParam().getValue().toString();
 
                 ResultSet idRs = indexAccess.query(index, slotValue, newIndexWhereNodes);
 
@@ -207,7 +207,7 @@ public class SqlHandler {
         final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
         final List<String> names = insertNode.getColumnNames().getNames();
         final ElementPlaceholderNode idHolder = placeholderNodes.get(names.indexOf("id"));
-        final String id = idHolder.getParam().getValue()[1].toString();
+        final String id = idHolder.getParam().getValue().toString();
 
         return dataAccess.executeUpdate(statNode, IDGenerator.getDbNo(id));
     }
@@ -238,7 +238,7 @@ public class SqlHandler {
 
             if (left instanceof ElementTextNode && right instanceof ElementPlaceholderNode) {
                 final String name = ((ElementTextNode) left).getTxt();
-                final Object value = ((ElementPlaceholderNode) right).getParam().getValue()[1];
+                final Object value = ((ElementPlaceholderNode) right).getParam().getValue();
 
                 map.put(name, value);
             } else {
