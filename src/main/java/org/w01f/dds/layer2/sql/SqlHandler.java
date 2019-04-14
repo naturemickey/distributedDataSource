@@ -193,6 +193,20 @@ public class SqlHandler {
 
     private Map<String, Object> getSetData(SetExprsNode setExprsNode) {
         Map<String, Object> map = new HashMap<>();
+
+        for (SetExprNode setExpr : setExprsNode.getSetExprs()) {
+            final ElementNode left = setExpr.getLeft();
+            final ElementNode right = setExpr.getRight();
+
+            if (left instanceof ElementTextNode && right instanceof ElementPlaceholderNode) {
+                final String name = ((ElementTextNode) left).getTxt();
+                final Object value = ((ElementPlaceholderNode) right).getParam().getValue()[0];
+
+                map.put(name, value);
+            }else {
+                throw new RuntimeException("not support non-placeholder set : " + setExprsNode);
+            }
+        }
         return map;
     }
 
