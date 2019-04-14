@@ -17,7 +17,7 @@ public interface IIndexAccess {
 
     void delete(Index index, String id, Object... params);
 
-    ResultSet query(Index index, List<ExpressionNode> newIndexWhereNodes);
+    ResultSet query(Index index, String slotValue, List<ExpressionNode> newIndexWhereNodes);
 
     void commit() throws SQLException;
 

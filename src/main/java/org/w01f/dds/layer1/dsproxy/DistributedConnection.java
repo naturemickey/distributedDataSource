@@ -9,7 +9,11 @@ import java.util.concurrent.Executor;
 
 public class DistributedConnection implements Connection {
 
-    private SqlHandler sqlHandler = new SqlHandler();
+    private SqlHandler sqlHandler;
+
+    public DistributedConnection(SqlHandler sqlHandler) {
+        this.sqlHandler = sqlHandler;
+    }
 
     @Override
     public boolean getAutoCommit() throws SQLException {
@@ -26,13 +30,13 @@ public class DistributedConnection implements Connection {
     public Statement createStatement() throws SQLException {
         // we almost always use the prepareStatement method instead this method.
         // maybe we will support this method in further.
-        return new DistributedStatement().getProxy();
+        return new DistributedStatement(sqlHandler).getProxy();
         // throw new UnsupportedOperationException();
     }
 
     @Override
     public PreparedStatement prepareStatement(String sql) throws SQLException {
-        return new DistributedPreparedStatement(sql).getProxy();
+        return new DistributedPreparedStatement(sql, sqlHandler).getProxy();
         // return connection.prepareStatement(sql);
     }
 

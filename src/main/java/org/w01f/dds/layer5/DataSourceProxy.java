@@ -1,7 +1,5 @@
 package org.w01f.dds.layer5;
 
-import com.alibaba.druid.pool.DruidDataSource;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,18 +8,12 @@ import java.util.Map;
 
 public class DataSourceProxy {
 
-    public DataSourceProxy(String dbName) {
-        openedConn.set(new HashMap<>());
-
-        DruidDataSource ds = new DruidDataSource();
-        ds.setDriverClassName("org.sqlite.JDBC");
-        ds.setUrl("jdbc:sqlite:db/" + dbName);
-
-        dsMap.put(0, ds);
-    }
-
     private Map<Integer, DataSource> dsMap = new HashMap<>();
     private ThreadLocal<Map<Integer, Connection>> openedConn = new ThreadLocal<>();
+
+    public void setDsMap(Map<Integer, DataSource> dsMap) {
+        this.dsMap = dsMap;
+    }
 
     public Connection getFirstConnection() throws SQLException {
         final Integer no = dsMap.keySet().stream().findFirst().get();
@@ -32,6 +24,10 @@ public class DataSourceProxy {
         DataSource dataSource = dsMap.get(dbNo);
 
         Map<Integer, Connection> connectionMap = openedConn.get();
+        if (connectionMap == null) {
+            connectionMap = new HashMap<>();
+            openedConn.set(connectionMap);
+        }
         Connection connection = connectionMap.get(dbNo);
         if (connection == null) {
             connection = dataSource.getConnection();
@@ -44,29 +40,33 @@ public class DataSourceProxy {
 
     public void commitAll() throws SQLException {
         Map<Integer, Connection> connections = openedConn.get();
-        try {
-            for (Connection connection : connections.values()) {
-                connection.commit();
+        if (connections != null) {
+            try {
+                for (Connection connection : connections.values()) {
+                    connection.commit();
+                }
+            } finally {
+                for (Connection connection : connections.values()) {
+                    connection.close();
+                }
+                connections.clear();
             }
-        } finally {
-            for (Connection connection : connections.values()) {
-                connection.close();
-            }
-            connections.clear();
         }
     }
 
     public void rollbackAll() throws SQLException {
         Map<Integer, Connection> connections = openedConn.get();
-        try {
-            for (Connection connection : connections.values()) {
-                connection.rollback();
+        if (connections != null) {
+            try {
+                for (Connection connection : connections.values()) {
+                    connection.rollback();
+                }
+            } finally {
+                for (Connection connection : connections.values()) {
+                    connection.close();
+                }
+                connections.clear();
             }
-        } finally {
-            for (Connection connection : connections.values()) {
-                connection.close();
-            }
-            connections.clear();
         }
     }
 

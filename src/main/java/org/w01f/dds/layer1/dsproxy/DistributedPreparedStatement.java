@@ -16,11 +16,10 @@ import java.util.List;
 
 public class DistributedPreparedStatement extends DistributedStatement implements PreparedStatement {
 
-    // private PreparedStatement statement;
     private StatNode statNode;
 
-    public DistributedPreparedStatement(String sql) {
-        // this.statement = statement;
+    public DistributedPreparedStatement(String sql, SqlHandler sqlHandler) {
+        super(sqlHandler);
         this.statNode = ParserUtils.parse(sql);
     }
 

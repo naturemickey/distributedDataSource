@@ -9,7 +9,9 @@ import org.w01f.dds.layer2.sql.utils.SQLBuildUtils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class IndexDBInit {
 
@@ -18,15 +20,22 @@ public class IndexDBInit {
         new Index(table, new Column[]{new Column("name", Column.Type.VARCHAR1000)});
         IndexConfigUtils.parseConfig(new Table[]{table});
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/index01.sqlitedb");) {
+        Set<String> sqlSet = new HashSet<>();
+
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/indexdb.sqlitedb");) {
 
             for (Index index : IndexConfigUtils.allIndex()) {
 
-                List<String> tableCreate = SQLBuildUtils.sql4CreateIndexTable(index);
+                for (int i = 0; i < SlotConsistentHashing.getSlotcount(); i++) {
+                    List<String> tableCreate = SQLBuildUtils.sql4CreateIndexTable(index, i);
 
-                for (String sql : tableCreate) {
-                    try (Statement statement = connection.createStatement()) {
-                        statement.execute(sql);
+                    for (String sql : tableCreate) {
+                        if (!sqlSet.contains(sql)) {
+                            sqlSet.add(sql);
+                            try (Statement statement = connection.createStatement()) {
+                                statement.execute(sql);
+                            }
+                        }
                     }
                 }
             }

@@ -8,20 +8,42 @@ import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 import org.w01f.dds.layer2.sql.utils.SQLBuildUtils;
 import org.w01f.dds.layer3.indexapi.IIndexAccess;
 import org.w01f.dds.layer5.DataSourceProxy;
+import org.w01f.dds.utils.SlotConsistentHashing;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class IndexAccess implements IIndexAccess {
 
-    private DataSourceProxy dataSourceProxy = new DataSourceProxy("indexdb.sqlitedb");
+    private DataSourceProxy dataSourceProxy;
+    private Map<Integer, Integer> slotDsMap = new HashMap<>();
+
+    {
+        for (int i = 0; i < SlotConsistentHashing.getSlotcount(); i++) {
+            slotDsMap.put(i, 0);
+        }
+    }
 
     public void setDataSourceProxy(DataSourceProxy dataSourceProxy) {
         this.dataSourceProxy = dataSourceProxy;
+    }
+
+    public void setSlotDsMap(Map<Integer, Integer> slotDsMap) {
+        this.slotDsMap = slotDsMap;
+    }
+
+    private int getSlotNo(String key) {
+        return SlotConsistentHashing.getSlotNo(key);
+    }
+
+    private int getDbNo(String key) {
+        final int slotNo = SlotConsistentHashing.getSlotNo(key);
+        return slotDsMap.get(slotNo);
     }
 
     @Override
@@ -35,23 +57,14 @@ public class IndexAccess implements IIndexAccess {
     }
 
     private void insert(Index index, Param[] params) {
-        // Param idParam = params[params.length - 1];
-        // String id = idParam.getValue()[1].toString();
+        final String slotValue = params[0].getValue()[1].toString();
+        final int dbNo = getDbNo(slotValue);
+        final int slotNo = getSlotNo(slotValue);
 
-        // int dbNo = IDGenerator.getDbNo(id);
-
-        // List<String> tableCreate = SQLBuildUtils.sql4CreateIndexTable(index);
-        String insertSQL = SQLBuildUtils.sql4InsertIndex(index);
+        final String insertSQL = SQLBuildUtils.sql4InsertIndex(index, slotNo);
 
         try {
-            // Connection connection = dataSourceProxy.getConnection(dbNo);
-            Connection connection = dataSourceProxy.getConnection(0);
-
-//                for (String sql : tableCreate) {
-//                    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//                        preparedStatement.execute();
-//                    }
-//                }
+            Connection connection = dataSourceProxy.getConnection(dbNo);
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
                 preparedStatement.setString(1, index.getName());
@@ -67,10 +80,11 @@ public class IndexAccess implements IIndexAccess {
     }
 
     @Override
-    public ResultSet query(Index index, List<ExpressionNode> newIndexWhereNodes) {
-        final StatNode statNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes);
-        try {// TODO deal dbNo.
-            Connection connection = dataSourceProxy.getConnection(0);
+    public ResultSet query(Index index, String slotValue, List<ExpressionNode> newIndexWhereNodes) {
+        final int dbNo = getDbNo(slotValue);
+        final StatNode statNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes, getSlotNo(slotValue));
+        try {
+            Connection connection = dataSourceProxy.getConnection(dbNo);
             final String sql = statNode.toString();
 
             try (final PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -88,10 +102,14 @@ public class IndexAccess implements IIndexAccess {
 
     @Override
     public void insert(Index index, String id, Object... params) {
-        final String sql = SQLBuildUtils.sql4InsertIndex(index);
+        final String slotValue = params[0].toString();
+        final int dbNo = getDbNo(slotValue);
+
+        final String sql = SQLBuildUtils.sql4InsertIndex(index, getSlotNo(slotValue));
         final String indexName = index.getName();
+
         try {
-            final Connection connection = this.dataSourceProxy.getConnection(0);
+            final Connection connection = this.dataSourceProxy.getConnection(dbNo);
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setObject(1, indexName);
@@ -108,10 +126,14 @@ public class IndexAccess implements IIndexAccess {
 
     @Override
     public void delete(Index index, String id, Object... params) {
-        final String sql = SQLBuildUtils.sql4DeleteIndex(index);
+        final String slotValue = params[0].toString();
+        final int dbNo = getDbNo(slotValue);
+
+        final String sql = SQLBuildUtils.sql4DeleteIndex(index, getSlotNo(slotValue));
         final String indexName = index.getName();
+
         try {
-            final Connection connection = this.dataSourceProxy.getConnection(0);
+            final Connection connection = this.dataSourceProxy.getConnection(dbNo);
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, id);

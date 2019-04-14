@@ -32,13 +32,13 @@ public class SQLBuildUtils {
     );
     create unique index idx_u_sd on u_sd(index_name, v1, v2);
      */
-    public static String buildIndexTableName(Index index) {
+    public static String buildIndexTableName(Index index, int slotNo) {
         return (index.isUnique() ? "u_" : "i_") + Arrays.asList(index.getColumns()).stream()
-                .map(c -> c.getType().getSimpleName()).collect(Collectors.joining());
+                .map(c -> c.getType().getSimpleName()).collect(Collectors.joining()) + "_" + slotNo;
     }
 
-    public static List<String> sql4CreateIndexTable(Index index) {
-        String tableName = buildIndexTableName(index);
+    public static List<String> sql4CreateIndexTable(Index index, int slotNo) {
+        String tableName = buildIndexTableName(index, slotNo);
         StringBuilder createSb = new StringBuilder("create table ").append(tableName).append(" (\n");
         createSb.append("    index_name varchar(1000),\n");
         for (int i = 0, len = index.getColumns().length; i < len; i++) {
@@ -60,8 +60,8 @@ public class SQLBuildUtils {
         return Arrays.asList(createSb.toString(), indexSb.toString(), idIdxSb.toString());
     }
 
-    public static String sql4InsertIndex(Index index) {
-        final String tableName = buildIndexTableName(index);
+    public static String sql4InsertIndex(Index index, int slotNo) {
+        final String tableName = buildIndexTableName(index, slotNo);
         final StringBuilder sb = new StringBuilder("insert into ").append(tableName).append("(index_name, ");
         for (int i = 0, len = index.getColumns().length; i < len; i++) {
             sb.append('v').append(i).append(", ");
@@ -74,29 +74,18 @@ public class SQLBuildUtils {
         return sb.toString();
     }
 
-    public static String sql4DeleteIndex(Index index) {
-        String tableName = buildIndexTableName(index);
+    public static String sql4DeleteIndex(Index index, int slotNo) {
+        String tableName = buildIndexTableName(index, slotNo);
         StringBuilder sb = new StringBuilder("delete from ").append(tableName).append(" where id = ? and index_name = ?");
         for (int i = 0, len = index.getColumns().length; i < len; i++) {
             sb.append(" and v").append(i).append(" = ?");
         }
         return sb.toString();
     }
-//
-//    public static String sql4QueryIndex(Index index) {
-//        String tableName = buildIndexTableName(index);
-//        StringBuilder sb = new StringBuilder("select id from ").append(tableName).append(" where index_name = ?");
-//        StringBuilder order = new StringBuilder(" order by id");
-//        for (int i = 0, len = index.getColumns().length; i < len; i++) {
-//            sb.append(" and v").append(i).append(" = ?");
-//            order.append(", v").append(i);
-//        }
-//        return sb.append(order).toString();
-//    }
 
-    public static StatNode sql4QueryIndex(Index index, List<ExpressionNode> whereNodes) {
+    public static StatNode sql4QueryIndex(Index index, List<ExpressionNode> whereNodes, int slotNo) {
         final String indexName = index.getName();
-        final String tableName = buildIndexTableName(index);
+        final String tableName = buildIndexTableName(index, slotNo);
 
         // select :
         final ElementTextNode id = new ElementTextNode("id");
@@ -130,11 +119,11 @@ public class SQLBuildUtils {
         Index unique = new Index(table, new Column[]{new Column("id", Column.Type.VARCHAR1000)}, true);
         Index index = new Index(table, new Column[]{new Column("emp_id", Column.Type.VARCHAR1000), new Column("create_tm", Column.Type.DATATIME)});
 
-        sql4CreateIndexTable(unique).forEach(System.out::println);
-        sql4CreateIndexTable(index).forEach(System.out::println);
+        sql4CreateIndexTable(unique, 0).forEach(System.out::println);
+        sql4CreateIndexTable(index, 0).forEach(System.out::println);
 
-        System.out.println(sql4InsertIndex(unique));
-        System.out.println(sql4InsertIndex(index));
+        System.out.println(sql4InsertIndex(unique, 0));
+        System.out.println(sql4InsertIndex(index, 0));
 
 //        System.out.println(sql4DeleteIndex(unique));
 //        System.out.println(sql4DeleteIndex(index));

@@ -23,8 +23,16 @@ import java.util.stream.Collectors;
 
 public class SqlHandler {
 
-    private IIndexAccess indexAccess = new IndexAccess();
-    private IDataAccess dataAccess = new DataAccess();
+    private IIndexAccess indexAccess;
+    private IDataAccess dataAccess;
+
+    public void setIndexAccess(IIndexAccess indexAccess) {
+        this.indexAccess = indexAccess;
+    }
+
+    public void setDataAccess(IDataAccess dataAccess) {
+        this.dataAccess = dataAccess;
+    }
 
     public DatabaseMetaData getMetaData() throws SQLException {
         return this.dataAccess.getMetaData();
@@ -133,6 +141,7 @@ public class SqlHandler {
                 final List<ExpressionNode> newDeleteWhereNodes = new ArrayList<>();
                 final List<ExpressionNode> newIndexWhereNodes = new ArrayList<>();
 
+                ExpressionRelationalNode slotExp = null;
                 for (int i = 0; i < index.getColumns().length; i++) {
                     final Column column = index.getColumns()[i];
 
@@ -140,11 +149,17 @@ public class SqlHandler {
                     if (expression != null) {
                         newIndexWhereNodes.add(expression);
                     }
+
+                    if (i == 0) {
+                        slotExp = ((ExpressionRelationalNode) expression);
+                    }
                 }
 
                 newDeleteWhereNodes.addAll(andWhere);
 
-                ResultSet idRs = indexAccess.query(index, newIndexWhereNodes);
+                String slotValue = ((ElementPlaceholderNode) slotExp.getRight()).getParam().getValue()[1].toString();
+
+                ResultSet idRs = indexAccess.query(index, slotValue, newIndexWhereNodes);
 
                 try {
                     // dbNo -> id set

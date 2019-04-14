@@ -10,16 +10,52 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 
     <context:component-scan base-package="org.w01f.dds.service"/>
 
+    <bean id="testDataDS" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="org.sqlite.JDBC" />
+        <property name="url" value="jdbc:sqlite:db/testsqlitedb.sqlitedb" />
+    </bean>
+    <bean id="testIndexDS" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="org.sqlite.JDBC" />
+        <property name="url" value="jdbc:sqlite:db/indexdb.sqlitedb" />
+    </bean>
+
+    <bean id="dataAccess" class="org.w01f.dds.layer4.data.DataAccess">
+        <property name="dataSourceProxy" >
+            <bean class="org.w01f.dds.layer5.DataSourceProxy">
+                <property name="dsMap">
+                    <map>
+                        <entry key="0" value-ref="testDataDS" />
+                    </map>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="indexAccess" class="org.w01f.dds.layer4.index.IndexAccess">
+        <property name="dataSourceProxy" >
+            <bean class="org.w01f.dds.layer5.DataSourceProxy">
+                <property name="dsMap">
+                    <map>
+                        <entry key="0" value-ref="testIndexDS" />
+                    </map>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="sqlHandler" class="org.w01f.dds.layer2.sql.SqlHandler">
+        <property name="indexAccess" ref="indexAccess"/>
+        <property name="dataAccess" ref="dataAccess" />
+    </bean>
     <bean id="dataSource" class="org.w01f.dds.layer1.dsproxy.DistributedDataSource">
+        <property name="sqlHandler" ref="sqlHandler"/>
     </bean>
 
     <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
-    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="tm">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
-    <tx:advice id="advice" transaction-manager="transactionManager">
+    <tx:advice id="advice" transaction-manager="tm">
         <tx:attributes>
             <tx:method name="*" propagation="REQUIRED"/>
         </tx:attributes>

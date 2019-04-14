@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 public class DataAccess implements IDataAccess {
 
-    private DataSourceProxy dataSourceProxy = new DataSourceProxy("testsqlitedb.sqlitedb");
+    private DataSourceProxy dataSourceProxy;
 
     public void setDataSourceProxy(DataSourceProxy dataSourceProxy) {
         this.dataSourceProxy = dataSourceProxy;

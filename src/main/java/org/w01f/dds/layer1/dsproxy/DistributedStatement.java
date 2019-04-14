@@ -4,7 +4,6 @@ import org.w01f.dds.layer1.dsproxy.param.Params;
 import org.w01f.dds.layer2.sql.SqlHandler;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.sql.*;
@@ -13,14 +12,15 @@ public class DistributedStatement implements InvocationHandler, Statement {
 
     protected Params params = new Params();
     private Object proxy;
-    protected SqlHandler sqlHandler = new SqlHandler();
+    protected SqlHandler sqlHandler;
 
     public PreparedStatement getProxy() {
         return ((PreparedStatement) proxy);
     }
 
-    public DistributedStatement() {
+    public DistributedStatement(SqlHandler sqlHandler) {
         proxy = Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{PreparedStatement.class}, this);
+        this.sqlHandler = sqlHandler;
     }
 
     @Override
