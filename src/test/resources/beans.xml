@@ -13,10 +13,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean id="testDataDS" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="org.sqlite.JDBC" />
         <property name="url" value="jdbc:sqlite:db/testsqlitedb.sqlitedb" />
+        <property name="testWhileIdle" value="false" />
     </bean>
     <bean id="testIndexDS" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="org.sqlite.JDBC" />
         <property name="url" value="jdbc:sqlite:db/indexdb.sqlitedb" />
+        <property name="testWhileIdle" value="false" />
     </bean>
 
     <bean id="dataAccess" class="org.w01f.dds.layer4.data.DataAccess">
