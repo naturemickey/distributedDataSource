@@ -1,37 +1,20 @@
 package org.w01f.dds.layer1.id;
 
 import java.io.ByteArrayOutputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-
-/**
- * 描述：
- * 
- * <pre>
- * HISTORY
- * ****************************************************************************
- *  ID   DATE            PERSON          REASON
- *  1    2018年2月12日      014767          Create
- * ****************************************************************************
- * </pre>
- * 
- * @author 014767
- * @since 1.0
- */
 public class IDCoder {
 
-    private static final char[] ENCODE_TABLE = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '=', 'A', 'B', 'C', 'D', 'E',
+    private static final char[] ENCODE_TABLE = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '=', 'A', 'B', 'C', 'D', 'E',
             'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '_', 'a',
             'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
-            'y', 'z' };
+            'y', 'z'};
 
     private static Map<Character, Integer> DECODE_TABLE;
 
     static {
-        DECODE_TABLE = new HashMap<Character, Integer>();
+        DECODE_TABLE = new HashMap<>();
         for (int i = 0; i < ENCODE_TABLE.length; i++) {
             DECODE_TABLE.put(ENCODE_TABLE[i], i);
         }
@@ -39,16 +22,6 @@ public class IDCoder {
 
     private IDCoder() {
         // empty
-    }
-
-    public static String hash(byte[] data) {
-        try {
-            MessageDigest e = MessageDigest.getInstance("MD5");
-            e.update(data);
-            return encode(e.digest());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public static String encode(byte[] data) {
