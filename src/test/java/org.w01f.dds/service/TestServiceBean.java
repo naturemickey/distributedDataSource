@@ -1,5 +1,6 @@
 package org.w01f.dds.service;
 
+import org.apache.log4j.spi.Configurator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.w01f.dds.layer1.id.IDConfig;
@@ -11,6 +12,10 @@ import org.w01f.dds.layer2.index.config.Table;
 import org.w01f.dds.service.biz.ITestBiz;
 
 import javax.sql.DataSource;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.URL;
 
 public class TestServiceBean {
 
@@ -29,7 +34,7 @@ public class TestServiceBean {
 
         String id = IDGenerator.takeId();
         //id = "0000005e6cyyzec90wgPzJJ4fwt8ROPGCu7";
-         testBiz.testInsert(id, "test_name1");
+        testBiz.testInsert(id, "test_name1");
         System.out.println(testBiz.testSelet(id));
         testBiz.testUpdate(id, "test_name2");
         System.out.println(testBiz.testSelet(id));
