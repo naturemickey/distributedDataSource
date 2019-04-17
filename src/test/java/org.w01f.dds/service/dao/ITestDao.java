@@ -6,5 +6,6 @@ public interface ITestDao {
     void testUpdate(String id, String name);
     void testDelete(String id);
     String testSelet(String id);
+    String testSeletByName(String name);
 
 }

@@ -54,6 +54,14 @@ public class SQLbreakUtil {
         return indexSetterMap;
     }
 
+    private static <T> List<List<T>> warpwarpList(T obj) {
+        List<List<T>> res = new ArrayList<>(1);
+        List<T> l = new ArrayList<>(1);
+        l.add(obj);
+        res.add(l);
+        return res;
+    }
+
     public static List<List<ExpressionNode>> breakWhere(WhereConditionNode whereConditionNode) {
         if (whereConditionNode instanceof WhereConditionOpNode) {
             WhereConditionOpNode node = ((WhereConditionOpNode) whereConditionNode);
@@ -63,10 +71,10 @@ public class SQLbreakUtil {
             final WhereConditionNode whereCondition = node.getWhereCondition();
 
             if (expressionOperator == null) {
-                return Arrays.asList(Arrays.asList(expression));
+                return warpwarpList(expression);
             }
             switch (expressionOperator) {
-                case "and" -> {
+                case "and": {
                     final List<List<ExpressionNode>> wcRes = breakWhere(whereCondition);
 
                     List<List<ExpressionNode>> result = new ArrayList<>(wcRes.size());
@@ -81,13 +89,15 @@ public class SQLbreakUtil {
 
                     return result;
                 }
-                case "or" -> {
-                    List<List<ExpressionNode>> result = Arrays.asList(Arrays.asList(expression));
+                case "or": {
+                    List<List<ExpressionNode>> result = warpwarpList(expression);
                     result.addAll(breakWhere(whereConditionNode));
                     return result;
                 }
-                case "xor" -> throw new RuntimeException("not support \"xor\" keyword.");
-                default -> throw new RuntimeException("wrond keyword of " + expressionOperator);
+                case "xor":
+                    throw new RuntimeException("not support \"xor\" keyword.");
+                default:
+                    throw new RuntimeException("wrond keyword of " + expressionOperator);
             }
         } else {
             WhereConditionSubNode node = ((WhereConditionSubNode) whereConditionNode);
@@ -99,7 +109,7 @@ public class SQLbreakUtil {
                 return breakWhere(wc1);
             }
             switch (expressionOperator) {
-                case "and" -> {
+                case "and": {
                     final List<List<ExpressionNode>> wc1res = breakWhere(wc1);
                     final List<List<ExpressionNode>> wc2res = breakWhere(wc2);
 
@@ -118,13 +128,15 @@ public class SQLbreakUtil {
 
                     return result;
                 }
-                case "or" -> {
+                case "or": {
                     List<List<ExpressionNode>> result = breakWhere(wc1);
                     result.addAll(breakWhere(wc2));
                     return result;
                 }
-                case "xor" -> throw new RuntimeException("not support \"xor\" keyword.");
-                default -> throw new RuntimeException("wrond keyword of " + expressionOperator);
+                case "xor":
+                    throw new RuntimeException("not support \"xor\" keyword.");
+                default:
+                    throw new RuntimeException("wrond keyword of " + expressionOperator);
             }
         }
     }
@@ -236,9 +248,11 @@ public class SQLbreakUtil {
         final ElementNode left = expressionRelationalNode.getLeft();
         final ElementNode right = expressionRelationalNode.getRight();
         ElementTextNode node = null;
-        if (left instanceof ElementTextNode && !(right instanceof ElementTextNode)) {
+        if (left.getClass().getName().equals(ElementTextNode.class.getName())
+                && !right.getClass().getName().equals(ElementTextNode.class.getName())) {
             node = ((ElementTextNode) left);
-        } else if (right instanceof ElementTextNode && !(left instanceof ElementTextNode)) {
+        } else if (right.getClass().getName().equals(ElementTextNode.class.getName())
+                && !left.getClass().getName().equals(ElementTextNode.class.getName())) {
             node = ((ElementTextNode) right);
         }
         return node;

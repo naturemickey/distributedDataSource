@@ -28,4 +28,9 @@ public class TestBiz implements ITestBiz {
     public String testSelet(String id) {
         return this.testDao.testSelet(id);
     }
+
+    @Override
+    public String testSeletByName(String name) {
+        return this.testDao.testSeletByName(name);
+    }
 }

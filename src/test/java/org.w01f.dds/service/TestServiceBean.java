@@ -26,20 +26,22 @@ public class TestServiceBean {
         ITestBiz testBiz = ac.getBean(ITestBiz.class);
 
         String id = IDGenerator.takeId();
-        //id = "0000005e6cyyzec90wgPzJJ4fwt8ROPGCu7";
+
         System.out.println("insert data[id = " + id + "]:");
         testBiz.testInsert(id, "test_name1");
-        //System.out.println(testBiz.testSelet(id));
 
         System.out.println("\nupdate data:");
         testBiz.testUpdate(id, "test_name2");
         //System.out.println(testBiz.testSelet(id));
 
-        System.out.println("\ndelete data[id = " + id + "]:");
-        testBiz.testDelete(id);
-
         System.out.println("\nselect data[id = " + id + "]:");
         System.out.println(testBiz.testSelet(id));
+
+        System.out.println("\nselect data[name = test_name2]:");
+        System.out.println(testBiz.testSeletByName("test_name2"));
+
+        System.out.println("\ndelete data[id = " + id + "]:");
+        testBiz.testDelete(id);
     }
 
 

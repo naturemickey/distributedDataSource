@@ -22,7 +22,7 @@ public class TestDao implements ITestDao {
     @Override
     public void testUpdate(String id, String name) {
         this.jdbcTemplate.update("update ttt set name = ? where id = ?", name, id);
-       // this.jdbcTemplate.update("update ttt set name = \"" + name + "\" where id = \"" + id + "\"");
+        // this.jdbcTemplate.update("update ttt set name = \"" + name + "\" where id = \"" + id + "\"");
     }
 
     @Override
@@ -33,16 +33,19 @@ public class TestDao implements ITestDao {
 
     @Override
     public String testSelet(String id) {
-        //List<Map<String, Object>> list1 = this.jdbcTemplate.queryForList("select name from ttt where id = \"" + id + '"');
         List<Map<String, Object>> list = this.jdbcTemplate.queryForList("select name from ttt where id = ?", id);
         if (list.size() > 0) {
             return (String) list.get(0).get("name");
         }
         return null;
-//        SqlRowSet rowSet = this.jdbcTemplate.queryForRowSet("select name from ttt where id = ?", id);
-//        if(rowSet.next()) {
-//            rowSet.getString("name");
-//        }
-//        return null;
+    }
+
+    @Override
+    public String testSeletByName(String name) {
+        List<Map<String, Object>> list = this.jdbcTemplate.queryForList("select name from ttt where name = ?", name);
+        if (list.size() > 0) {
+            return (String) list.get(0).get("name");
+        }
+        return null;
     }
 }

@@ -15,7 +15,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="statementExecuteUpdateAfterLogEnabled" value="false" />
         <property name="statementExecuteBatchAfterLogEnabled" value="false" />
         <property name="statementExecuteAfterLogEnabled" value="false" />
-        <property name="statementParameterSetLogEnabled" value="true" />
+        <property name="statementParameterSetLogEnabled" value="false" />
         <property name="statementParameterClearLogEnable" value="false" />
         <property name="statementCreateAfterLogEnabled" value="false" />
         <property name="statementPrepareAfterLogEnabled" value="true"/>
