@@ -1,6 +1,5 @@
 package org.w01f.dds.service;
 
-import org.apache.log4j.spi.Configurator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.w01f.dds.layer1.id.IDConfig;
@@ -10,12 +9,6 @@ import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.index.config.Table;
 import org.w01f.dds.service.biz.ITestBiz;
-
-import javax.sql.DataSource;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URL;
 
 public class TestServiceBean {
 

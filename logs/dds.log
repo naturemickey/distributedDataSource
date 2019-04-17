@@ -1,0 +1,614 @@
+2019-04-17 16:46:07.501 [DEBUG] org.springframework.context.support.ClassPathXmlApplicationContext [594] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4229bb3f
+2019-04-17 16:46:07.830 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/biz/TestBiz.class]
+2019-04-17 16:46:07.833 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/dao/TestDao.class]
+2019-04-17 16:46:07.875 [DEBUG] org.springframework.beans.factory.xml.XmlBeanDefinitionReader [395] - Loaded 18 bean definitions from class path resource [beans.xml]
+2019-04-17 16:46:07.905 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2019-04-17 16:46:08.014 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2019-04-17 16:46:08.017 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2019-04-17 16:46:08.020 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2019-04-17 16:46:08.021 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2019-04-17 16:46:08.083 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testBiz'
+2019-04-17 16:46:08.084 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2019-04-17 16:46:08.112 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDao'
+2019-04-17 16:46:08.113 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'jdbcTemplate'
+2019-04-17 16:46:08.130 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataSource'
+2019-04-17 16:46:08.132 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'sqlHandler'
+2019-04-17 16:46:08.138 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'indexAccess'
+2019-04-17 16:46:08.141 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testIndexDS'
+2019-04-17 16:46:08.220 [WARN ] org.springframework.context.support.ClassPathXmlApplicationContext [557] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'testBiz': Unsatisfied dependency expressed through field 'testDao'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'testDao': Unsatisfied dependency expressed through field 'jdbcTemplate'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcTemplate' defined in class path resource [beans.xml]: Cannot resolve reference to bean 'dataSource' while setting bean property 'dataSource'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [beans.xml]: Cannot resolve reference to bean 'sqlHandler' while setting bean property 'sqlHandler'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlHandler' defined in class path resource [beans.xml]: Cannot resolve reference to bean 'indexAccess' while setting bean property 'indexAccess'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'indexAccess' defined in class path resource [beans.xml]: Cannot create inner bean 'org.w01f.dds.layer5.DataSourceProxy#7393222f' of type [org.w01f.dds.layer5.DataSourceProxy] while setting bean property 'dataSourceProxy'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.w01f.dds.layer5.DataSourceProxy#7393222f' defined in class path resource [beans.xml]: Cannot resolve reference to bean 'testIndexDS' while setting bean property 'dsMap' with key [TypedStringValue: value [0], target type [null]]; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'testIndexDS' defined in class path resource [beans.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'filters' threw exception; nested exception is java.lang.NoClassDefFoundError: org/apache/log4j/Priority
+2019-04-17 16:53:39.294 [DEBUG] org.springframework.context.support.ClassPathXmlApplicationContext [594] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35aea049
+2019-04-17 16:53:39.643 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/biz/TestBiz.class]
+2019-04-17 16:53:39.645 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/dao/TestDao.class]
+2019-04-17 16:53:39.687 [DEBUG] org.springframework.beans.factory.xml.XmlBeanDefinitionReader [395] - Loaded 18 bean definitions from class path resource [beans.xml]
+2019-04-17 16:53:39.725 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2019-04-17 16:53:39.814 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2019-04-17 16:53:39.817 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2019-04-17 16:53:39.819 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2019-04-17 16:53:39.821 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2019-04-17 16:53:39.880 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testBiz'
+2019-04-17 16:53:39.881 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2019-04-17 16:53:39.906 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDao'
+2019-04-17 16:53:39.907 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'jdbcTemplate'
+2019-04-17 16:53:39.922 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataSource'
+2019-04-17 16:53:39.923 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'sqlHandler'
+2019-04-17 16:53:39.928 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'indexAccess'
+2019-04-17 16:53:39.931 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testIndexDS'
+2019-04-17 16:53:40.388 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataAccess'
+2019-04-17 16:53:40.389 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDataDS'
+2019-04-17 16:53:40.463 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'advice'
+2019-04-17 16:53:40.466 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'tm'
+2019-04-17 16:53:40.482 [DEBUG] org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource [95] - Adding transactional method [*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+2019-04-17 16:53:40.549 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testInsert]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:53:40.550 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@49d98dc5] for JDBC transaction
+2019-04-17 16:53:40.559 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:53:40.560 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [insert into ttt(id, name) values(?, ?)]
+2019-04-17 16:53:40.953 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [836] - Initiating transaction rollback
+2019-04-17 16:53:40.954 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [341] - Rolling back JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@49d98dc5]
+2019-04-17 16:53:40.955 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@49d98dc5] after transaction
+2019-04-17 16:54:46.597 [DEBUG] org.springframework.context.support.ClassPathXmlApplicationContext [594] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35aea049
+2019-04-17 16:54:46.932 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/biz/TestBiz.class]
+2019-04-17 16:54:46.935 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/dao/TestDao.class]
+2019-04-17 16:54:46.994 [DEBUG] org.springframework.beans.factory.xml.XmlBeanDefinitionReader [395] - Loaded 18 bean definitions from class path resource [beans.xml]
+2019-04-17 16:54:47.030 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2019-04-17 16:54:47.122 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2019-04-17 16:54:47.124 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2019-04-17 16:54:47.126 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2019-04-17 16:54:47.128 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2019-04-17 16:54:47.189 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testBiz'
+2019-04-17 16:54:47.190 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2019-04-17 16:54:47.216 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDao'
+2019-04-17 16:54:47.217 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'jdbcTemplate'
+2019-04-17 16:54:47.225 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataSource'
+2019-04-17 16:54:47.226 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'sqlHandler'
+2019-04-17 16:54:47.235 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'indexAccess'
+2019-04-17 16:54:47.238 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testIndexDS'
+2019-04-17 16:54:47.493 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataAccess'
+2019-04-17 16:54:47.494 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDataDS'
+2019-04-17 16:54:47.566 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'advice'
+2019-04-17 16:54:47.569 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'tm'
+2019-04-17 16:54:47.587 [DEBUG] org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource [95] - Adding transactional method [*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+2019-04-17 16:54:47.639 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testInsert]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:54:47.640 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629] for JDBC transaction
+2019-04-17 16:54:47.643 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:54:47.644 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [insert into ttt(id, name) values(?, ?)]
+2019-04-17 16:54:48.073 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [836] - Initiating transaction rollback
+2019-04-17 16:54:48.073 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [341] - Rolling back JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629]
+2019-04-17 16:54:48.075 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629] after transaction
+2019-04-17 16:56:42.258 [DEBUG] org.springframework.context.support.ClassPathXmlApplicationContext [594] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35aea049
+2019-04-17 16:56:42.572 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/biz/TestBiz.class]
+2019-04-17 16:56:42.575 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/dao/TestDao.class]
+2019-04-17 16:56:42.616 [DEBUG] org.springframework.beans.factory.xml.XmlBeanDefinitionReader [395] - Loaded 18 bean definitions from class path resource [beans.xml]
+2019-04-17 16:56:42.650 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2019-04-17 16:56:42.722 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2019-04-17 16:56:42.724 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2019-04-17 16:56:42.725 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2019-04-17 16:56:42.726 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2019-04-17 16:56:42.769 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testBiz'
+2019-04-17 16:56:42.770 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2019-04-17 16:56:42.804 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDao'
+2019-04-17 16:56:42.805 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'jdbcTemplate'
+2019-04-17 16:56:42.813 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataSource'
+2019-04-17 16:56:42.814 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'sqlHandler'
+2019-04-17 16:56:42.819 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'indexAccess'
+2019-04-17 16:56:42.821 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testIndexDS'
+2019-04-17 16:56:43.108 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataAccess'
+2019-04-17 16:56:43.110 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDataDS'
+2019-04-17 16:56:43.185 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'advice'
+2019-04-17 16:56:43.188 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'tm'
+2019-04-17 16:56:43.205 [DEBUG] org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource [95] - Adding transactional method [*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+2019-04-17 16:56:43.264 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testInsert]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:56:43.265 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629] for JDBC transaction
+2019-04-17 16:56:43.268 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:56:43.269 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [insert into ttt(id, name) values(?, ?)]
+2019-04-17 16:56:43.735 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [836] - Initiating transaction rollback
+2019-04-17 16:56:43.735 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [341] - Rolling back JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629]
+2019-04-17 16:56:43.736 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629] after transaction
+2019-04-17 16:57:30.907 [DEBUG] org.springframework.context.support.ClassPathXmlApplicationContext [594] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35aea049
+2019-04-17 16:57:31.253 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/biz/TestBiz.class]
+2019-04-17 16:57:31.257 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/dao/TestDao.class]
+2019-04-17 16:57:31.315 [DEBUG] org.springframework.beans.factory.xml.XmlBeanDefinitionReader [395] - Loaded 18 bean definitions from class path resource [beans.xml]
+2019-04-17 16:57:31.351 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2019-04-17 16:57:31.441 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2019-04-17 16:57:31.444 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2019-04-17 16:57:31.446 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2019-04-17 16:57:31.447 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2019-04-17 16:57:31.515 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testBiz'
+2019-04-17 16:57:31.516 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2019-04-17 16:57:31.541 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDao'
+2019-04-17 16:57:31.542 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'jdbcTemplate'
+2019-04-17 16:57:31.550 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataSource'
+2019-04-17 16:57:31.552 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'sqlHandler'
+2019-04-17 16:57:31.556 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'indexAccess'
+2019-04-17 16:57:31.560 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testIndexDS'
+2019-04-17 16:57:31.833 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataAccess'
+2019-04-17 16:57:31.834 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDataDS'
+2019-04-17 16:57:31.902 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'advice'
+2019-04-17 16:57:31.904 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'tm'
+2019-04-17 16:57:31.919 [DEBUG] org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource [95] - Adding transactional method [*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+2019-04-17 16:57:31.968 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testInsert]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:57:31.969 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629] for JDBC transaction
+2019-04-17 16:57:31.972 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:57:31.973 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [insert into ttt(id, name) values(?, ?)]
+2019-04-17 16:57:32.359 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:57:32.360 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629]
+2019-04-17 16:57:32.361 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@55b62629] after transaction
+2019-04-17 16:57:32.362 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:57:32.362 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@29f0c4f2] for JDBC transaction
+2019-04-17 16:57:32.363 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 16:57:32.364 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 16:57:32.410 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:57:32.411 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@29f0c4f2]
+2019-04-17 16:57:32.411 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@29f0c4f2] after transaction
+2019-04-17 16:57:32.412 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testUpdate]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:57:32.412 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@486bc9a4] for JDBC transaction
+2019-04-17 16:57:32.413 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:57:32.413 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [update ttt set name = ? where id = ?]
+2019-04-17 16:57:32.430 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:57:32.430 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@486bc9a4]
+2019-04-17 16:57:32.433 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@486bc9a4] after transaction
+2019-04-17 16:57:32.434 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:57:32.434 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@67440de6] for JDBC transaction
+2019-04-17 16:57:32.434 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 16:57:32.435 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 16:57:32.436 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:57:32.436 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@67440de6]
+2019-04-17 16:57:32.436 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@67440de6] after transaction
+2019-04-17 16:57:32.437 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testDelete]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:57:32.437 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@889d9e8] for JDBC transaction
+2019-04-17 16:57:32.437 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:57:32.438 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [delete from ttt where id = ?]
+2019-04-17 16:57:32.441 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:57:32.442 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@889d9e8]
+2019-04-17 16:57:32.446 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@889d9e8] after transaction
+2019-04-17 16:57:32.447 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:57:32.447 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@4c4f4365] for JDBC transaction
+2019-04-17 16:57:32.447 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 16:57:32.447 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 16:57:32.448 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:57:32.449 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@4c4f4365]
+2019-04-17 16:57:32.449 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@4c4f4365] after transaction
+2019-04-17 16:58:44.148 [DEBUG] org.springframework.context.support.ClassPathXmlApplicationContext [594] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35aea049
+2019-04-17 16:58:44.527 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/biz/TestBiz.class]
+2019-04-17 16:58:44.530 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/dao/TestDao.class]
+2019-04-17 16:58:44.578 [DEBUG] org.springframework.beans.factory.xml.XmlBeanDefinitionReader [395] - Loaded 18 bean definitions from class path resource [beans.xml]
+2019-04-17 16:58:44.610 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2019-04-17 16:58:44.682 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2019-04-17 16:58:44.683 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2019-04-17 16:58:44.686 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2019-04-17 16:58:44.687 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2019-04-17 16:58:44.733 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testBiz'
+2019-04-17 16:58:44.735 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2019-04-17 16:58:44.762 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDao'
+2019-04-17 16:58:44.763 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'jdbcTemplate'
+2019-04-17 16:58:44.779 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataSource'
+2019-04-17 16:58:44.781 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'sqlHandler'
+2019-04-17 16:58:44.787 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'indexAccess'
+2019-04-17 16:58:44.789 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testIndexDS'
+2019-04-17 16:58:45.088 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataAccess'
+2019-04-17 16:58:45.090 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDataDS'
+2019-04-17 16:58:45.161 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'advice'
+2019-04-17 16:58:45.163 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'tm'
+2019-04-17 16:58:45.177 [DEBUG] org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource [95] - Adding transactional method [*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+2019-04-17 16:58:45.232 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testInsert]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:58:45.233 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@49d98dc5] for JDBC transaction
+2019-04-17 16:58:45.238 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:58:45.239 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [insert into ttt(id, name) values(?, ?)]
+2019-04-17 16:58:45.636 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:58:45.636 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@49d98dc5]
+2019-04-17 16:58:45.638 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@49d98dc5] after transaction
+2019-04-17 16:58:45.639 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:58:45.639 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@7e7f0f0a] for JDBC transaction
+2019-04-17 16:58:45.640 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 16:58:45.641 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 16:58:45.694 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:58:45.695 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@7e7f0f0a]
+2019-04-17 16:58:45.695 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@7e7f0f0a] after transaction
+2019-04-17 16:58:45.696 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testUpdate]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:58:45.696 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@3e1624c7] for JDBC transaction
+2019-04-17 16:58:45.697 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:58:45.697 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [update ttt set name = ? where id = ?]
+2019-04-17 16:58:45.712 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:58:45.712 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@3e1624c7]
+2019-04-17 16:58:45.717 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@3e1624c7] after transaction
+2019-04-17 16:58:45.718 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:58:45.719 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@53c68ce] for JDBC transaction
+2019-04-17 16:58:45.719 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 16:58:45.719 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 16:58:45.721 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:58:45.721 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@53c68ce]
+2019-04-17 16:58:45.721 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@53c68ce] after transaction
+2019-04-17 16:58:45.722 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testDelete]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:58:45.722 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@6f9ad11c] for JDBC transaction
+2019-04-17 16:58:45.722 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 16:58:45.723 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [delete from ttt where id = ?]
+2019-04-17 16:58:45.727 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:58:45.727 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@6f9ad11c]
+2019-04-17 16:58:45.730 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@6f9ad11c] after transaction
+2019-04-17 16:58:45.731 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 16:58:45.731 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@3e7545e8] for JDBC transaction
+2019-04-17 16:58:45.731 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 16:58:45.731 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 16:58:45.732 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 16:58:45.733 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@3e7545e8]
+2019-04-17 16:58:45.733 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@3e7545e8] after transaction
+2019-04-17 17:04:12.415 [DEBUG] org.springframework.context.support.ClassPathXmlApplicationContext [594] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35aea049
+2019-04-17 17:04:12.778 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/biz/TestBiz.class]
+2019-04-17 17:04:12.782 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/dao/TestDao.class]
+2019-04-17 17:04:12.833 [DEBUG] org.springframework.beans.factory.xml.XmlBeanDefinitionReader [395] - Loaded 18 bean definitions from class path resource [beans.xml]
+2019-04-17 17:04:12.865 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2019-04-17 17:04:12.932 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2019-04-17 17:04:12.933 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2019-04-17 17:04:12.935 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2019-04-17 17:04:12.937 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2019-04-17 17:04:12.985 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testBiz'
+2019-04-17 17:04:12.987 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2019-04-17 17:04:13.014 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDao'
+2019-04-17 17:04:13.016 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'jdbcTemplate'
+2019-04-17 17:04:13.025 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataSource'
+2019-04-17 17:04:13.027 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'sqlHandler'
+2019-04-17 17:04:13.037 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'indexAccess'
+2019-04-17 17:04:13.041 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testIndexDS'
+2019-04-17 17:04:13.406 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataAccess'
+2019-04-17 17:04:13.407 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDataDS'
+2019-04-17 17:04:13.494 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'advice'
+2019-04-17 17:04:13.497 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'tm'
+2019-04-17 17:04:13.516 [DEBUG] org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource [95] - Adding transactional method [*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+2019-04-17 17:04:13.588 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testInsert]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:04:13.590 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@1654a892] for JDBC transaction
+2019-04-17 17:04:13.594 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 17:04:13.595 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [insert into ttt(id, name) values(?, ?)]
+2019-04-17 17:04:13.945 [DEBUG] druid.sql.Connection [132] - {conn-10001} connected
+2019-04-17 17:04:13.950 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-connect
+2019-04-17 17:04:13.951 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit false
+2019-04-17 17:04:14.029 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} created. insert into i_v_837(index_name, v0, id) values (?, ?, ?)
+2019-04-17 17:04:14.035 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} Parameters : [ttt.name, test_name1, 0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.035 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} Types : [VARCHAR, VARCHAR, VARCHAR]
+2019-04-17 17:04:14.037 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} update executed. effort 1. 3.399869 millis. insert into i_v_837(index_name, v0, id) values (?, ?, ?)
+2019-04-17 17:04:14.038 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} closed
+2019-04-17 17:04:14.040 [DEBUG] druid.sql.Connection [132] - {conn-110001} connected
+2019-04-17 17:04:14.041 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:04:14.041 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:04:14.043 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} created. insert into ttt (id, name) values (?, ?)
+2019-04-17 17:04:14.044 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE, test_name1]
+2019-04-17 17:04:14.044 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} Types : [VARCHAR, VARCHAR]
+2019-04-17 17:04:14.045 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} update executed. effort 1. 1.052643 millis. insert into ttt (id, name) values (?, ?)
+2019-04-17 17:04:14.045 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} closed
+2019-04-17 17:04:14.047 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:04:14.047 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@1654a892]
+2019-04-17 17:04:14.048 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:04:14.050 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:04:14.050 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:04:14.052 [DEBUG] druid.sql.Connection [132] - {conn-10001} commited
+2019-04-17 17:04:14.052 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit true
+2019-04-17 17:04:14.052 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-recycle
+2019-04-17 17:04:14.053 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@1654a892] after transaction
+2019-04-17 17:04:14.053 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:04:14.054 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@7a344b65] for JDBC transaction
+2019-04-17 17:04:14.055 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 17:04:14.055 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 17:04:14.092 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:04:14.092 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:04:14.095 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001} created. select name from ttt where id = ?
+2019-04-17 17:04:14.096 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.096 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001} Types : [VARCHAR]
+2019-04-17 17:04:14.100 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001, rs-150000} query executed. 4.031442 millis. select name from ttt where id = ?
+2019-04-17 17:04:14.100 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120001, rs-150000} open
+2019-04-17 17:04:14.101 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120001, rs-150000} Header: [name]
+2019-04-17 17:04:14.104 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120001, rs-150000} Result: [test_name1]
+2019-04-17 17:04:14.107 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:04:14.107 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@7a344b65]
+2019-04-17 17:04:14.108 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:04:14.108 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:04:14.109 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120001, rs-150000} closed
+2019-04-17 17:04:14.109 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001} closed
+2019-04-17 17:04:14.109 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:04:14.110 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@7a344b65] after transaction
+2019-04-17 17:04:14.110 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testUpdate]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:04:14.111 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@2b56f5f8] for JDBC transaction
+2019-04-17 17:04:14.111 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 17:04:14.111 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [update ttt set name = ? where id = ?]
+2019-04-17 17:04:14.122 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:04:14.122 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:04:14.122 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002} created. select * from ttt where id = ?
+2019-04-17 17:04:14.123 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.123 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002} Types : [VARCHAR]
+2019-04-17 17:04:14.124 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002, rs-150001} query executed. 0.725557 millis. select * from ttt where id = ?
+2019-04-17 17:04:14.124 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120002, rs-150001} open
+2019-04-17 17:04:14.124 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120002, rs-150001} Header: [id, name]
+2019-04-17 17:04:14.124 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120002, rs-150001} Result: [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE, test_name1]
+2019-04-17 17:04:14.125 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-connect
+2019-04-17 17:04:14.125 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit false
+2019-04-17 17:04:14.126 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} created. delete from i_v_837 where id = ? and index_name = ? and v0 = ?
+2019-04-17 17:04:14.126 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE, ttt.name, test_name1]
+2019-04-17 17:04:14.127 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} Types : [VARCHAR, VARCHAR, VARCHAR]
+2019-04-17 17:04:14.128 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} update executed. effort 1. 2.040476 millis. delete from i_v_837 where id = ? and index_name = ? and v0 = ?
+2019-04-17 17:04:14.129 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} closed
+2019-04-17 17:04:14.129 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} created. insert into i_v_777(index_name, v0, id) values (?, ?, ?)
+2019-04-17 17:04:14.129 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} Parameters : [ttt.name, test_name2, 0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.129 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} Types : [VARCHAR, VARCHAR, VARCHAR]
+2019-04-17 17:04:14.130 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} update executed. effort 1. 0.91414 millis. insert into i_v_777(index_name, v0, id) values (?, ?, ?)
+2019-04-17 17:04:14.130 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} closed
+2019-04-17 17:04:14.133 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} created. update ttt set name=? where id = ?
+2019-04-17 17:04:14.133 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} Parameters : [test_name2, 0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.134 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} Types : [VARCHAR, VARCHAR]
+2019-04-17 17:04:14.134 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} update executed. effort 1. 1.065773 millis. update ttt set name=? where id = ?
+2019-04-17 17:04:14.135 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} closed
+2019-04-17 17:04:14.135 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:04:14.136 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@2b56f5f8]
+2019-04-17 17:04:14.137 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:04:14.138 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:04:14.138 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120002, rs-150001} closed
+2019-04-17 17:04:14.139 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002} closed
+2019-04-17 17:04:14.140 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:04:14.142 [DEBUG] druid.sql.Connection [132] - {conn-10001} commited
+2019-04-17 17:04:14.142 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit true
+2019-04-17 17:04:14.142 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-recycle
+2019-04-17 17:04:14.142 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@2b56f5f8] after transaction
+2019-04-17 17:04:14.143 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:04:14.143 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@376e7531] for JDBC transaction
+2019-04-17 17:04:14.143 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 17:04:14.143 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 17:04:14.144 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:04:14.144 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:04:14.145 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004} created. select name from ttt where id = ?
+2019-04-17 17:04:14.145 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.145 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004} Types : [VARCHAR]
+2019-04-17 17:04:14.146 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004, rs-150002} query executed. 0.607836 millis. select name from ttt where id = ?
+2019-04-17 17:04:14.146 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120004, rs-150002} open
+2019-04-17 17:04:14.146 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120004, rs-150002} Header: [name]
+2019-04-17 17:04:14.147 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120004, rs-150002} Result: [test_name2]
+2019-04-17 17:04:14.148 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:04:14.148 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@376e7531]
+2019-04-17 17:04:14.148 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:04:14.148 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:04:14.149 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120004, rs-150002} closed
+2019-04-17 17:04:14.149 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004} closed
+2019-04-17 17:04:14.149 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:04:14.150 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@376e7531] after transaction
+2019-04-17 17:04:14.151 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testDelete]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:04:14.152 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@23202c31] for JDBC transaction
+2019-04-17 17:04:14.154 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 17:04:14.154 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [delete from ttt where id = ?]
+2019-04-17 17:04:14.157 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:04:14.158 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:04:14.159 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005} created. select * from ttt where id = ?
+2019-04-17 17:04:14.160 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.160 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005} Types : [VARCHAR]
+2019-04-17 17:04:14.160 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005, rs-150003} query executed. 0.599837 millis. select * from ttt where id = ?
+2019-04-17 17:04:14.160 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120005, rs-150003} open
+2019-04-17 17:04:14.161 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120005, rs-150003} Header: [id, name]
+2019-04-17 17:04:14.161 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120005, rs-150003} Result: [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE, test_name2]
+2019-04-17 17:04:14.162 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-connect
+2019-04-17 17:04:14.163 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit false
+2019-04-17 17:04:14.164 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} created. delete from i_v_777 where id = ? and index_name = ? and v0 = ?
+2019-04-17 17:04:14.164 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE, ttt.name, test_name2]
+2019-04-17 17:04:14.164 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} Types : [VARCHAR, VARCHAR, VARCHAR]
+2019-04-17 17:04:14.165 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} update executed. effort 1. 0.79071 millis. delete from i_v_777 where id = ? and index_name = ? and v0 = ?
+2019-04-17 17:04:14.166 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} closed
+2019-04-17 17:04:14.166 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} created. delete from ttt where id = ?
+2019-04-17 17:04:14.167 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.167 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} Types : [VARCHAR]
+2019-04-17 17:04:14.167 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} update executed. effort 1. 0.595194 millis. delete from ttt where id = ?
+2019-04-17 17:04:14.168 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} closed
+2019-04-17 17:04:14.168 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:04:14.168 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@23202c31]
+2019-04-17 17:04:14.169 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:04:14.169 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:04:14.170 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120005, rs-150003} closed
+2019-04-17 17:04:14.170 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005} closed
+2019-04-17 17:04:14.170 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:04:14.171 [DEBUG] druid.sql.Connection [132] - {conn-10001} commited
+2019-04-17 17:04:14.172 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit true
+2019-04-17 17:04:14.172 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-recycle
+2019-04-17 17:04:14.172 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@23202c31] after transaction
+2019-04-17 17:04:14.172 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:04:14.173 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@b016b4e] for JDBC transaction
+2019-04-17 17:04:14.173 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 17:04:14.174 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 17:04:14.175 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:04:14.176 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:04:14.176 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007} created. select name from ttt where id = ?
+2019-04-17 17:04:14.176 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007} Parameters : [0000005e=ccK3UXPnKxPWoMTeLvDiojGiJE]
+2019-04-17 17:04:14.177 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007} Types : [VARCHAR]
+2019-04-17 17:04:14.177 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007, rs-150004} query executed. 0.418736 millis. select name from ttt where id = ?
+2019-04-17 17:04:14.177 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120007, rs-150004} open
+2019-04-17 17:04:14.177 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120007, rs-150004} Header: [name]
+2019-04-17 17:04:14.178 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:04:14.178 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@b016b4e]
+2019-04-17 17:04:14.178 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:04:14.178 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:04:14.179 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120007, rs-150004} closed
+2019-04-17 17:04:14.179 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007} closed
+2019-04-17 17:04:14.179 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:04:14.179 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@b016b4e] after transaction
+2019-04-17 17:05:19.852 [DEBUG] org.springframework.context.support.ClassPathXmlApplicationContext [594] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1a18644
+2019-04-17 17:05:20.231 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/biz/TestBiz.class]
+2019-04-17 17:05:20.246 [DEBUG] org.springframework.context.annotation.ClassPathBeanDefinitionScanner [437] - Identified candidate component class: file [/Users/089239/GitHub/distributedDataSource/target/test-classes/org/w01f/dds/service/dao/TestDao.class]
+2019-04-17 17:05:20.334 [DEBUG] org.springframework.beans.factory.xml.XmlBeanDefinitionReader [395] - Loaded 18 bean definitions from class path resource [beans.xml]
+2019-04-17 17:05:20.375 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2019-04-17 17:05:20.453 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2019-04-17 17:05:20.454 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2019-04-17 17:05:20.456 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2019-04-17 17:05:20.457 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2019-04-17 17:05:20.511 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testBiz'
+2019-04-17 17:05:20.512 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2019-04-17 17:05:20.553 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDao'
+2019-04-17 17:05:20.555 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'jdbcTemplate'
+2019-04-17 17:05:20.572 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataSource'
+2019-04-17 17:05:20.575 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'sqlHandler'
+2019-04-17 17:05:20.587 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'indexAccess'
+2019-04-17 17:05:20.602 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testIndexDS'
+2019-04-17 17:05:21.027 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'dataAccess'
+2019-04-17 17:05:21.028 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'testDataDS'
+2019-04-17 17:05:21.103 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'advice'
+2019-04-17 17:05:21.106 [DEBUG] org.springframework.beans.factory.support.DefaultListableBeanFactory [213] - Creating shared instance of singleton bean 'tm'
+2019-04-17 17:05:21.125 [DEBUG] org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource [95] - Adding transactional method [*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+2019-04-17 17:05:21.194 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testInsert]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:05:21.196 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@1654a892] for JDBC transaction
+2019-04-17 17:05:21.204 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 17:05:21.205 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [insert into ttt(id, name) values(?, ?)]
+2019-04-17 17:05:21.583 [DEBUG] druid.sql.Connection [132] - {conn-10001} connected
+2019-04-17 17:05:21.590 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-connect
+2019-04-17 17:05:21.591 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit false
+2019-04-17 17:05:21.687 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} created. insert into i_v_837(index_name, v0, id) values (?, ?, ?)
+2019-04-17 17:05:21.692 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} Parameters : [ttt.name, test_name1, 0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.693 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} Types : [VARCHAR, VARCHAR, VARCHAR]
+2019-04-17 17:05:21.694 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} update executed. effort 1. 3.101835 millis. insert into i_v_837(index_name, v0, id) values (?, ?, ?)
+2019-04-17 17:05:21.695 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20000} closed
+2019-04-17 17:05:21.698 [DEBUG] druid.sql.Connection [132] - {conn-110001} connected
+2019-04-17 17:05:21.698 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:05:21.699 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:05:21.701 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} created. insert into ttt (id, name) values (?, ?)
+2019-04-17 17:05:21.701 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC, test_name1]
+2019-04-17 17:05:21.701 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} Types : [VARCHAR, VARCHAR]
+2019-04-17 17:05:21.702 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} update executed. effort 1. 1.261823 millis. insert into ttt (id, name) values (?, ?)
+2019-04-17 17:05:21.703 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120000} closed
+2019-04-17 17:05:21.705 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:05:21.706 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@1654a892]
+2019-04-17 17:05:21.708 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:05:21.709 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:05:21.710 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:05:21.712 [DEBUG] druid.sql.Connection [132] - {conn-10001} commited
+2019-04-17 17:05:21.712 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit true
+2019-04-17 17:05:21.713 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-recycle
+2019-04-17 17:05:21.713 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@1654a892] after transaction
+2019-04-17 17:05:21.714 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:05:21.715 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@77d18d0b] for JDBC transaction
+2019-04-17 17:05:21.716 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 17:05:21.716 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 17:05:21.760 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:05:21.760 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:05:21.764 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001} created. select name from ttt where id = ?
+2019-04-17 17:05:21.765 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.765 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001} Types : [VARCHAR]
+2019-04-17 17:05:21.767 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001, rs-150000} query executed. 2.451777 millis. select name from ttt where id = ?
+2019-04-17 17:05:21.767 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120001, rs-150000} open
+2019-04-17 17:05:21.768 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120001, rs-150000} Header: [name]
+2019-04-17 17:05:21.771 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120001, rs-150000} Result: [test_name1]
+2019-04-17 17:05:21.773 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:05:21.774 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@77d18d0b]
+2019-04-17 17:05:21.774 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:05:21.774 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:05:21.775 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120001, rs-150000} closed
+2019-04-17 17:05:21.775 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120001} closed
+2019-04-17 17:05:21.775 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:05:21.775 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@77d18d0b] after transaction
+2019-04-17 17:05:21.776 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testUpdate]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:05:21.776 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@f3fcd59] for JDBC transaction
+2019-04-17 17:05:21.776 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 17:05:21.776 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [update ttt set name = ? where id = ?]
+2019-04-17 17:05:21.785 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:05:21.785 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:05:21.785 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002} created. select * from ttt where id = ?
+2019-04-17 17:05:21.786 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.786 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002} Types : [VARCHAR]
+2019-04-17 17:05:21.786 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002, rs-150001} query executed. 0.534209 millis. select * from ttt where id = ?
+2019-04-17 17:05:21.787 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120002, rs-150001} open
+2019-04-17 17:05:21.787 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120002, rs-150001} Header: [id, name]
+2019-04-17 17:05:21.787 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120002, rs-150001} Result: [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC, test_name1]
+2019-04-17 17:05:21.787 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-connect
+2019-04-17 17:05:21.788 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit false
+2019-04-17 17:05:21.788 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} created. delete from i_v_837 where id = ? and index_name = ? and v0 = ?
+2019-04-17 17:05:21.788 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC, ttt.name, test_name1]
+2019-04-17 17:05:21.788 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} Types : [VARCHAR, VARCHAR, VARCHAR]
+2019-04-17 17:05:21.789 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} update executed. effort 1. 0.652093 millis. delete from i_v_837 where id = ? and index_name = ? and v0 = ?
+2019-04-17 17:05:21.789 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20001} closed
+2019-04-17 17:05:21.789 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} created. insert into i_v_777(index_name, v0, id) values (?, ?, ?)
+2019-04-17 17:05:21.790 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} Parameters : [ttt.name, test_name2, 0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.790 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} Types : [VARCHAR, VARCHAR, VARCHAR]
+2019-04-17 17:05:21.791 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} update executed. effort 1. 1.025553 millis. insert into i_v_777(index_name, v0, id) values (?, ?, ?)
+2019-04-17 17:05:21.791 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20002} closed
+2019-04-17 17:05:21.792 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} created. update ttt set name=? where id = ?
+2019-04-17 17:05:21.792 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} Parameters : [test_name2, 0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.792 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} Types : [VARCHAR, VARCHAR]
+2019-04-17 17:05:21.793 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} update executed. effort 1. 0.555598 millis. update ttt set name=? where id = ?
+2019-04-17 17:05:21.793 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120003} closed
+2019-04-17 17:05:21.793 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:05:21.793 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@f3fcd59]
+2019-04-17 17:05:21.794 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:05:21.795 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:05:21.795 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120002, rs-150001} closed
+2019-04-17 17:05:21.795 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120002} closed
+2019-04-17 17:05:21.795 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:05:21.796 [DEBUG] druid.sql.Connection [132] - {conn-10001} commited
+2019-04-17 17:05:21.797 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit true
+2019-04-17 17:05:21.797 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-recycle
+2019-04-17 17:05:21.797 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@f3fcd59] after transaction
+2019-04-17 17:05:21.797 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:05:21.798 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@26f7cdf8] for JDBC transaction
+2019-04-17 17:05:21.798 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 17:05:21.798 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 17:05:21.798 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:05:21.799 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:05:21.799 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004} created. select name from ttt where id = ?
+2019-04-17 17:05:21.799 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.799 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004} Types : [VARCHAR]
+2019-04-17 17:05:21.800 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004, rs-150002} query executed. 0.474143 millis. select name from ttt where id = ?
+2019-04-17 17:05:21.800 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120004, rs-150002} open
+2019-04-17 17:05:21.800 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120004, rs-150002} Header: [name]
+2019-04-17 17:05:21.800 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120004, rs-150002} Result: [test_name2]
+2019-04-17 17:05:21.801 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:05:21.801 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@26f7cdf8]
+2019-04-17 17:05:21.802 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:05:21.802 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:05:21.802 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120004, rs-150002} closed
+2019-04-17 17:05:21.802 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120004} closed
+2019-04-17 17:05:21.803 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:05:21.803 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@26f7cdf8] after transaction
+2019-04-17 17:05:21.803 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testDelete]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:05:21.804 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@376e7531] for JDBC transaction
+2019-04-17 17:05:21.804 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [860] - Executing prepared SQL update
+2019-04-17 17:05:21.804 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [delete from ttt where id = ?]
+2019-04-17 17:05:21.806 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:05:21.806 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:05:21.806 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005} created. select * from ttt where id = ?
+2019-04-17 17:05:21.807 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.807 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005} Types : [VARCHAR]
+2019-04-17 17:05:21.807 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005, rs-150003} query executed. 0.532839 millis. select * from ttt where id = ?
+2019-04-17 17:05:21.807 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120005, rs-150003} open
+2019-04-17 17:05:21.808 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120005, rs-150003} Header: [id, name]
+2019-04-17 17:05:21.808 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120005, rs-150003} Result: [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC, test_name2]
+2019-04-17 17:05:21.808 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-connect
+2019-04-17 17:05:21.808 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit false
+2019-04-17 17:05:21.809 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} created. delete from i_v_777 where id = ? and index_name = ? and v0 = ?
+2019-04-17 17:05:21.809 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC, ttt.name, test_name2]
+2019-04-17 17:05:21.809 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} Types : [VARCHAR, VARCHAR, VARCHAR]
+2019-04-17 17:05:21.809 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} update executed. effort 1. 0.564933 millis. delete from i_v_777 where id = ? and index_name = ? and v0 = ?
+2019-04-17 17:05:21.810 [DEBUG] druid.sql.Statement [137] - {conn-10001, pstmt-20003} closed
+2019-04-17 17:05:21.810 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} created. delete from ttt where id = ?
+2019-04-17 17:05:21.810 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.810 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} Types : [VARCHAR]
+2019-04-17 17:05:21.811 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} update executed. effort 1. 0.562411 millis. delete from ttt where id = ?
+2019-04-17 17:05:21.811 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120006} closed
+2019-04-17 17:05:21.811 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:05:21.811 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@376e7531]
+2019-04-17 17:05:21.812 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:05:21.812 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:05:21.813 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120005, rs-150003} closed
+2019-04-17 17:05:21.813 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120005} closed
+2019-04-17 17:05:21.813 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:05:21.814 [DEBUG] druid.sql.Connection [132] - {conn-10001} commited
+2019-04-17 17:05:21.814 [DEBUG] druid.sql.Connection [132] - {conn-10001} setAutoCommit true
+2019-04-17 17:05:21.814 [DEBUG] druid.sql.Connection [132] - {conn-10001} pool-recycle
+2019-04-17 17:05:21.815 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@376e7531] after transaction
+2019-04-17 17:05:21.815 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [372] - Creating new transaction with name [org.w01f.dds.service.biz.TestBiz.testSelet]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2019-04-17 17:05:21.815 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [264] - Acquired Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@4f824872] for JDBC transaction
+2019-04-17 17:05:21.815 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [667] - Executing prepared SQL query
+2019-04-17 17:05:21.815 [DEBUG] org.springframework.jdbc.core.JdbcTemplate [609] - Executing prepared SQL statement [select name from ttt where id = ?]
+2019-04-17 17:05:21.816 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-connect
+2019-04-17 17:05:21.816 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit false
+2019-04-17 17:05:21.816 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007} created. select name from ttt where id = ?
+2019-04-17 17:05:21.816 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007} Parameters : [0000005e=cgS5RUYfyXrEo0OXEz4qf=mXXC]
+2019-04-17 17:05:21.816 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007} Types : [VARCHAR]
+2019-04-17 17:05:21.817 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007, rs-150004} query executed. 0.362032 millis. select name from ttt where id = ?
+2019-04-17 17:05:21.817 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120007, rs-150004} open
+2019-04-17 17:05:21.817 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120007, rs-150004} Header: [name]
+2019-04-17 17:05:21.817 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [743] - Initiating transaction commit
+2019-04-17 17:05:21.817 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [326] - Committing JDBC transaction on Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@4f824872]
+2019-04-17 17:05:21.818 [DEBUG] druid.sql.Connection [132] - {conn-110001} commited
+2019-04-17 17:05:21.818 [DEBUG] druid.sql.Connection [132] - {conn-110001} setAutoCommit true
+2019-04-17 17:05:21.818 [DEBUG] druid.sql.ResultSet [142] - {conn-110001, pstmt-120007, rs-150004} closed
+2019-04-17 17:05:21.818 [DEBUG] druid.sql.Statement [137] - {conn-110001, pstmt-120007} closed
+2019-04-17 17:05:21.818 [DEBUG] druid.sql.Connection [132] - {conn-110001} pool-recycle
+2019-04-17 17:05:21.819 [DEBUG] org.springframework.jdbc.datasource.DataSourceTransactionManager [384] - Releasing JDBC Connection [org.w01f.dds.layer1.dsproxy.DistributedConnection@4f824872] after transaction

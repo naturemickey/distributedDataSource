@@ -101,7 +101,8 @@ public class DistributedStatement implements InvocationHandler, Statement {
 
     @Override
     public SQLWarning getWarnings() throws SQLException {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+    return null;
     }
 
     @Override

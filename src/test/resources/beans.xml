@@ -9,30 +9,20 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="org.w01f.dds.service"/>
-
-    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter" >
+    <!--bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4j2Filter" >
         <property name="statementExecutableSqlLogEnable" value="true" />
-    </bean>
-
+    </bean-->
     <bean id="testDataDS" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="org.sqlite.JDBC" />
         <property name="url" value="jdbc:sqlite:db/testsqlitedb.sqlitedb" />
         <property name="testWhileIdle" value="false" />
-        <property name="proxyFilters">
-            <list>
-                <ref bean="log-filter" />
-            </list>
-        </property>
+        <property name="filters" value="log4j2" />
     </bean>
     <bean id="testIndexDS" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="org.sqlite.JDBC" />
         <property name="url" value="jdbc:sqlite:db/indexdb.sqlitedb" />
         <property name="testWhileIdle" value="false" />
-        <property name="proxyFilters">
-            <list>
-                <ref bean="log-filter" />
-            </list>
-        </property>
+        <property name="filters" value="log4j2" />
     </bean>
 
     <bean id="dataAccess" class="org.w01f.dds.layer4.data.DataAccess">
