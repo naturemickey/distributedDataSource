@@ -9,20 +9,39 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="org.w01f.dds.service"/>
-    <!--bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4j2Filter" >
-        <property name="statementExecutableSqlLogEnable" value="true" />
-    </bean-->
+    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4j2Filter" >
+        <property name="statementExecutableSqlLogEnable" value="false" />
+        <property name="statementCloseAfterLogEnabled" value="false" />
+        <property name="statementExecuteUpdateAfterLogEnabled" value="false" />
+        <property name="statementExecuteBatchAfterLogEnabled" value="false" />
+        <property name="statementExecuteAfterLogEnabled" value="false" />
+        <property name="statementParameterSetLogEnabled" value="true" />
+        <property name="statementParameterClearLogEnable" value="false" />
+        <property name="statementCreateAfterLogEnabled" value="false" />
+        <property name="statementPrepareAfterLogEnabled" value="true"/>
+        <property name="statementExecuteQueryAfterLogEnabled" value="false" />
+    </bean>
     <bean id="testDataDS" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="org.sqlite.JDBC" />
         <property name="url" value="jdbc:sqlite:db/testsqlitedb.sqlitedb" />
         <property name="testWhileIdle" value="false" />
-        <property name="filters" value="log4j2" />
+        <!--property name="filters" value="log4j2" /-->
+        <property name="proxyFilters">
+            <list>
+                <ref bean="log-filter" />
+            </list>
+        </property>
     </bean>
     <bean id="testIndexDS" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="org.sqlite.JDBC" />
         <property name="url" value="jdbc:sqlite:db/indexdb.sqlitedb" />
         <property name="testWhileIdle" value="false" />
-        <property name="filters" value="log4j2" />
+        <!--property name="filters" value="log4j2" /-->
+        <property name="proxyFilters">
+            <list>
+                <ref bean="log-filter" />
+            </list>
+        </property>
     </bean>
 
     <bean id="dataAccess" class="org.w01f.dds.layer4.data.DataAccess">
