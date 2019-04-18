@@ -1,5 +1,6 @@
 package org.w01f.dds.service;
 
+import org.apache.log4j.BasicConfigurator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.w01f.dds.layer1.id.IDConfig;
@@ -13,6 +14,7 @@ import org.w01f.dds.service.biz.ITestBiz;
 public class TestServiceBean {
 
     public static void main(String[] args) throws Exception {
+        BasicConfigurator.configure();
 
         Table table = new Table("ttt");
         new Index(table, new Column[]{new Column("name", Column.Type.VARCHAR1000)});
@@ -25,23 +27,23 @@ public class TestServiceBean {
         //sqliteDS.getConnection().createStatement().execute("create table ttt(id varchar(100), name varchar(100))");
         ITestBiz testBiz = ac.getBean(ITestBiz.class);
 
-//        String id = IDGenerator.takeId();
-//
-//        System.out.println("insert data[id = " + id + "]:");
-//        testBiz.testInsert(id, "test_name1");
-//
-//        System.out.println("\nupdate data:");
-//        testBiz.testUpdate(id, "test_name2");
-//        //System.out.println(testBiz.testSelet(id));
-//
-//        System.out.println("\nselect data[id = " + id + "]:");
-//        System.out.println(testBiz.testSelet(id));
+        String id = IDGenerator.takeId();
+
+        System.out.println("\ninsert data[id = " + id + "]:");
+        testBiz.testInsert(id, "test_name1");
+
+        System.out.println("\nupdate data:");
+        testBiz.testUpdate(id, "test_name2");
+        //System.out.println(testBiz.testSelet(id));
+
+        System.out.println("\nselect data[id = " + id + "]:");
+        System.out.println(testBiz.testSelet(id));
 
         System.out.println("\nselect data[name = test_name2]:");
         System.out.println(testBiz.testSeletByName("test_name2"));
 
-//        System.out.println("\ndelete data[id = " + id + "]:");
-//        testBiz.testDelete(id);
+        System.out.println("\ndelete data[id = " + id + "]:");
+        testBiz.testDelete(id);
     }
 
 
