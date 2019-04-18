@@ -2,11 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+">
 
     <context:component-scan base-package="org.w01f.dds.service"/>
 
@@ -67,37 +69,38 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         </property>
     </bean>
 
-    <bean id="dataAccess" class="org.w01f.dds.layer4.data.DataAccess">
-        <property name="dataSourceProxy">
-            <bean class="org.w01f.dds.layer5.DataSourceProxy">
-                <property name="dsMap">
-                    <map>
-                        <entry key="0" value-ref="testDataDS1"/>
-                        <entry key="1" value-ref="testDataDS2"/>
-                    </map>
-                </property>
-            </bean>
-        </property>
-    </bean>
-    <bean id="indexAccess" class="org.w01f.dds.layer4.index.IndexAccess">
-        <property name="dataSourceProxy">
-            <bean class="org.w01f.dds.layer5.DataSourceProxy">
-                <property name="dsMap">
-                    <map>
-                        <entry key="0" value-ref="testIndexDS1"/>
-                        <entry key="1" value-ref="testIndexDS2"/>
-                    </map>
-                </property>
-            </bean>
-        </property>
-        <property name="slotDsMap" value="0-1023:0,1024-2047:1"/>
-    </bean>
-    <bean id="sqlHandler" class="org.w01f.dds.layer2.sql.SqlHandler">
-        <property name="indexAccess" ref="indexAccess"/>
-        <property name="dataAccess" ref="dataAccess"/>
-    </bean>
+    <util:map id="dataDsMap">
+        <entry key="0" value-ref="testDataDS1"/>
+        <entry key="1" value-ref="testDataDS2"/>
+    </util:map>
+    <util:map id="indexDsMap">
+        <entry key="0" value-ref="testIndexDS1"/>
+        <entry key="1" value-ref="testIndexDS2"/>
+    </util:map>
+    <!--
+        <bean id="dataAccess" class="org.w01f.dds.layer4.data.DataAccess">
+            <property name="dataSourceProxy">
+                <bean class="org.w01f.dds.layer5.DataSourceProxy">
+                    <property name="dsMap" ref="dataDsMap" />
+                </bean>
+            </property>
+        </bean>
+        <bean id="indexAccess" class="org.w01f.dds.layer4.index.IndexAccess">
+            <property name="dataSourceProxy">
+                <bean class="org.w01f.dds.layer5.DataSourceProxy">
+                    <property name="dsMap" ref="indexDsMap" />
+                </bean>
+            </property>
+            <property name="slotDsMap" value="0-1023:0,1024-2047:1"/>
+        </bean>
+        <bean id="sqlHandler" class="org.w01f.dds.layer2.sql.SqlHandler">
+            <property name="indexAccess" ref="indexAccess"/>
+            <property name="dataAccess" ref="dataAccess"/>
+        </bean>-->
     <bean id="dataSource" class="org.w01f.dds.layer1.dsproxy.DistributedDataSource">
-        <property name="sqlHandler" ref="sqlHandler"/>
+        <property name="dataDsMap" ref="dataDsMap"/>
+        <property name="indexDsMap" ref="indexDsMap"/>
+        <property name="slotDsMap" value="0-1023:0,1024-2047:1"/>
     </bean>
 
     <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">

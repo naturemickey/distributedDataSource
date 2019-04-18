@@ -20,12 +20,22 @@ import java.util.Map;
 
 public class IndexAccess implements IIndexAccess {
 
-    private DataSourceProxy dataSourceProxy;
-    private Map<Integer, Integer> slotDsMap = new HashMap<>();
+    private static IndexAccess instance = new IndexAccess();
 
-    public void setDataSourceProxy(DataSourceProxy dataSourceProxy) {
-        this.dataSourceProxy = dataSourceProxy;
+    public static IndexAccess getInstance() {
+        return instance;
     }
+
+    private IndexAccess() {
+    }
+
+    private DataSourceProxy dataSourceProxy = new DataSourceProxy();
+
+    public DataSourceProxy getDataSourceProxy() {
+        return dataSourceProxy;
+    }
+
+    private Map<Integer, Integer> slotDsMap = new HashMap<>();
 
     public void setSlotDsMap(String s) {
         final String[] ss = s.split(",");

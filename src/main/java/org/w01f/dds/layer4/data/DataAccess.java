@@ -10,12 +10,20 @@ import java.util.function.Supplier;
 
 public class DataAccess implements IDataAccess {
 
-    private DataSourceProxy dataSourceProxy;
-
-    public void setDataSourceProxy(DataSourceProxy dataSourceProxy) {
-        this.dataSourceProxy = dataSourceProxy;
+    private DataAccess() {
     }
 
+    private static DataAccess instance = new DataAccess();
+
+    public static DataAccess getInstance() {
+        return instance;
+    }
+
+    private DataSourceProxy dataSourceProxy = new DataSourceProxy();
+
+    public DataSourceProxy getDataSourceProxy() {
+        return dataSourceProxy;
+    }
 
     @Override
     public void execute(StatNode statNode, int dbNo) {

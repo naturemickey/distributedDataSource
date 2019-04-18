@@ -23,15 +23,24 @@ import java.util.stream.Collectors;
 
 public class SqlHandler {
 
-    private IIndexAccess indexAccess;
-    private IDataAccess dataAccess;
+    private static SqlHandler instance = new SqlHandler();
 
-    public void setIndexAccess(IIndexAccess indexAccess) {
-        this.indexAccess = indexAccess;
+    public static SqlHandler getInstance() {
+        return instance;
     }
 
-    public void setDataAccess(IDataAccess dataAccess) {
-        this.dataAccess = dataAccess;
+    private IndexAccess indexAccess = IndexAccess.getInstance();
+    private DataAccess dataAccess = DataAccess.getInstance();
+
+    private SqlHandler() {
+    }
+
+    public IndexAccess getIndexAccess() {
+        return indexAccess;
+    }
+
+    public DataAccess getDataAccess() {
+        return dataAccess;
     }
 
     public DatabaseMetaData getMetaData() throws SQLException {
