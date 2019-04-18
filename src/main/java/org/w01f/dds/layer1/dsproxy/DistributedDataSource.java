@@ -23,6 +23,7 @@ public class DistributedDataSource implements DataSource {
     public void setIndexDsMap(Map<Integer, DataSource> indexDsMap) {
         sqlHandler.getIndexAccess().getDataSourceProxy().setDsMap(indexDsMap);
     }
+
     public void setSlotDsMap(String s) {
         sqlHandler.getIndexAccess().setSlotDsMap(s);
     }
