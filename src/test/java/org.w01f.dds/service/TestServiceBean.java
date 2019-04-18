@@ -23,8 +23,7 @@ public class TestServiceBean {
         new IDConfig("0");
 
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-        //DataSource sqliteDS = (DataSource) ac.getBean("dataSource");
-        //sqliteDS.getConnection().createStatement().execute("create table ttt(id varchar(100), name varchar(100))");
+
         ITestBiz testBiz = ac.getBean(ITestBiz.class);
 
         String id = IDGenerator.takeId();

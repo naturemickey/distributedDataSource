@@ -22,9 +22,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="statementPrepareAfterLogEnabled" value="true"/>
         <property name="statementExecuteQueryAfterLogEnabled" value="false"/>
     </bean>
-    <bean id="testDataDS" class="com.alibaba.druid.pool.DruidDataSource" init-method="init">
+    <bean id="testDataDS1" class="com.alibaba.druid.pool.DruidDataSource" init-method="init">
         <property name="driverClassName" value="org.sqlite.JDBC"/>
-        <property name="url" value="jdbc:sqlite:db/testsqlitedb.sqlitedb"/>
+        <property name="url" value="jdbc:sqlite:db/data1.db"/>
         <property name="testWhileIdle" value="false"/>
         <!--property name="filters" value="log4j2" /-->
         <property name="proxyFilters">
@@ -33,9 +33,31 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
             </list>
         </property>
     </bean>
-    <bean id="testIndexDS" class="com.alibaba.druid.pool.DruidDataSource" init-method="init">
+    <bean id="testDataDS2" class="com.alibaba.druid.pool.DruidDataSource" init-method="init">
         <property name="driverClassName" value="org.sqlite.JDBC"/>
-        <property name="url" value="jdbc:sqlite:db/indexdb.sqlitedb"/>
+        <property name="url" value="jdbc:sqlite:db/data2.db"/>
+        <property name="testWhileIdle" value="false"/>
+        <!--property name="filters" value="log4j2" /-->
+        <property name="proxyFilters">
+            <list>
+                <ref bean="log-filter"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="testIndexDS1" class="com.alibaba.druid.pool.DruidDataSource" init-method="init">
+        <property name="driverClassName" value="org.sqlite.JDBC"/>
+        <property name="url" value="jdbc:sqlite:db/index1.db"/>
+        <property name="testWhileIdle" value="false"/>
+        <!--property name="filters" value="log4j2" /-->
+        <property name="proxyFilters">
+            <list>
+                <ref bean="log-filter"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="testIndexDS2" class="com.alibaba.druid.pool.DruidDataSource" init-method="init">
+        <property name="driverClassName" value="org.sqlite.JDBC"/>
+        <property name="url" value="jdbc:sqlite:db/index2.db"/>
         <property name="testWhileIdle" value="false"/>
         <!--property name="filters" value="log4j2" /-->
         <property name="proxyFilters">
@@ -50,7 +72,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
             <bean class="org.w01f.dds.layer5.DataSourceProxy">
                 <property name="dsMap">
                     <map>
-                        <entry key="0" value-ref="testDataDS"/>
+                        <entry key="0" value-ref="testDataDS1"/>
+                        <entry key="1" value-ref="testDataDS2"/>
                     </map>
                 </property>
             </bean>
@@ -61,12 +84,13 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
             <bean class="org.w01f.dds.layer5.DataSourceProxy">
                 <property name="dsMap">
                     <map>
-                        <entry key="0" value-ref="testIndexDS"/>
+                        <entry key="0" value-ref="testIndexDS1"/>
+                        <entry key="1" value-ref="testIndexDS2"/>
                     </map>
                 </property>
             </bean>
         </property>
-        <property name="slotDsMap" value="0-2047:0"/>
+        <property name="slotDsMap" value="0-1023:0,1024-2047:1"/>
     </bean>
     <bean id="sqlHandler" class="org.w01f.dds.layer2.sql.SqlHandler">
         <property name="indexAccess" ref="indexAccess"/>
