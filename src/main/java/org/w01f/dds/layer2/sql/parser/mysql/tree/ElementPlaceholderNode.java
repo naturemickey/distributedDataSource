@@ -19,6 +19,23 @@ public class ElementPlaceholderNode extends ElementTextNode implements Cloneable
 
     public ElementPlaceholderNode(String placeholder) {
         super(placeholder);
+        if ("?".equals(placeholder) || placeholder.startsWith(":")) {
+            // OK
+        } else {
+            throw new RuntimeException("wrong placeholder.");
+        }
+    }
+
+    public static ElementPlaceholderNode createByStringValue(String strVal) {
+        final ElementPlaceholderNode elementPlaceholderNode = new ElementPlaceholderNode("?");
+
+        try {
+            elementPlaceholderNode.setParam(new Param("setString", new Object[]{1, strVal}));
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return elementPlaceholderNode;
     }
 
     @Override

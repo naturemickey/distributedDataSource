@@ -75,13 +75,12 @@ public class IndexAccess implements IIndexAccess {
         try {
             Connection connection = dataSourceProxy.getConnection(dbNo);
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-                preparedStatement.setString(1, index.getName());
-                for (int i = 0; i < params.length; i++) {
-                    params[i].putValue(preparedStatement, i + 2);
-                }
-                preparedStatement.executeUpdate();
+            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
+            preparedStatement.setString(1, index.getName());
+            for (int i = 0; i < params.length; i++) {
+                params[i].putValue(preparedStatement, i + 2);
             }
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -96,14 +95,14 @@ public class IndexAccess implements IIndexAccess {
             Connection connection = dataSourceProxy.getConnection(dbNo);
             final String sql = statNode.toString();
 
-            try (final PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
-                for (int i = 0, len = placeholderNodes.size(); i < len; i++) {
-                    final ElementPlaceholderNode node = placeholderNodes.get(i);
-                    node.getParam().putValue(preparedStatement, i + 1);
-                }
-                return preparedStatement.executeQuery();
+            final PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            final List<ElementPlaceholderNode> placeholderNodes = statNode.getPlaceholderNodes();
+            for (int i = 0, len = placeholderNodes.size(); i < len; i++) {
+                final ElementPlaceholderNode node = placeholderNodes.get(i);
+                node.getParam().putValue(preparedStatement, i + 1);
             }
+            return preparedStatement.executeQuery();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -120,14 +119,14 @@ public class IndexAccess implements IIndexAccess {
         try {
             final Connection connection = this.dataSourceProxy.getConnection(dbNo);
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setObject(1, indexName);
-                for (int i = 0; i < params.length; i++) {
-                    preparedStatement.setObject(i + 2, params[i]);
-                }
-                preparedStatement.setString(2 + params.length, id);
-                preparedStatement.executeUpdate();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, indexName);
+            for (int i = 0; i < params.length; i++) {
+                preparedStatement.setObject(i + 2, params[i]);
             }
+            preparedStatement.setString(2 + params.length, id);
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -144,14 +143,14 @@ public class IndexAccess implements IIndexAccess {
         try {
             final Connection connection = this.dataSourceProxy.getConnection(dbNo);
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, id);
-                preparedStatement.setObject(2, indexName);
-                for (int i = 0; i < params.length; i++) {
-                    preparedStatement.setObject(i + 3, params[i]);
-                }
-                preparedStatement.executeUpdate();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            preparedStatement.setObject(2, indexName);
+            for (int i = 0; i < params.length; i++) {
+                preparedStatement.setObject(i + 3, params[i]);
             }
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

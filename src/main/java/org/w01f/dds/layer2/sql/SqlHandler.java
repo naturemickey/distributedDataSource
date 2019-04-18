@@ -172,7 +172,7 @@ public class SqlHandler {
                         final Set<String> idSet = entry.getValue();
 
                         final ElementTextNode idElement = new ElementTextNode("id");
-                        final ValueListNode valueListNode = new ValueListNode(idSet.stream().map(ElementPlaceholderNode::new).collect(Collectors.toList()));
+                        final ValueListNode valueListNode = new ValueListNode(idSet.stream().map(ElementPlaceholderNode::createByStringValue).collect(Collectors.toList()));
                         final ExpressionInValuesNode expressionInValuesNode = new ExpressionInValuesNode(idElement, valueListNode);
 
 

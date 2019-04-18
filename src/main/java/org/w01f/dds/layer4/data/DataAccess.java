@@ -44,15 +44,16 @@ public class DataAccess implements IDataAccess {
         return () -> {
             try {
                 Connection connection = dataSourceProxy.getConnection(dbNo);
+
                 PreparedStatement preparedStatement = connection.prepareStatement(statNode.toString());
                 for (int i = 0; i < statNode.getPlaceholderNodes().size(); i++) {
                     final ElementPlaceholderNode node = statNode.getPlaceholderNodes().get(i);
 
                     node.getParam().putValue(preparedStatement, i + 1);
                 }
-                ResultSet resultSet = preparedStatement.executeQuery();
 
-                return resultSet;
+                return preparedStatement.executeQuery();
+
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
