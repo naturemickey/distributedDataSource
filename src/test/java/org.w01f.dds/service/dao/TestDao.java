@@ -17,7 +17,6 @@ public class TestDao implements ITestDao {
         final String sql = "insert into ttt(id, name) values(?, ?)";
         System.out.println("original sql : " + sql);
         this.jdbcTemplate.update(sql, id, name);
-        //this.jdbcTemplate.update("insert into ttt(id, name) values(\"" + id + "\", \"" + name + "\")");
     }
 
     @Override
@@ -25,7 +24,6 @@ public class TestDao implements ITestDao {
         final String sql = "update ttt set name = ? where id = ?";
         System.out.println("original sql : " + sql);
         this.jdbcTemplate.update(sql, name, id);
-        // this.jdbcTemplate.update("update ttt set name = \"" + name + "\" where id = \"" + id + "\"");
     }
 
     @Override
@@ -33,7 +31,6 @@ public class TestDao implements ITestDao {
         final String sql = "delete from ttt where id = ?";
         System.out.println("original sql : " + sql);
         this.jdbcTemplate.update(sql, id);
-        //this.jdbcTemplate.update("delete from ttt where id = \"" + id + "\"");
     }
 
     @Override

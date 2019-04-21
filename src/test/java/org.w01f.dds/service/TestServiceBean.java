@@ -16,11 +16,11 @@ public class TestServiceBean {
     public static void main(String[] args) throws Exception {
         BasicConfigurator.configure();
 
-        Table table = new Table("ttt");
-        new Index(table, new Column[]{new Column("name", Column.Type.VARCHAR1000)});
-        IndexConfigUtils.parseConfig(new Table[]{table});
+        Table ttt = new Table("ttt");
+        new Index(ttt, new Column[]{new Column("name", Column.Type.VARCHAR1000)});
+        IndexConfigUtils.parseConfig(new Table[]{ttt});
 
-        new IDConfig("0");
+        new IDConfig("0-1");
 
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 
