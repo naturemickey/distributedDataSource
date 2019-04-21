@@ -178,6 +178,6 @@ public class IndexAccess implements IIndexAccess {
 
     @Override
     public void close() throws SQLException {
-
+        this.dataSourceProxy.closeAll();
     }
 }

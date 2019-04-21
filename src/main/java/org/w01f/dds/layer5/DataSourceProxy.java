@@ -46,10 +46,10 @@ public class DataSourceProxy {
                     connection.commit();
                 }
             } finally {
-                for (Connection connection : connections.values()) {
-                    connection.close();
-                }
-                connections.clear();
+//                for (Connection connection : connections.values()) {
+//                    connection.close();
+//                }
+//                connections.clear();
             }
         }
     }
@@ -62,11 +62,21 @@ public class DataSourceProxy {
                     connection.rollback();
                 }
             } finally {
-                for (Connection connection : connections.values()) {
-                    connection.close();
-                }
-                connections.clear();
+//                for (Connection connection : connections.values()) {
+//                    connection.close();
+//                }
+//                connections.clear();
             }
+        }
+    }
+
+    public void closeAll() throws SQLException {
+        Map<Integer, Connection> connections = openedConn.get();
+        if (connections != null) {
+            for (Connection connection : connections.values()) {
+                connection.close();
+            }
+            connections.clear();
         }
     }
 

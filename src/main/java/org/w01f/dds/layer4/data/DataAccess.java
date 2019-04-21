@@ -85,6 +85,6 @@ public class DataAccess implements IDataAccess {
 
     @Override
     public void close() throws SQLException {
-
+        this.dataSourceProxy.closeAll();
     }
 }
