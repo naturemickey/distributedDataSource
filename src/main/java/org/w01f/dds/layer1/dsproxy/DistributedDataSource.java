@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -17,11 +16,11 @@ public class DistributedDataSource implements DataSource {
     private SqlHandler sqlHandler = SqlHandler.getInstance();
 
     public void setDataDsMap(Map<Integer, DataSource> dataDsMap) {
-        sqlHandler.getDataAccess().getDataSourceProxy().setDsMap(dataDsMap);
+        sqlHandler.getDataAccess().getDataSourceManager().setDsMap(dataDsMap);
     }
 
     public void setIndexDsMap(Map<Integer, DataSource> indexDsMap) {
-        sqlHandler.getIndexAccess().getDataSourceProxy().setDsMap(indexDsMap);
+        sqlHandler.getIndexAccess().getDataSourceManager().setDsMap(indexDsMap);
     }
 
     public void setSlotDsMap(String s) {

@@ -1,5 +1,7 @@
 package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
+import java.util.List;
+
 public class SelectElementNode extends SQLSyntaxTreeNode {
     private final ElementNode element;
     private final String alias;
@@ -29,5 +31,14 @@ public class SelectElementNode extends SQLSyntaxTreeNode {
     @Override
     public SelectElementNode clone() {
         return new SelectElementNode(element == null ? null : element.clone(), alias);
+    }
+
+
+    protected List<String> structureProtected() {
+        if (alias == null) {
+            return element.structureProtected();
+        } else {
+            return super.structureProtected();
+        }
     }
 }

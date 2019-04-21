@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataSourceProxy {
+public class DataSourceManager {
 
     private Map<Integer, DataSource> dsMap = new HashMap<>();
     private ThreadLocal<Map<Integer, Connection>> openedConn = new ThreadLocal<>();

@@ -2,15 +2,11 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 public class StatNode extends SQLSyntaxTreeNode {
 
-    public StatNode() {
-        this.parent = this;
-    }
-
     public SQLSyntaxTreeNode getDml() {
         return dml;
     }
 
-    private SQLSyntaxTreeNode dml;
+    private final SQLSyntaxTreeNode dml;
 
     public StatNode(SQLSyntaxTreeNode dml) {
         this.dml = dml;

@@ -3,7 +3,7 @@ package org.w01f.dds.layer4.data;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.ElementPlaceholderNode;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 import org.w01f.dds.layer3.dataapi.IDataAccess;
-import org.w01f.dds.layer5.DataSourceProxy;
+import org.w01f.dds.layer5.DataSourceManager;
 
 import java.sql.*;
 import java.util.function.Supplier;
@@ -19,10 +19,10 @@ public class DataAccess implements IDataAccess {
         return instance;
     }
 
-    private DataSourceProxy dataSourceProxy = new DataSourceProxy();
+    private DataSourceManager dataSourceManager = new DataSourceManager();
 
-    public DataSourceProxy getDataSourceProxy() {
-        return dataSourceProxy;
+    public DataSourceManager getDataSourceManager() {
+        return dataSourceManager;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class DataAccess implements IDataAccess {
     @Override
     public int executeUpdate(StatNode statNode, int dbNo) {
         try {
-            Connection connection = dataSourceProxy.getConnection(dbNo);
+            Connection connection = dataSourceManager.getConnection(dbNo);
             try (PreparedStatement preparedStatement = connection.prepareStatement(statNode.toString());) {
                 for (int i = 0; i < statNode.getPlaceholderNodes().size(); i++) {
                     final ElementPlaceholderNode node = statNode.getPlaceholderNodes().get(i);
@@ -51,7 +51,7 @@ public class DataAccess implements IDataAccess {
     public Supplier<ResultSet> executeQuery(StatNode statNode, int dbNo) {
         return () -> {
             try {
-                Connection connection = dataSourceProxy.getConnection(dbNo);
+                Connection connection = dataSourceManager.getConnection(dbNo);
 
                 PreparedStatement preparedStatement = connection.prepareStatement(statNode.toString());
                 for (int i = 0; i < statNode.getPlaceholderNodes().size(); i++) {
@@ -70,21 +70,21 @@ public class DataAccess implements IDataAccess {
 
     @Override
     public DatabaseMetaData getMetaData() throws SQLException {
-        return this.dataSourceProxy.getFirstConnection().getMetaData();
+        return this.dataSourceManager.getFirstConnection().getMetaData();
     }
 
     @Override
     public void commit() throws SQLException {
-        this.dataSourceProxy.commitAll();
+        this.dataSourceManager.commitAll();
     }
 
     @Override
     public void rollback() throws SQLException {
-        this.dataSourceProxy.rollbackAll();
+        this.dataSourceManager.rollbackAll();
     }
 
     @Override
     public void close() throws SQLException {
-        this.dataSourceProxy.closeAll();
+        this.dataSourceManager.closeAll();
     }
 }

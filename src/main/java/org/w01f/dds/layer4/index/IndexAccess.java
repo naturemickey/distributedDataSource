@@ -7,7 +7,7 @@ import org.w01f.dds.layer2.sql.parser.mysql.tree.ExpressionNode;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.StatNode;
 import org.w01f.dds.layer2.sql.utils.SQLBuildUtils;
 import org.w01f.dds.layer3.indexapi.IIndexAccess;
-import org.w01f.dds.layer5.DataSourceProxy;
+import org.w01f.dds.layer5.DataSourceManager;
 import org.w01f.dds.utils.SlotConsistentHashing;
 
 import java.sql.Connection;
@@ -29,10 +29,10 @@ public class IndexAccess implements IIndexAccess {
     private IndexAccess() {
     }
 
-    private DataSourceProxy dataSourceProxy = new DataSourceProxy();
+    private DataSourceManager dataSourceManager = new DataSourceManager();
 
-    public DataSourceProxy getDataSourceProxy() {
-        return dataSourceProxy;
+    public DataSourceManager getDataSourceManager() {
+        return dataSourceManager;
     }
 
     private Map<Integer, Integer> slotDsMap = new HashMap<>();
@@ -83,7 +83,7 @@ public class IndexAccess implements IIndexAccess {
         final String insertSQL = SQLBuildUtils.sql4InsertIndex(index, slotNo);
 
         try {
-            Connection connection = dataSourceProxy.getConnection(dbNo);
+            Connection connection = dataSourceManager.getConnection(dbNo);
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setString(1, index.getName());
@@ -102,7 +102,7 @@ public class IndexAccess implements IIndexAccess {
         final int dbNo = getDbNo(slotValue);
         final StatNode statNode = SQLBuildUtils.sql4QueryIndex(index, newIndexWhereNodes, getSlotNo(slotValue));
         try {
-            Connection connection = dataSourceProxy.getConnection(dbNo);
+            Connection connection = dataSourceManager.getConnection(dbNo);
             final String sql = statNode.toString();
 
             final PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -127,7 +127,7 @@ public class IndexAccess implements IIndexAccess {
         final String indexName = index.getName();
 
         try {
-            final Connection connection = this.dataSourceProxy.getConnection(dbNo);
+            final Connection connection = this.dataSourceManager.getConnection(dbNo);
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, indexName);
@@ -151,7 +151,7 @@ public class IndexAccess implements IIndexAccess {
         final String indexName = index.getName();
 
         try {
-            final Connection connection = this.dataSourceProxy.getConnection(dbNo);
+            final Connection connection = this.dataSourceManager.getConnection(dbNo);
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, id);
@@ -168,16 +168,16 @@ public class IndexAccess implements IIndexAccess {
 
     @Override
     public void commit() throws SQLException {
-        this.dataSourceProxy.commitAll();
+        this.dataSourceManager.commitAll();
     }
 
     @Override
     public void rollback() throws SQLException {
-        this.dataSourceProxy.rollbackAll();
+        this.dataSourceManager.rollbackAll();
     }
 
     @Override
     public void close() throws SQLException {
-        this.dataSourceProxy.closeAll();
+        this.dataSourceManager.closeAll();
     }
 }

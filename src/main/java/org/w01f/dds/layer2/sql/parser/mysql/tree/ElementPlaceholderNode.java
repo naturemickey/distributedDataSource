@@ -2,9 +2,6 @@ package org.w01f.dds.layer2.sql.parser.mysql.tree;
 
 import org.w01f.dds.layer1.dsproxy.param.Param;
 
-import java.sql.PreparedStatement;
-import java.util.function.BiConsumer;
-
 public class ElementPlaceholderNode extends ElementTextNode implements Cloneable {
 
     private Param param;
@@ -31,7 +28,7 @@ public class ElementPlaceholderNode extends ElementTextNode implements Cloneable
 
         try {
             elementPlaceholderNode.setParam(new Param("setString", new Object[]{1, strVal}));
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
