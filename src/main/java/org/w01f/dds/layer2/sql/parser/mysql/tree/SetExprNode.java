@@ -18,7 +18,7 @@ public class SetExprNode extends SQLSyntaxTreeNode implements Cloneable {
 
     @Override
     public String toString() {
-        return left.toString() + '=' + (right == null ? "default" : right);
+        return left.toString() + " = " + (right == null ? "default" : right);
     }
 
     public ElementNode getLeft() {

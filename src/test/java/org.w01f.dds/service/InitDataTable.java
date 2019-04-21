@@ -11,9 +11,9 @@ public class InitDataTable {
 
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         DataSource testDataDS1 = (DataSource) ac.getBean("testDataDS1");
-        testDataDS1.getConnection().createStatement().execute("create table ttt(id varchar(100), name varchar(100))");
+        testDataDS1.getConnection().createStatement().execute("create table ttt(id varchar(100) primary key, name varchar(100))");
         DataSource testDataDS2 = (DataSource) ac.getBean("testDataDS2");
-        testDataDS2.getConnection().createStatement().execute("create table ttt(id varchar(100), name varchar(100))");
+        testDataDS2.getConnection().createStatement().execute("create table ttt(id varchar(100) primary key, name varchar(100))");
 
     }
 }
