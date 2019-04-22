@@ -33,7 +33,9 @@ public class TestServiceBean {
 
         System.out.println("\ntest update:");
         testBiz.testUpdate(id, "test_name2");
-        //System.out.println(testBiz.testSelet(id));
+
+        System.out.println("\ntest update2:");
+        testBiz.testUpdate(id, "test_name2");
 
         System.out.println("\ntest select by id:");
         System.out.println(testBiz.testSelet(id));

@@ -7,8 +7,6 @@ import org.w01f.dds.layer2.index.config.Column;
 import org.w01f.dds.layer2.index.config.Index;
 import org.w01f.dds.layer2.sql.parser.mysql.tree.*;
 import org.w01f.dds.layer2.sql.utils.SQLbreakUtil;
-import org.w01f.dds.layer3.dataapi.IDataAccess;
-import org.w01f.dds.layer3.indexapi.IIndexAccess;
 import org.w01f.dds.layer4.data.DataAccess;
 import org.w01f.dds.layer4.index.IndexAccess;
 import org.w01f.dds.layer5.ResultSetProxy;

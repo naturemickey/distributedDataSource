@@ -173,7 +173,7 @@ public class SQLbreakUtil {
         if (idx1 == null) {
             return idx2;
         }
-        // 2. retrun unique
+        // 2. return unique
         if (idx1.isUnique()) {
             return idx1;
         }
