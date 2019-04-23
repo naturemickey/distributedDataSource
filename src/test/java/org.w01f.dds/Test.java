@@ -15,7 +15,7 @@ public class Test {
 
         Files.walk(Paths.get("src/main")).forEach(p -> {
             final File file = p.toFile();
-            if (!file.isDirectory() && file.getName().endsWith(".java")) {
+            if (!file.isDirectory() && file.getName().endsWith(".java") && !file.getAbsolutePath().contains("/antlr4/")) {
                 try {
                     final List<String> lines = Files.readAllLines(p);
                     sum += lines.size();
