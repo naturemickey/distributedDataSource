@@ -5,39 +5,32 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ValueListNode extends SQLSyntaxTreeNode implements Cloneable  {
+public class ValueListNode extends SQLSyntaxTreeNode implements Cloneable {
 
-	private final List<ElementNode> elements;
+    private final List<ElementNode> elements;
 
-	@Override
-	public ValueListNode clone() {
-		List<ElementNode> elements = null;
-		if (this.elements != null) {
-			elements = new ArrayList<>(this.elements.size());
-			for (ElementNode element : this.elements) {
-				elements.add(element.clone());
-			}
-		}
-		return new ValueListNode(elements);
-	}
-	
-	public ValueListNode(List<ElementNode> elements) {
-		this.elements = Collections.unmodifiableList(elements);
+    @Override
+    public ValueListNode clone() {
+        List<ElementNode> elements = new ArrayList<>(this.elements.size());
+        for (ElementNode element : this.elements) {
+            elements.add(element.clone());
+        }
+        return new ValueListNode(elements);
+    }
 
-		setParent(elements);
-	}
+    public ValueListNode(List<ElementNode> elements) {
+        this.elements = elements == null ? Collections.emptyList() : Collections.unmodifiableList(elements);
 
-	public List<ElementNode> getElements() {
-		return elements;
-	}
+        setParent(elements);
+    }
 
-	@Override
-	public String toString() {
-		return this.elements.stream().map(e -> e.toString()).collect(Collectors.joining(", "));
-	}
-	
-	public void addElementNode(ElementNode node) {
-		this.elements.add(node);
-	}
+    public List<ElementNode> getElements() {
+        return elements;
+    }
+
+    @Override
+    public String toString() {
+        return this.elements.stream().map(e -> e.toString()).collect(Collectors.joining(", "));
+    }
 
 }
