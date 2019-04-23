@@ -116,7 +116,7 @@ public class SQLBuildUtils {
 
     public static void main(String[] args) {
         Table table = new Table("testtab");
-        Index unique = new Index(table, new Column[]{new Column("id", Column.Type.VARCHAR1000)}, true);
+        Index unique = new Index(table, new Column[]{new Column("code", Column.Type.VARCHAR1000)}, true);
         Index index = new Index(table, new Column[]{new Column("emp_id", Column.Type.VARCHAR1000), new Column("create_tm", Column.Type.DATATIME)});
 
         sql4CreateIndexTable(unique, 0).forEach(System.out::println);
