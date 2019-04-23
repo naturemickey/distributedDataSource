@@ -35,6 +35,14 @@ public class StatNode extends SQLSyntaxTreeNode {
         return dml instanceof SelectNode;
     }
 
+    public boolean isCommit() {
+        return dml instanceof CommitNode;
+    }
+
+    public boolean isRollback() {
+        return dml instanceof RollbackNode;
+    }
+
     public InsertNode getDmlAsInsert() {
         return (InsertNode) dml;
     }

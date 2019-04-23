@@ -60,18 +60,24 @@ public class SqlHandler {
         indexAccess.close();
     }
 
-    public boolean execute(StatNode statNode) {
+    public boolean execute(StatNode statNode) throws SQLException {
         executeUpdate(statNode);
         return true;
     }
 
-    public int executeUpdate(StatNode statNode) {
+    public int executeUpdate(StatNode statNode) throws SQLException {
         if (statNode.isInsert()) {
             return handleInsert(statNode);
         } else if (statNode.isUpdate()) {
             return handleUpdate(statNode);
         } else if (statNode.isDelete()) {
             return handleDelete(statNode);
+        } else if (statNode.isCommit()) {
+            this.commit();
+            return 1;
+        } else if (statNode.isRollback()) {
+            this.rollback();
+            return 1;
         } else {
             throw new RuntimeException("it is impossible");
         }

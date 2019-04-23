@@ -46,10 +46,7 @@ public class DataSourceManager {
                     connection.commit();
                 }
             } finally {
-//                for (Connection connection : connections.values()) {
-//                    connection.close();
-//                }
-//                connections.clear();
+                this.closeAll();
             }
         }
     }
@@ -62,10 +59,7 @@ public class DataSourceManager {
                     connection.rollback();
                 }
             } finally {
-//                for (Connection connection : connections.values()) {
-//                    connection.close();
-//                }
-//                connections.clear();
+                this.closeAll();
             }
         }
     }
