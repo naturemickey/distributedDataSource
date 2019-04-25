@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 public class IDGenerator {
 
@@ -87,18 +88,37 @@ public class IDGenerator {
         return ((bytes[0] & 0xff) << 8) | (bytes[1] & 0xff);
     }
 
-    public static void main(String[] args) {
-        new IDConfig("65530-65535");
-        for (int i = 0; i < 10; ++i) {
-            String id = IDGenerator.takeID(null);
-            System.out.println(id + "\t" + getDbNo(id));
-        }
+    public static void main(String[] args) throws Exception {
+//        new IDConfig("65530-65535");
+//        for (int i = 0; i < 10; ++i) {
+//            String id = IDGenerator.takeID(null);
+//            System.out.println(id + "\t" + getDbNo(id));
+//        }
+//
+//
+//        String id = IDGenerator.takeID(null);
+//        for (int i = 0; i < 10; ++i) {
+//            String id2 = IDGenerator.takeID(IDCoder.decode(id));
+//            System.out.println(id2 + "\t" + getDbNo(id2));
+//        }
 
+        new IDConfig("0");
 
-        String id = IDGenerator.takeID(null);
-        for (int i = 0; i < 10; ++i) {
-            String id2 = IDGenerator.takeID(IDCoder.decode(id));
-            System.out.println(id2 + "\t" + getDbNo(id2));
-        }
+        int sum = 0;
+
+        do {
+            final String id1 = IDGenerator.takeId();
+
+            TimeUnit.MICROSECONDS.sleep(1);
+
+            final String id2 = IDGenerator.takeId();
+
+            if (id2.compareTo(id1) < 0) {
+                System.out.println(sum);
+                throw new RuntimeException();
+            }
+
+            sum++;
+        } while (true);
     }
 }
