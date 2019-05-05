@@ -382,7 +382,7 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
     }
 
     @Override
-    public SQLSyntaxTreeNode visitTableSubQuery(MySQLParser.TableSubQueryContext ctx) {
+    public TableSubQueryNode visitTableSubQuery(MySQLParser.TableSubQueryContext ctx) {
         SelectNode select = (SelectNode) this.visitSelectStat(ctx.selectStat());
         String alias = ctx.alias.getText();
         return new TableSubQueryNode(select, alias);
@@ -396,9 +396,11 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
 
     @Override
     public SQLSyntaxTreeNode visitTableJoin(MySQLParser.TableJoinContext ctx) {
-        TableNameAndAliasNode table = (TableNameAndAliasNode) this.visitTableNameAndAlias(ctx.tableNameAndAlias());
+
+        final TableRelNode tableRelNode = (TableRelNode) this.visitTableFactor(ctx.tableFactor());
+        // TableNameAndAliasNode table = (TableNameAndAliasNode) this.visitTableNameAndAlias(ctx.tableNameAndAlias());
         TableJoinSuffixNode suffix = (TableJoinSuffixNode) this.visitTableJoinSuffix(ctx.tableJoinSuffix());
-        return new TableJoinNode(table, suffix);
+        return new TableJoinNode(tableRelNode, suffix);
     }
 
     @Override
@@ -407,11 +409,12 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
         TableNameAndAliasesNode tables = ctx.tableNameAndAliases() == null ? null
                 : (TableNameAndAliasesNode) this.visitTableNameAndAliases(ctx.tableNameAndAliases());
         TableRecuNode tableRecu = ctx.tableRecu() == null ? null : (TableRecuNode) this.visitTableRecu(ctx.tableRecu());
+        TableSubQueryNode tableSubQueryNode = ctx.tableSubQuery() == null ? null : this.visitTableSubQuery(ctx.tableSubQuery());
 
         JoinConditionNode condition = (JoinConditionNode) this.visitJoinCondition(ctx.joinCondition());
         TableJoinSuffixNode suffix = ctx.tableJoinSuffix() == null ? null : (TableJoinSuffixNode) this.visitTableJoinSuffix(ctx.tableJoinSuffix());
 
-        return new TableJoinSuffixNode(tableJoinMod, tables, tableRecu, condition, suffix);
+        return new TableJoinSuffixNode(tableJoinMod, tables, tableRecu, tableSubQueryNode, condition, suffix);
     }
 
     @Override

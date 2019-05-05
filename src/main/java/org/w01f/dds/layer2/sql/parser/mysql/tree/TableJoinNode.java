@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TableJoinNode extends TableRelNode  implements Cloneable {
 
-	private final TableNameAndAliasNode table;
+	private final TableRelNode table;
 	private final TableJoinSuffixNode suffix;
 
 	@Override
@@ -13,7 +13,7 @@ public class TableJoinNode extends TableRelNode  implements Cloneable {
 		return new TableJoinNode(table.clone(), suffix.clone());
 	}
 
-	public TableJoinNode(TableNameAndAliasNode table, TableJoinSuffixNode suffix) {
+	public TableJoinNode(TableRelNode table, TableJoinSuffixNode suffix) {
 		this.table = table;
 		this.suffix = suffix;
 

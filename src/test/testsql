@@ -1,0 +1,54 @@
+SELECT
+			 K1.*,
+			 K2.REPLACE_BUID,
+			 IFNULL(K2.START_TM,'') REPLACE_START_TM,
+			 IFNULL(K2.END_TM,'') REPLACE_END_TM
+		 FROM
+         (
+             SELECT T.BUID,
+             	   T.DEPT_CODE,
+                   T.CARGONAME,
+                   T.CLASSNAME,
+                   T.IS_LEADER,
+                   T.UNIT_AREAR_CODE,
+                   IFNULL(T.REGIONTYPE,1) REGIONTYPE,
+                   P.START_TM,
+                   P.END_TM,
+                   C.MINWEIGHT,
+                   C.MAXWEIGHT,
+                   C.PRELEVEL
+             FROM TT_RSS_PICKUP_PLAN_TEMPLATE_press T,
+                  TM_RSS_PICKUP_PLAN_press P,
+                  SCH_CARGOTYPE_press C,
+                  RES_USER_press U
+             WHERE T.CLASSNAME = P.CLASSNAME
+                 AND T.CARGONAME=C.CARGONAME
+                 AND T.BUID=U.EMP_NUM
+                 AND U.IS_DELETED=0
+                 AND P.APPLIANCEWORKDAY LIKE CONCAT('%','7','%')
+                 AND T.UNIT_AREAR_CODE = '755AA001'
+        ) K1 LEFT JOIN
+        (
+             SELECT T.BUID,
+                   T.REPLACE_BUID,
+                   T.CARGONAME,
+                   T.CLASSNAME,
+                   T.IS_LEADER,
+                   T.UNIT_AREAR_CODE,
+                   T.START_TM,
+                   T.END_TM
+             FROM TT_RSS_PICKUP_PLAN_REPLACE_press T,
+                  TM_RSS_PICKUP_PLAN_press P,
+                  RES_USER_press U
+             WHERE T.CLASSNAME = P.CLASSNAME
+                 AND T.REPLACE_BUID=U.EMP_NUM
+                 AND U.IS_DELETED=0
+                 AND T.PLAN_DT = DATE_FORMAT('2019-04-28','%y-%m-%d')
+                 AND P.APPLIANCEWORKDAY LIKE CONCAT('%','7','%')
+                 AND T.UNIT_AREAR_CODE = '755AA001'
+        ) K2 ON K1.BUID = K2.BUID
+            AND K1.CARGONAME = K2.CARGONAME
+            AND K1.CLASSNAME = K2.CLASSNAME
+            AND K1.IS_LEADER = K2.IS_LEADER
+            AND K1.UNIT_AREAR_CODE = K2.UNIT_AREAR_CODE
+        ORDER BY PRELEVEL DESC

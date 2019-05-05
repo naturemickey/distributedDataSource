@@ -130,7 +130,13 @@ public class SqlHandler {
         if (lock != null) {
             throw new RuntimeException("not support '" + lock + "' syntax : " + statNode);
         }
-        final TableNameAndAliasNode tableNameAndAlias = realTables.get(0).getTableNameAndAliasNode();
+        TableNameAndAliasNode tableNameAndAlias; // = realTables.get(0).getTableRelNode();
+        final TableRelNode tableRelNode = realTables.get(0).getTableRelNode();
+        if (tableRelNode instanceof TableNameAndAliasNode) {
+            tableNameAndAlias = ((TableNameAndAliasNode) tableRelNode);
+        } else {
+            throw new RuntimeException("not support...");
+        }
         final String tableName = tableNameAndAlias.getName();
 
         final List<List<ExpressionNode>> wheres = SQLbreakUtil.breakWhere(whereCondition);

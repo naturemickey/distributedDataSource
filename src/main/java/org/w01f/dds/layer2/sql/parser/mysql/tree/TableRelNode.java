@@ -7,20 +7,20 @@ public abstract class TableRelNode extends SQLSyntaxTreeNode  implements Cloneab
 	public abstract List<TableAndJoinMod> getRealTables();
 
 	public static class TableAndJoinMod {
-		private TableNameAndAliasNode tableNameAndAliasNode;
+		private TableRelNode tableRelNode;
 		private String tableJoinMod;
 
-		public TableAndJoinMod(TableNameAndAliasNode tableNameAndAliasNode) {
-			this.tableNameAndAliasNode = tableNameAndAliasNode;
+		public TableAndJoinMod(TableRelNode tableNameAndAliasNode) {
+			this.tableRelNode = tableNameAndAliasNode;
 		}
 
-		public TableAndJoinMod(TableNameAndAliasNode tableNameAndAliasNode, String tableJoinMod) {
-			this.tableNameAndAliasNode = tableNameAndAliasNode;
+		public TableAndJoinMod(TableRelNode tableNameAndAliasNode, String tableJoinMod) {
+			this.tableRelNode = tableNameAndAliasNode;
 			this.tableJoinMod = tableJoinMod;
 		}
 
-		public TableNameAndAliasNode getTableNameAndAliasNode() {
-			return tableNameAndAliasNode;
+		public TableRelNode getTableRelNode() {
+			return tableRelNode;
 		}
 
 		public String getTableJoinMod() {

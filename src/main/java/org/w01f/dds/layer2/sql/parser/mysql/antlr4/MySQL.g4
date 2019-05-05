@@ -71,8 +71,8 @@ tableFactor
 tableSubQuery : '(' selectStat ')' AS? alias=ID ;
 tableRecu     : '(' tableRel ')' ;
 
-tableJoin       : tableNameAndAlias tableJoinSuffix ;
-tableJoinSuffix : tableJoinMod JOIN (tableNameAndAliases | '(' tableNameAndAliases ')' | tableRecu) joinCondition? tableJoinSuffix? ;
+tableJoin       : tableFactor tableJoinSuffix ;
+tableJoinSuffix : tableJoinMod JOIN (tableNameAndAliases | '(' tableNameAndAliases ')' | tableRecu | tableSubQuery) joinCondition? tableJoinSuffix? ;
 tableJoinMod    : INNER | CROSS | LEFT OUTER? | RIGHT OUTER? ;
 joinCondition   : ON whereCondition | USING '(' columnNames ')' ;
 

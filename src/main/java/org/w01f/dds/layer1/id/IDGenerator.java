@@ -89,36 +89,36 @@ public class IDGenerator {
     }
 
     public static void main(String[] args) throws Exception {
-//        new IDConfig("65530-65535");
-//        for (int i = 0; i < 10; ++i) {
-//            String id = IDGenerator.takeID(null);
-//            System.out.println(id + "\t" + getDbNo(id));
-//        }
+        new IDConfig("65530-65535");
+        for (int i = 0; i < 10; ++i) {
+            String id = IDGenerator.takeID(null);
+            System.out.println(id + "\t" + getDbNo(id));
+        }
+
+
+        String id = IDGenerator.takeID(null);
+        for (int i = 0; i < 10; ++i) {
+            String id2 = IDGenerator.takeID(IDCoder.decode(id));
+            System.out.println(id2 + "\t" + getDbNo(id2));
+        }
+
+//        new IDConfig("0");
 //
+//        int sum = 0;
 //
-//        String id = IDGenerator.takeID(null);
-//        for (int i = 0; i < 10; ++i) {
-//            String id2 = IDGenerator.takeID(IDCoder.decode(id));
-//            System.out.println(id2 + "\t" + getDbNo(id2));
-//        }
-
-        new IDConfig("0");
-
-        int sum = 0;
-
-        do {
-            final String id1 = IDGenerator.takeId();
-
-            TimeUnit.MICROSECONDS.sleep(1);
-
-            final String id2 = IDGenerator.takeId();
-
-            if (id2.compareTo(id1) < 0) {
-                System.out.println(sum);
-                throw new RuntimeException();
-            }
-
-            sum++;
-        } while (true);
+//        do {
+//            final String id1 = IDGenerator.takeId();
+//
+//            TimeUnit.MICROSECONDS.sleep(1);
+//
+//            final String id2 = IDGenerator.takeId();
+//
+//            if (id2.compareTo(id1) < 0) {
+//                System.out.println(sum);
+//                throw new RuntimeException();
+//            }
+//
+//            sum++;
+//        } while (true);
     }
 }
