@@ -39,7 +39,12 @@ public class MySQLVisitorImpl extends MySQLBaseVisitor<SQLSyntaxTreeNode> {
 
     @Override
     public SQLSyntaxTreeNode visitColumnNames(MySQLParser.ColumnNamesContext ctx) {
-        return new ColumnNamesNode(ctx.ID().stream().map(tn -> tn.getText()).collect(Collectors.toList()));
+        return new ColumnNamesNode(ctx.columnName().stream().map(this::visitColumnName).map(ElementTextNode::getTxt).collect(Collectors.toList()));
+    }
+
+    @Override
+    public ElementTextNode visitColumnName(MySQLParser.ColumnNameContext ctx) {
+        return new ElementTextNode(ctx.getText());
     }
 
     @Override

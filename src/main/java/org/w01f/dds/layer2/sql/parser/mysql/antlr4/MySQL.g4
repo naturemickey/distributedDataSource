@@ -27,7 +27,8 @@ insertStat
 	: INSERT INTO? tableName=ID ('(' columnNames ')')? ((VALUES '(' valueList ')') | selectStat)
 	;
 
-columnNames : (ID ',')* ID ;
+columnNames : (columnName ',')* columnName ;
+columnName  : ID | VALUES;
 valueList   : (element ',')* element ;
 
 selectStat
@@ -142,7 +143,7 @@ elementOpFactory
 	| elementRow
 	;
 
-elementText        : ('*' | COLUMN_REL | ID | NULL | UNKNOWN) ;
+elementText        : ('*' | COLUMN_REL | NULL | UNKNOWN) | columnName ;
 elementPlaceholder : PLACEHOLDER ;
 elementTextParam   : DECIMAL | STRING | INT | DECIMAL | TRUE | FALSE ;
 elementDate        : dt=(DATE | TIME | TIMESTAMP) STRING ;
@@ -167,7 +168,7 @@ PLACEHOLDER : '?' | (':' [a-zA-Z0-9_]+) ;
 SELECT      : [Ss][Ee][Ll][Ee][Cc][Tt] ;
 INSERT      : [Ii][Nn][Ss][Ee][Rr][Tt];
 INTO        : [Ii][Nn][Tt][Oo] ;
-VALUES      : [Vv][Aa][Ll][Uu][Ee][Ss] ;
+VALUES      : [Vv][Aa][Ll][Uu][Ee][Ss]? ;
 DELETE      : [Dd][Ee][Ll][Ee][Tt][Ee] ;
 FROM        : [Ff][Rr][Oo][Mm] ;
 WHERE       : [Ww][Hh][Ee][Rr][Ee] ;
@@ -241,7 +242,7 @@ INT         : [0-9]+ | [Xx] '\'' [0-9a-fA-F]+ '\'' | '0' [Xx] [0-9a-fA-F]+ | [Bb
 DECIMAL     : ('+' | '-')? ((INT)|('.' INT)|(INT '.' INT)) ([Ee]('+' | '-')? INT)? ;
 STRING      : (['] ((~[']) ([']['])?)* [']) | (["] ((~["]) (["]["])?)* ["]) ;
 
-ID          : ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) [a-zA-Z0-9_]*;
+ID          : ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) [a-zA-Z0-9_]* ;
 COLUMN_REL  : ID '.' (ID | '*') ;
 
 REGEXP      : 'regexp' ;
